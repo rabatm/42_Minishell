@@ -19,7 +19,7 @@ MAKE = make
 GREEN = echo "\033[32m$1\033[0m"
 RED = echo "\033[31m$1\033[0m"
 
-SRCS = $(wildcard $(SRC_DIR)/*.c)	
+SRCS = $(wildcard $(SRC_DIR)/*.c)
 
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
@@ -51,14 +51,14 @@ $(DEP_FILE): $(SRCS) $(INCLUDES)
 
 clean:
 	@$(RM) $(OBJS_DIR) $(DEP_FILE)
-	$(call RED, "Objects files deleted")
+	@$(call RED, "Objects files deleted")
 
 fclean: clean libft_fclean
 	@$(RM) $(NAME)
-	$(call RED, "$(NAME) deleted")
+	@$(call RED, "$(NAME) deleted")
 
 re: fclean all
 
 libft_fclean:
 	@$(MAKE) -s -C $(LIBFT_DIR) fclean
-	$(call RED, "$(LIBFT_NAME) deleted")
+	@$(call RED, "$(LIBFT_NAME) deleted")

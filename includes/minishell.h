@@ -44,9 +44,15 @@ et inclure seulement minishell.h dans les autres fichiers
 # define TK_TYPE_PAR_C 50			//	")"
 # define TK_TYPE_STR 40				//	anything else (echo  OU -n  OU "hello $USER"     OU 'hello $USER'   )
 
+// init_data
+t_data  *init_data(char **env);
 
-
-
-
+//tab_strs_tools
+char        **ft_tab_dup(char **src);
+int        ft_tab_size(char **tab);
+int        ft_free_tab(char **tab);
+int        ft_str_starts_with(char *str, char *start);
+int        ft_str_ends_with(char *str, char *end);
+int        ft_strs_equals(char *s1, char *s2);
 
 #endif

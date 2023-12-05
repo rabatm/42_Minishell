@@ -12,6 +12,11 @@
  *		ex:
  *			echo "hello $USER"'salut $USER'  >>  hello dfleurysalut $USER (sans espace avant salut)
  */
+
+#ifndef MINISHELL_DEFINE_H
+# define MINISHELL_DEFINE_H
+
+
 typedef struct s_token
 {
 	int				type;	// TK_TYPE_.... (voir defines)
@@ -37,3 +42,5 @@ typedef struct s_data
 	int		stdout;
 
 }	t_data;
+
+#endif

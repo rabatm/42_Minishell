@@ -1,15 +1,15 @@
 
+/*
 
-
-// *	Ajoutes des lignes de tests à l'historique.
-void	debug_create_fake_history(void)
-{
-	add_history("env | sort");
-	add_history("echo ABC > _out || echo $?");
-	add_history("export CC=ccccccccccc");
-	add_history("export BB=bbbbbbbbbbbbbbb");
-	add_history("export AA =aaaaaaaaaa");
-	//...
+// / *	Ajoutes des lignes de tests à l'historique.
+// void	debug_create_fake_history(void)
+// {
+// 	add_history("env | sort");
+// 	add_history("echo ABC > _out || echo $?");
+// 	add_history("export CC=ccccccccccc");
+// 	add_history("export BB=bbbbbbbbbbbbbbb");
+// 	add_history("export AA =aaaaaaaaaa");
+// 	//...
 }
 
 
@@ -69,6 +69,9 @@ int	main(int argc, char **argv, char **env)
 	// 	ft_TODO_free_everything_needed_before_next_prompt(&data);	// free: line, tokens....
 	// }
 
-	// ft_TODO_free_everything_needed_before_exit_ms(&data);
-	return (0);
-}
+// 	// ft_TODO_free_everything_needed_before_exit_ms(&data);
+// 	return (0);
+// }
+
+
+*/
