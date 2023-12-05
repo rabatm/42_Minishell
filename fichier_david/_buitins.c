@@ -19,7 +19,6 @@ Si il y a des variables d'environement a remplacer, ca a deja ete fait en amont 
 INFO : env est une copie faite au debut de minishell, mais comme precise plus haut,
 c'est pas votre probleme qund vous faites un builtin
 
-*/
 
 
 
@@ -56,14 +55,12 @@ int	builtin_env(int argc, char **argv, char **env)
 int	builtin_pwd(int argc, char **argv, char **env)
 
 
-
-//* Pour certains il faut des trucs en plus
+ Pour certains il faut des trucs en plus
 int	exec_unset(int argc, char **argv, char **env, t_data *data)
 
 
 
 
-/*
 
 	execve a a peu pres le meme proto : 	execve(execpath, argv, env);
 

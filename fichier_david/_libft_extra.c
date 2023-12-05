@@ -3,7 +3,7 @@
  *
  * 	Si ya un 's' a la fin de "strs", c'est un tableau de strs (char**)
  *
- */
+ 
 
 
 
@@ -57,3 +57,4 @@ int	ft_str_equals(char *s1, char *s2)
 	return (ft_strncmp(s1, s2, ft_strlen(s1)+1) == 0);
 }
 
+*/

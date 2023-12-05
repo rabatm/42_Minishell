@@ -12,7 +12,7 @@ et inclure seulement minishell.h dans les autres fichiers
 #ifndef MINISHEL_H
 # define MINISHEL_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
