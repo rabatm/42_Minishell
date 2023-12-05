@@ -55,4 +55,8 @@ int        ft_str_starts_with(char *str, char *start);
 int        ft_str_ends_with(char *str, char *end);
 int        ft_strs_equals(char *s1, char *s2);
 
+//tools
+int        ft_is_white_space(char c);
+char    *ft_strtrim_whitespaces(const char *str);
+
 #endif
