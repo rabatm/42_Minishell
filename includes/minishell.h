@@ -46,7 +46,7 @@ et inclure seulement minishell.h dans les autres fichiers
 
 
 
-
+int ft_echo(int argc, char** argv, char **env);
 
 
 #endif

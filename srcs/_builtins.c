@@ -8,17 +8,14 @@ int ft_echo(int argc, char** argv, char **env)
 	ret = 0;
 	i = 0;
 
-	printf("");
+	(void)env;
 	while (i < argc)
 	{
-		if (argv[i] != "-n")
+		if (ft_strncmp(argv[i], "-n", ft_strlen(argv[i])) != 0)
 			printf("%s", argv[i]);
 		i++;
 	}
-	if (argv[0] == '-n')
+	if (ft_strncmp(argv[0], "-n", ft_strlen(argv[0])) != 0)
 		printf("\n");
-	// TODO
-
 	return (ret);
-	// return (1 ou 0)
 }
