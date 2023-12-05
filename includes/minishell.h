@@ -49,5 +49,6 @@ et inclure seulement minishell.h dans les autres fichiers
 
 int ft_echo(int argc, char** argv, char **env);
 int	builtin_pwd(int argc, char **argv, char **env);
+int	builtin_cd(int argc, char **argv, char **env);
 
 #endif
