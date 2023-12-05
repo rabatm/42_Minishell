@@ -19,3 +19,16 @@ int ft_echo(int argc, char** argv, char **env)
 		printf("\n");
 	return (ret);
 }
+
+int	builtin_pwd(int argc, char **argv, char **env)
+{
+	char	chemin[PATH_MAX];
+
+	(void)argc;
+	(void)argv;
+	(void)env;
+
+	getcwd(chemin, PATH_MAX);
+	printf("%s\n", chemin);
+	return (0);
+}
