@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:12:02 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/07 15:03:49 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:57:44 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,6 @@ int     get_token_type(char *line, int i)
     return (0);
 }
 
-/*
-    opening_quote_id ; position de la quote ouvrante
-    return: position de la quote fermante
-*/
 int    get_id_of_closing_quote(char *line, int opening_quote_id)
 {
     char    quote_type;
@@ -109,6 +105,7 @@ t_token     **tokenize_line(char *line)
     int         i;
     int         type;
     char    *val;
+    t_token *tmp;
 
     tokens = (t_token **)ft_calloc(1, sizeof(t_token *));
     if (!tokens)
@@ -141,12 +138,14 @@ t_token     **tokenize_line(char *line)
             if (closing_quote_id == -1)
             {
                 printf("error\n");
+                free_tokens(tokens);
                 return (NULL);
             }
             val = ft_substr(line, i + 1, closing_quote_id - i - 1);
             type = TK_TYPE_STR;
             make_list_tokens(tokens, val, type);
-            (*tokens)->escape_env_var = 0;
+            tmp = its_last_token(tokens);
+            tmp->escape_env_var = 0;
             i = closing_quote_id + 1;
         }
         else if (line[i] == '\'')
@@ -155,12 +154,14 @@ t_token     **tokenize_line(char *line)
             if (closing_quote_id == -1)
             {
                 printf("error\n");
+                free_tokens(tokens);
                 return (NULL);
             }
             val = ft_substr(line, i + 1, closing_quote_id - i - 1);
             type = TK_TYPE_STR;
             make_list_tokens(tokens, val, type);
-            (*tokens)->escape_env_var = 1;
+            tmp = its_last_token(tokens);
+            tmp->escape_env_var = 1;
             i = closing_quote_id + 1;
         }
         else

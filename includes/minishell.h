@@ -43,9 +43,6 @@ et inclure seulement minishell.h dans les autres fichiers
 # define TK_TYPE_PAR_O 49			//	"("
 # define TK_TYPE_PAR_C 50			//	")"
 # define TK_TYPE_STR 40				//	anything else (echo  OU -n  OU "hello $USER"     OU 'hello $USER'   )
-# define TK_TYPE_END 51				//	"\0" (end of line)
-# define TK_TYPE_ENV_VAR 52			//	"$USER"
-
 
 
 // init_data
@@ -57,6 +54,7 @@ t_token    *create_new_token(char *val, int type);
 void        add_token_back(t_token **tokens, t_token *new_token);
 void        free_tokens(t_token **tokens);
 int         make_list_tokens(t_token **tokens, char *line, int type);
+t_token     *its_last_token(t_token **tokens);
 
 //tokeniser
 t_token    **tokenize_line(char *line);
