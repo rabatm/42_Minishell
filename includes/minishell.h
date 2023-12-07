@@ -58,6 +58,12 @@ t_token     *its_last_token(t_token **tokens);
 
 //tokeniser
 t_token    **tokenize_line(char *line);
+//tokenizer tools
+int         get_and_or_type(char *line, int i);
+int         get_redirection_type(char *line, int i);
+int         get_token_type(char *line, int i);
+int         get_id_of_closing_quote(char *line, int opening_quote_id);
+int         get_end_str_id(char *line, int i);
 
 //tab_strs_tools
 char        **ft_tab_dup(char **src);
