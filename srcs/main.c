@@ -6,13 +6,13 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/07 08:13:03 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:56:12 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-/*
+
 int	main(int argc, char **argv, char **env)
 {
 	t_data	*data;
@@ -46,16 +46,21 @@ int	main(int argc, char **argv, char **env)
 
 
 	return (0);
-}*/
+}
 
 
 
 //to do : test si les tokens fonctionnent faire un maion special
+/*
 
 int main(void)
 {
     char *line = "echo $USER > output.txt | cat < input.txt ; echo Fini";
-	//char	*line = ">> << > < | ; $";
+	//char	*line = ">> << > < | 'ABCD' ; $";
+    //char    *line = "qwerty   uio   12345";
+//                       x   x
+//                   0123456789
+	//char	*line = "asd 'AVC' def";
     t_token **tokens;
     t_token *tmp;
 
@@ -76,7 +81,8 @@ int main(void)
     free_tokens(tokens);
 
     return 0;
-}
+}*/
+
 
 
 

@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:13:24 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/07 08:25:40 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:26:53 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,65 +16,61 @@ void        free_tokens(t_token **tokens)
 {
     t_token    *tmp;
 
-    tmp = *tokens;
     if (!tokens || !*tokens)
         return ;
+    tmp = *tokens;
     while (tmp)
     {
         *tokens = tmp->next;
         free(tmp);
         tmp = *tokens;
     }
-    free(tokens);
 }
 
-void		add_token(t_token **tokens, t_token *new_token)
+void		add_token_back(t_token **tokens, t_token *new_token)
 {
-    t_token	*last_token;
+    t_token	*tmp;
 
     if (!tokens || !new_token)
         return ;
     if (!*tokens)
-    {
         *tokens = new_token;
-        return ;
+    else
+    {
+        tmp = *tokens;
+        while (tmp->next)
+            tmp = tmp->next;
+        tmp->next = new_token;
+        new_token->previous = tmp;
     }
-    last_token = *tokens;
-    while (last_token->next)
-        last_token = last_token->next;
-    last_token->next = new_token;
-    new_token->previous = last_token;
 }
 
-t_token	*create_new_token(char *str, int type)
+t_token	*create_new_token(char *val, int type)
 {
     t_token	*new_token;
 
-    (void)str;
-    new_token = ft_calloc(1, sizeof(t_token));
+    new_token = (t_token *)ft_calloc(1, sizeof(t_token));
     if (!new_token)
         exit(1);
     new_token->type = type;
-    new_token->val = ft_strdup(str);
-    new_token->val = NULL;
+    new_token->val = ft_strdup(val);
     new_token->previous = NULL;
     new_token->next = NULL;
-
     return (new_token);
 }
 
-int     make_list_tokens(t_token **tokens, char *line, int type)
+int     make_list_tokens(t_token **tokens, char *val, int type)
 {
     t_token    *new_token;
 
-    new_token = create_new_token(line, type);
+    new_token = create_new_token(val, type);
     if (!new_token)
     {
-        free(line);
+        free(val);
         free_tokens(&new_token);
         return (0);
     }
-    add_token(tokens, new_token);
+    add_token_back(tokens, new_token);
     return (1);
 }
 
