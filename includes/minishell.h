@@ -32,7 +32,11 @@ et inclure seulement minishell.h dans les autres fichiers
 
 // * types des differents token:
 
+# define TK_TYPE_SEMICOLON 1		//	";"  en a t on vraiment besoin???
 
+# define TK_TYPE_QUOTE 2			//	"'" (simple quote)
+# define TK_TYPE_DQUOTE 3			//	""" (double quote)
+\
 # define TK_TYPE_AND 42				//	"&&" (Bonus only)
 # define TK_TYPE_OR 43				//	"||" (Bonus only)
 # define TK_TYPE_PIPE 44			//	"|"
@@ -43,9 +47,21 @@ et inclure seulement minishell.h dans les autres fichiers
 # define TK_TYPE_PAR_O 49			//	"("
 # define TK_TYPE_PAR_C 50			//	")"
 # define TK_TYPE_STR 40				//	anything else (echo  OU -n  OU "hello $USER"     OU 'hello $USER'   )
+# define TK_TYPE_END 51				//	"\0" (end of line)
+
 
 // init_data
 t_data  *init_data(char **env);
+
+//tokens
+//listes chainees
+t_token    *create_token(int type, char *val);
+void        add_token(t_token **tokens, t_token *new_token);
+void        free_tokens(t_token **tokens);
+int         make_list_tokens(t_token **tokens, char *line, int type);
+
+//tokeniser
+t_token    **tokenize_line(char *line);
 
 //tab_strs_tools
 char        **ft_tab_dup(char **src);
