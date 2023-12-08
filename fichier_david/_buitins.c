@@ -48,7 +48,7 @@ int ft_echo(int argc, char** argv, char **env)
 
 
 
-int	builtin_env(int argc, char **argv, char **env)
+c
 
 
 

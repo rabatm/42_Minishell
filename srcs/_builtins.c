@@ -58,3 +58,13 @@ int	builtin_cd(int argc, char **argv, char **env)
 	}
 	return (ret);
 }
+
+int	exec_unset(int argc, char **argv, char **env, t_data *data)
+{
+	(void)argc;
+	(void)argv;
+	(void)env;
+
+	
+
+}
