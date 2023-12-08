@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:22:23 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/05 17:23:08 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:24:11 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ t_data    *init_data(char **env)
     data->last_exit_status = 0;
     data->stdin = dup(0);
     data->stdout = dup(1);
+    data->tokens = NULL;
     return (data);
 }
