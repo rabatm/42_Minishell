@@ -1,3 +1,5 @@
+#ifndef MINISHEL_DEFINE_H
+# define MINISHEL_DEFINE_H
 
 /*
  *	escape_env_var:
@@ -37,3 +39,21 @@ typedef struct s_data
 	int		stdout;
 
 }	t_data;
+
+typedef struct s_pipex
+{
+	int		pid1;
+	int		pid2;
+	char	*file_out;
+	char	*file_in;
+	int		file_outfd;
+	int		file_infd;
+	int		fd[2];
+	char	*cmd1;
+	char	*cmd2;
+    char **splitarg1;
+    char **splitarg2;
+	char **path_exe;
+}				t_pipex;
+
+#endif
