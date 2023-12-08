@@ -1,6 +1,3 @@
-#ifndef MINISHEL_DEFINE_H
-# define MINISHEL_DEFINE_H
-
 /*
  *	escape_env_var:
  *		seulement pour les type: TK_TYPE_STR
