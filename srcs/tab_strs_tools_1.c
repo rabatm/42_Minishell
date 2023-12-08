@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:02:53 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/08 11:57:14 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/08 13:19:34 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char    **ft_tab_dup(char **tab)
     i = 0;
     while (tab[i])
         i++;
-    new = ft_calloc(i + 1, sizeof(char *));
+    new = (char **)ft_calloc(i + 1, sizeof(char *));
     if (!new)
         return (NULL);
     j = 0;
@@ -89,7 +89,7 @@ char    *ft_str_replace(char *str, char *new, int start, int end)
         return (NULL);
     len_new = ft_strlen(new);
     len_str = ft_strlen(str);
-    new_str = ft_calloc(len_str + len_new - (end - start) + 1, sizeof(char));
+    new_str = (char *)ft_calloc(len_str - (end - start) + len_new + 1, sizeof(char));
     if (!new_str)
         return (NULL);
     ft_memcpy(new_str, str, start);

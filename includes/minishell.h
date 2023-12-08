@@ -47,6 +47,7 @@ et inclure seulement minishell.h dans les autres fichiers
 
 // init_data
 t_data  *init_data(char **env);
+void    free_data(t_data *data);
 
 //tokens
 //listes chainees

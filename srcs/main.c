@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/08 12:55:43 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/08 13:19:56 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void    free_and_exit_if_forbidden_token(t_data *data)
         if (tmp->type == TK_TYPE_AND || tmp->type == TK_TYPE_OR)
         {
             ft_printf("sorry, dont write %s we didn't do the bonus\n", tmp->val);
-            free_tokens(data->tokens);
+            free_data(data);
             exit(0);
         }
         tmp=tmp->next;
@@ -83,10 +83,10 @@ int	main(int argc, char **argv, char **env)
         {
         	data->tokens = tokenize_line(data->line);
             free_and_exit_if_forbidden_token(data);
-            //debug
-            print_tokens (data->tokens);
+            print_tokens (data->tokens);/////////////////////////
             replace_env_var(data);
-            print_tokens (data->tokens);
+            print_tokens (data->tokens);/////////////////////////
+           // execute_commands(data);
         }
 	}
 	return (0);
