@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_test.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:34:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/06 17:55:17 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/08 16:23:48 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-
-int ft_initoutfile(char *filename)
-{
-	int fdfile;
-
-	fdfile = open(filename, O_WRONLY | O_CREAT, 0777);
-	dup2(fdfile,STDOUT_FILENO);
-	return (fdfile);
-}
-
-int	ft_initinfile(char *filename)
-{
-	int fdfile;
-
-	fdfile = open(filename, O_RDONLY );
-	dup2(fdfile,STDIN_FILENO);
-	return (fdfile);
-}
+#include "../includes/minishell.h"
 
 char	*ft_getcmd(char *arg)
 {
@@ -56,12 +38,6 @@ char    *ft_getenvpath(char **envp)
 	return (envp[i-1] + 5);
 }
 
-void	ft_closefd(int *fd)
-{
-	close(fd[0]);
-	close(fd[1]);
-}
-
 char	*ft_checkexe(char *for_exe, char **path)
 {
 
@@ -81,7 +57,7 @@ char	*ft_checkexe(char *for_exe, char **path)
 	{
 		ft_putstr_fd(for_exe,2);     
 		ft_putstr_fd(": command not found",2);     
-		exit(EXIT_FAILURE);
+		return (NULL);
 	}
 	return (tmp_exe);
 }

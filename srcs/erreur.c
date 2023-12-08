@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   erreur.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:33:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/08 14:17:51 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/08 16:11:47 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../includes/minishell.h"
 
 int ft_check_file_exist(char *fd)
 {

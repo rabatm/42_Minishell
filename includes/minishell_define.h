@@ -1,29 +1,9 @@
 #ifndef MINISHEL_DEFINE_H
 # define MINISHEL_DEFINE_H
-
-/*
- *	escape_env_var:
- *		seulement pour les type: TK_TYPE_STR
- *		est-ce qu'on doit echapper les variable d'environnement (ou les remplacer)
- *		ex:
- *			echo "hello $USER"  >>  escape_env_var = 0  >>  hello dfleury
- *			echo 'hello $USER'  >>  escape_env_var = 1  >>  hello &USER
- *
- *
- *	must_be_merge_with_previous
- *		ex:
- *			echo "hello $USER"'salut $USER'  >>  hello dfleurysalut $USER (sans espace avant salut)
- */
-
-#ifndef MINISHELL_DEFINE_H
-# define MINISHELL_DEFINE_H
-
-
 typedef struct s_token
 {
 	int				type;	// TK_TYPE_.... (voir defines)
 	char			*val;	// ex: echo OU -n OU >>
-
 	int				escape_env_var;
 	int				must_be_merge_with_previous; // faculatatif ?
 	struct s_token	*previous;

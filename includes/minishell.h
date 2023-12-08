@@ -26,6 +26,7 @@ et inclure seulement minishell.h dans les autres fichiers
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <sys/param.h>
+# include <stddef.h>
 # include <unistd.h>
 
 #include <stdio.h>
@@ -82,23 +83,16 @@ char    *ft_str_replace(char *str, char *new, int start, int end);
 void    ft_print_tab(char **tab);
 
 //tools
-int        ft_is_white_space(char c);
-char    *ft_strtrim_whitespaces(const char *str);
-
-
+int		ft_is_white_space(char c);
 int 	ft_echo(int argc, char** argv, char **env);
 int		builtin_pwd(int argc, char **argv, char **env);
 int		builtin_cd(int argc, char **argv, char **env);
 int		ft_arg_error(char **argv);
 int		ft_check_file_exist(char *fd);
-int		ft_initoutfile(char *filename);
-int		ft_initinfile(char *filename);
-void	pipex(t_pipex *mypipex, char **envp);
 char	*ft_getcmd(char *arg);
 char	*ft_getenvpath(char **envp);
-void	ft_closefd(int *fd);
 char	*ft_checkexe(char *for_exe, char **envp);
-t_pipex	*ft_initpipexstruc(char **argv, char **envp);
-void	ft_freemypex(t_pipex *mypipex);
+int		ft_exec_ext_command(int argc, char **argv, char **env);
+int		ft_tokensize(t_token **lst);
 
 #endif
