@@ -67,4 +67,7 @@ int	exec_unset(int argc, char **argv, char **env, t_data *data)
 
 	
 
+int	ft_export(int argc, char **argv, char **env)
+{
+	
 }
