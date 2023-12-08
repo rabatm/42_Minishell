@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   s_pipex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:32:02 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/06 18:17:54 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/08 15:05:30 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-
+#include "../includes/minishell.h"
+/*
 t_pipex *ft_initpipexstruc(char **argv, char **envp)
 {
 	t_pipex *mypipex;
 	char    **path;
-	
+
 	path = ft_split(ft_getenvpath(envp), ':');
 	mypipex = malloc(sizeof(t_pipex));
 	mypipex->splitarg1 = ft_split(argv[2], ' ');
@@ -54,9 +54,9 @@ void	ft_freemypex(t_pipex *mypipex)
 	free(mypipex->cmd2);
 	free(mypipex);
 }
-/*
+
 function pipex
-*/
+
 void pipex(int argc, char **argv, char **env)
 {
 
@@ -77,3 +77,4 @@ void pipex(int argc, char **argv, char **env)
     waitpid(mypipex->pid2, NULL, 0);
     ft_freemypex(mypipex);
 }
+*/

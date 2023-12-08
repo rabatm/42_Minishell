@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/08 14:45:33 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:51:01 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,19 @@ void    debug_create_fake_history(void)
         printf("------------------------------\n");
     }
 }
+/*
+void    ft_print_env(char **env)
+{
+    int i;
+
+    i = 0;
+    while (env[i])
+    {
+        printf("%s\n", env[i]);
+        i++;
+    }
+}
+*/
 
 void    free_and_exit_if_forbidden_token(t_data *data)
 {
@@ -85,6 +98,7 @@ int	main(int argc, char **argv, char **env)
             free_and_exit_if_forbidden_token(data);
             print_tokens (data->tokens);/////////////////////////
             replace_env_var(data);
+
             print_tokens (data->tokens);/////////////////////////
            // execute_commands(data);
         }

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_test.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:34:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/06 17:55:17 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/08 15:04:24 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-
+#include "../includes/minishell.h"
+/*
 int ft_initoutfile(char *filename)
 {
 	int fdfile;
@@ -85,3 +85,4 @@ char	*ft_checkexe(char *for_exe, char **path)
 	}
 	return (tmp_exe);
 }
+*/

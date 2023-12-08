@@ -81,15 +81,19 @@ int        ft_strs_equals(char *s1, char *s2);
 int        ft_strcmp(char *s1, char *s2);
 char    *ft_str_replace(char *str, char *new, int start, int end);
 void    ft_print_tab(char **tab);
+char    **ft_add_str_to_tab(t_data *data, char *entry);
+char    **free_tab_and_return_null(char **tab);
 
 //tools
 int        ft_is_white_space(char c);
 char    *ft_strtrim_whitespaces(const char *str);
 
-
+//builtin
 int 	ft_echo(int argc, char** argv, char **env);
 int		builtin_pwd(int argc, char **argv, char **env);
 int		builtin_cd(int argc, char **argv, char **env);
+int     exec_unset(int argc, char **argv, char **env, t_data *data);
+
 int		ft_arg_error(char **argv);
 int		ft_check_file_exist(char *fd);
 int		ft_initoutfile(char *filename);

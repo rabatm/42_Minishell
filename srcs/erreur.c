@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   erreur.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:33:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/08 14:17:51 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/08 15:17:16 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../includes/minishell.h"
 
 int ft_check_file_exist(char *fd)
 {
@@ -28,7 +28,7 @@ int ft_arg_error(char **argv)
     }
     if (!ft_check_file_exist(argv[4]))
     {
-        ft_putstr_fd("FILE OUPUT EXIST",2);       
+        ft_putstr_fd("FILE OUPUT EXIST",2);
         return (1);
     }
     return (0);

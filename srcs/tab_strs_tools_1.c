@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:02:53 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/08 13:19:34 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:21:12 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ char    **ft_tab_dup(char **tab)
     {
         new[j] = ft_strdup(tab[j]);
         if (!new[j])
-        {
-            ft_free_tab(new);
-            return (NULL);
-        }
+            return (free_tab_and_return_null(new));
         j++;
     }
     return (new);
