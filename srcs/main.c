@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/08 13:19:56 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:45:33 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,3 @@ int	main(int argc, char **argv, char **env)
 	}
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
