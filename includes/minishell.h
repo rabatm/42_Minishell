@@ -25,6 +25,7 @@ et inclure seulement minishell.h dans les autres fichiers
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/param.h>
 # include <unistd.h>
 
 #include <stdio.h>
@@ -54,5 +55,21 @@ int        ft_free_tab(char **tab);
 int        ft_str_starts_with(char *str, char *start);
 int        ft_str_ends_with(char *str, char *end);
 int        ft_strs_equals(char *s1, char *s2);
+
+
+int 	ft_echo(int argc, char** argv, char **env);
+int		builtin_pwd(int argc, char **argv, char **env);
+int		builtin_cd(int argc, char **argv, char **env);
+int		ft_arg_error(char **argv);
+int		ft_check_file_exist(char *fd);
+int		ft_initoutfile(char *filename);
+int		ft_initinfile(char *filename);
+void	pipex(t_pipex *mypipex, char **envp);
+char	*ft_getcmd(char *arg);
+char	*ft_getenvpath(char **envp);
+void	ft_closefd(int *fd);
+char	*ft_checkexe(char *for_exe, char **envp);
+t_pipex	*ft_initpipexstruc(char **argv, char **envp);
+void	ft_freemypex(t_pipex *mypipex);
 
 #endif
