@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/07 18:21:48 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:55:43 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@ void    debug_create_fake_history(void)
 
 
 //****************a supprimer
- void   ft_print_tokens(t_token **tokens)
+ void   print_tokens(t_token **tokens)
  {
     t_token *tmp;
     if (tokens)
     {
-        // * DEBUG
         tmp = *tokens;
         printf("------------------------------\n");
         while (tmp)
@@ -43,12 +42,10 @@ void    debug_create_fake_history(void)
             tmp = tmp->next;
         }
         printf("------------------------------\n");
-        // * DEBUG
     }
 }
 
-
-void    ft_free_and_exit_if_forbidden_token(t_data *data)
+void    free_and_exit_if_forbidden_token(t_data *data)
 {
     t_token *tmp;
 
@@ -69,14 +66,11 @@ int	main(int argc, char **argv, char **env)
 {
 	t_data	*data;
 
-
 	(void)argc;
 	(void)argv;
 	data = init_data(env);
-
 	//handle_signal();	// * Handle ctrl+C and ctrl+D
 	//debug_create_fake_history();
-
 	while (1)
 	{
 		data->line = readline("Myshell $>");
@@ -88,11 +82,11 @@ int	main(int argc, char **argv, char **env)
         else
         {
         	data->tokens = tokenize_line(data->line);
-
-            ft_free_and_exit_if_forbidden_token(data);
+            free_and_exit_if_forbidden_token(data);
             //debug
-            ft_print_tokens (data->tokens);
-
+            print_tokens (data->tokens);
+            replace_env_var(data);
+            print_tokens (data->tokens);
         }
 	}
 	return (0);
