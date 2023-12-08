@@ -58,3 +58,8 @@ int	builtin_cd(int argc, char **argv, char **env)
 	}
 	return (ret);
 }
+
+int	ft_export(int argc, char **argv, char **env)
+{
+	
+}
