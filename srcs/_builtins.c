@@ -41,8 +41,6 @@ int	builtin_cd(int argc, char **argv, char **env)
 
 	(void)env;
 	ret = 1;
-	printf("cd\n");
-	printf("cd %s, %s\n", argv[1], argv[2]);
 	if (argc == 2)
 	{
 		errno = 0;

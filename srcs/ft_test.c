@@ -6,7 +6,7 @@
 /*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:34:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/09 22:10:14 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/09 23:35:57 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char	*ft_checkexe(char *for_exe, char **path)
 		
 	i = 0;
 	chk_result = -1;
+	if (ft_check_file_exist(for_exe) == 0)
+		return (for_exe);
 	while (path[i] && chk_result)
 	{
 		tmp_exe = ft_strjoin(ft_strjoin(path[i], "/"), for_exe);
