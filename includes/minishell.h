@@ -90,9 +90,12 @@ int		builtin_cd(int argc, char **argv, char **env);
 int		ft_arg_error(char **argv);
 int		ft_check_file_exist(char *fd);
 char	*ft_getcmd(char *arg);
-char	*ft_getenvpath(char **envp);
-char	*ft_checkexe(char *for_exe, char **envp);
-int		ft_exec_ext_command(int argc, char **argv, char **env);
+char    **ft_getenvpath(char **envp);
 int		ft_tokensize(t_token **lst);
+
+int		ft_exec_ext_command(int argc, char **argv, char **env);
+int		ft_exec(t_data *data);
+char	*ft_checkexe(char *for_exe, char **envp);
+
 
 #endif

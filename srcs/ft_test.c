@@ -6,7 +6,7 @@
 /*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:34:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/08 16:23:48 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/09 17:39:59 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ char	*ft_getcmd(char *arg)
 	return ft_strjoin("/usr/bin/",arg);
 }
 
-char    *ft_getenvpath(char **envp)
+char    **ft_getenvpath(char **envp)
 {
 	int b_find;
 	int i;
+	char	**t_path;
 
 	b_find = 0;
 	i = 0;
@@ -35,7 +36,8 @@ char    *ft_getenvpath(char **envp)
 		ft_putstr_fd("ERORR ENV VARIBLES",2);
 		exit(1);
 	}
-	return (envp[i-1] + 5);
+	t_path = ft_split(envp[i-1] + 5, ':');
+	return (t_path);
 }
 
 char	*ft_checkexe(char *for_exe, char **path)

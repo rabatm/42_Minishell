@@ -1,5 +1,6 @@
 #ifndef MINISHEL_DEFINE_H
 # define MINISHEL_DEFINE_H
+
 typedef struct s_token
 {
 	int				type;	// TK_TYPE_.... (voir defines)
@@ -10,11 +11,6 @@ typedef struct s_token
 	struct s_token	*next;
 
 }	t_token;
-
-
-
-
-
 typedef struct s_data
 {
 	char	**env;		// copie de env
