@@ -6,7 +6,7 @@
 /*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/09 17:40:03 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/09 22:42:10 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int argc, char **argv, char **env)
 	//debug_create_fake_history();
 	while (1)
 	{
-		data->line = readline("Myshell $>");
+		data->line = readline(G"Myshell $>"RST);
         if (!data->line)
         {
             data->exit = 1;
@@ -84,9 +84,9 @@ int	main(int argc, char **argv, char **env)
         	data->tokens = tokenize_line(data->line);
             free_and_exit_if_forbidden_token(data);
             //debug
-            print_tokens (data->tokens);
+            //print_tokens (data->tokens);
             replace_env_var(data);
-            print_tokens (data->tokens);
+            //print_tokens (data->tokens);
             ft_exec(data);
         }
 	}

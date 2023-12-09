@@ -52,35 +52,35 @@ t_data  *init_data(char **env);
 
 //tokens
 //listes chainees
-t_token    *create_new_token(char *val, int type);
-void        add_token_back(t_token **tokens, t_token *new_token);
-void        free_tokens(t_token **tokens);
-int         make_list_tokens(t_token **tokens, char *line, int type);
-t_token     *its_last_token(t_token **tokens);
+t_token	*create_new_token(char *val, int type);
+void	add_token_back(t_token **tokens, t_token *new_token);
+void	free_tokens(t_token **tokens);
+int	make_list_tokens(t_token **tokens, char *line, int type);
+t_token	*its_last_token(t_token **tokens);
 
 //tokeniser
-t_token    **tokenize_line(char *line);
+t_token	**tokenize_line(char *line);
 //tokenizer tools
-int         get_and_or_type(char *line, int i);
-int         get_redirection_type(char *line, int i);
-int         get_token_type(char *line, int i);
-int         get_id_of_closing_quote(char *line, int opening_quote_id);
-int         get_end_str_id(char *line, int i);
+int	get_and_or_type(char *line, int i);
+int	get_redirection_type(char *line, int i);
+int	get_token_type(char *line, int i);
+int	get_id_of_closing_quote(char *line, int opening_quote_id);
+int	get_end_str_id(char *line, int i);
 
 //replace_env_var
-void    replace_env_var(t_data *data);
-char    *get_value_of_env_var(t_data *data, char *env_var);
+void	replace_env_var(t_data *data);
+char	*get_value_of_env_var(t_data *data, char *env_var);
 
 //tab_strs_tools
-char        **ft_tab_dup(char **src);
-int        ft_tab_size(char **tab);
-void        ft_free_tab(char **tab);
-int        ft_str_starts_with(char *str, char *start);
-int        ft_str_ends_with(char *str, char *end);
-int        ft_strs_equals(char *s1, char *s2);
-int        ft_strcmp(char *s1, char *s2);
-char    *ft_str_replace(char *str, char *new, int start, int end);
-void    ft_print_tab(char **tab);
+char	**ft_tab_dup(char **src);
+int	ft_tab_size(char **tab);
+void	ft_free_tab(char **tab);
+int	ft_str_starts_with(char *str, char *start);
+int	ft_str_ends_with(char *str, char *end);
+int	ft_strs_equals(char *s1, char *s2);
+int	ft_strcmp(char *s1, char *s2);
+char	*ft_str_replace(char *str, char *new, int start, int end);
+void	ft_print_tab(char **tab);
 
 //tools
 int		ft_is_white_space(char c);
@@ -93,7 +93,7 @@ char	*ft_getcmd(char *arg);
 char    **ft_getenvpath(char **envp);
 int		ft_tokensize(t_token **lst);
 
-int		ft_exec_ext_command(int argc, char **argv, char **env);
+int		ft_exec_ext_command(char **argv, char **env);
 int		ft_exec(t_data *data);
 char	*ft_checkexe(char *for_exe, char **envp);
 

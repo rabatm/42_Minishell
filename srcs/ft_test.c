@@ -6,7 +6,7 @@
 /*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:34:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/09 17:39:59 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/09 22:10:14 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_getcmd(char *arg)
 	return ft_strjoin("/usr/bin/",arg);
 }
 
-char    **ft_getenvpath(char **envp)
+char	**ft_getenvpath(char **envp)
 {
 	int b_find;
 	int i;
@@ -33,7 +33,7 @@ char    **ft_getenvpath(char **envp)
 	}
 	if (b_find == 0) 
 	{
-		ft_putstr_fd("ERORR ENV VARIBLES",2);
+		printf(RED": ERROR ENV VARIBLES\n"RST);
 		exit(1);
 	}
 	t_path = ft_split(envp[i-1] + 5, ':');
@@ -57,8 +57,8 @@ char	*ft_checkexe(char *for_exe, char **path)
 	}
 	if (chk_result == -1)
 	{
-		ft_putstr_fd(for_exe,2);     
-		ft_putstr_fd(": command not found",2);     
+		printf(RED"%s", for_exe);
+		printf(": command not found\n"RST);
 		return (NULL);
 	}
 	return (tmp_exe);

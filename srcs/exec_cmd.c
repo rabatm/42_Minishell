@@ -22,16 +22,6 @@ char	**get_cmd_array(t_token **tokens)
 	return (argv);
 }
 
-int	ft_exec(t_data *data)
-{
-	char **argv;
-
-	argv = get_cmd_array(data->tokens);
-	ft_exec_ext_command(1, argv, data->env);
-	(void) argv;
-	return (0);
-}
-
 int	ft_is_builltins_cmd(char *cmd)
 {
 	if (ft_strncmp(cmd, "echo", 4) == 0)
@@ -43,14 +33,39 @@ int	ft_is_builltins_cmd(char *cmd)
 	return (0);
 }
 
-int	ft_exec_ext_command(int argc, char **argv, char **env)
+int ft_exec_builtins(t_data *data, char **argv)
+{
+	if (ft_strncmp(argv[0], "echo", 4) == 0)
+		ft_echo(ft_tab_size(argv), argv, data->env);
+	if (ft_strncmp(argv[0], "cd", 2) == 0)
+		builtin_cd(ft_tab_size(argv), argv, data->env);
+	if (ft_strncmp(argv[0], "pwd", 3) == 0)
+		builtin_pwd(ft_tab_size(argv), argv, data->env);
+	return (0);
+}
+
+int	ft_exec(t_data *data)
+{
+	char **argv;
+
+	argv = get_cmd_array(data->tokens);
+	if(!argv[0])
+		return (1);
+	if (ft_is_builltins_cmd(argv[0]))
+		ft_exec_builtins(data, argv);
+	else
+		ft_exec_ext_command(argv, data->env);
+	(void) argv;
+	return (0);
+}
+
+int	ft_exec_ext_command(char **argv, char **env)
 {
 	char	**path;
 	char	*cmd;
 	int		ret;
 	pid_t   pid;
 
-	(void) argc;
 	path = ft_getenvpath(env);
 	cmd = ft_checkexe(argv[0], path);
 	if (cmd == NULL)
