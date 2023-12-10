@@ -6,7 +6,7 @@
 /*   By: glambrig <glambrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/08 18:12:33 by glambrig         ###   ########.fr       */
+/*   Updated: 2023/12/10 14:15:42 by glambrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(int argc, char **argv, char **env)
 	//handle_signal();	// * Handle ctrl+C and ctrl+D
 	while (1)
 	{
+        handle_signal();
 		data->line = readline("Myshell $>");
         if (!data->line)
         {
