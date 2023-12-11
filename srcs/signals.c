@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glambrig <glambrig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:26:26 by glambrig          #+#    #+#             */
-/*   Updated: 2023/12/10 14:16:28 by glambrig         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:33:19 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <signal.h>
+#include "../includes/minishell.h"
 
 /*
 ◦ ctrl-C displays a new prompt on a new line.
@@ -35,7 +34,7 @@ static void	sig_handler(int signal)
 		// ft_printstr("\033[2D");
 		// return ;
 		ft_putstr_fd("exit\n", 1);
-		exit();
+		exit(0);
 	}
 }
 

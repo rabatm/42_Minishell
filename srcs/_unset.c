@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _unset.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:16:55 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/11 14:59:29 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:32:10 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int     get_env_var_id(char *var_name, char **env)
         equal_sign = ft_strchr(env[i], '=');
         if (equal_sign)
             len = equal_sign - env[i];
+        else
+            len = ft_strlen(env[i]);
         if (ft_strncmp(env[i], var_name, len) == 0
         && ft_strlen(var_name) == len) // if env var name matches var_name
             return (i);
