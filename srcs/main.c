@@ -6,7 +6,7 @@
 /*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/11 16:13:46 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/11 16:59:09 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ int	main(int argc, char **argv, char **env)
 	//handle_signal();	// * Handle ctrl+C and ctrl+D
 	while (1)
 	{
-        handle_signal();
+		//handle_signal();
 		data->line = readline("Myshell $>");
-        if (!data->line)
-        {
-            data->exit = 1;
-            data->line = ft_strdup("");
-        }
+		if (!data->line)
+		{
+		data->exit = 1;
+		data->line = ft_strdup("");
+		}
         else
         {
             add_history(data->line);
