@@ -89,7 +89,9 @@ char    **free_tab_and_return_null(char **tab);
 int        ft_is_white_space(char c);
 char    *ft_strtrim_whitespaces(const char *str);
 
-//builtin
+//signals
+int	handle_signal(void);
+
 int 	ft_echo(int argc, char** argv, char **env);
 int		builtin_pwd(int argc, char **argv, char **env);
 int		builtin_cd(int argc, char **argv, char **env);
