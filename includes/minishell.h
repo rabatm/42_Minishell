@@ -92,7 +92,7 @@ char    *ft_strtrim_whitespaces(const char *str);
 int 	ft_echo(int argc, char** argv, char **env);
 int		builtin_pwd(int argc, char **argv, char **env);
 int		builtin_cd(int argc, char **argv, char **env);
-int     exec_unset(int argc, char **argv, char **env, t_data *data);
+int     exec_unset(int argc, char **argv, t_data *data);
 
 int		ft_arg_error(char **argv);
 int		ft_check_file_exist(char *fd);
