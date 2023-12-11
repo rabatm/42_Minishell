@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:16:55 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/11 14:59:29 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:44:33 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,17 @@ void    remove_env_var(t_data *data, int var_id)
 int     get_env_var_id(char *var_name, char **env)
 {
     int     i;
-    char    *equal_sign; // pointer to '='
-    size_t  len; // len of env var name
+    char    *equal_sign;
+    size_t  len;
 
     i = 0;
     while (env[i])
     {
-        equal_sign = ft_strchr(env[i], '=');
+        equal_sign = ft_strchr(env[i], '='); // get '='
         if (equal_sign)
-            len = equal_sign - env[i];
+            len = equal_sign - env[i]; // get len of env var name
+        else
+            len = ft_strlen(env[i]);
         if (ft_strncmp(env[i], var_name, len) == 0
         && ft_strlen(var_name) == len) // if env var name matches var_name
             return (i);
