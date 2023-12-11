@@ -6,7 +6,7 @@
 /*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/11 15:47:57 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/11 15:56:21 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,19 @@ void    debug_create_fake_history(void)
         printf("------------------------------\n");
     }
 }
+/*
+void    ft_print_env(char **env)
+{
+    int i;
+
+    i = 0;
+    while (env[i])
+    {
+        printf("%s\n", env[i]);
+        i++;
+    }
+}
+*/
 
 void    free_and_exit_if_forbidden_token(t_data *data)
 {
@@ -55,7 +68,7 @@ void    free_and_exit_if_forbidden_token(t_data *data)
         if (tmp->type == TK_TYPE_AND || tmp->type == TK_TYPE_OR)
         {
             ft_printf("sorry, dont write %s we didn't do the bonus\n", tmp->val);
-            free_tokens(data->tokens);
+            free_data(data);
             exit(0);
         }
         tmp=tmp->next;

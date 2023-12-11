@@ -6,7 +6,7 @@
 /*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:34:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/09 23:35:57 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/11 15:57:36 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,3 +65,4 @@ char	*ft_checkexe(char *for_exe, char **path)
 	}
 	return (tmp_exe);
 }
+*/

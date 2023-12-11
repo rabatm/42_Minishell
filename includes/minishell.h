@@ -49,6 +49,7 @@ et inclure seulement minishell.h dans les autres fichiers
 
 // init_data
 t_data  *init_data(char **env);
+void    free_data(t_data *data);
 
 //tokens
 //listes chainees
@@ -72,21 +73,30 @@ void	replace_env_var(t_data *data);
 char	*get_value_of_env_var(t_data *data, char *env_var);
 
 //tab_strs_tools
-char	**ft_tab_dup(char **src);
-int	ft_tab_size(char **tab);
-void	ft_free_tab(char **tab);
-int	ft_str_starts_with(char *str, char *start);
-int	ft_str_ends_with(char *str, char *end);
-int	ft_strs_equals(char *s1, char *s2);
-int	ft_strcmp(char *s1, char *s2);
-char	*ft_str_replace(char *str, char *new, int start, int end);
-void	ft_print_tab(char **tab);
+char        **ft_tab_dup(char **src);
+int        ft_tab_size(char **tab);
+void        ft_free_tab(char **tab);
+int        ft_str_starts_with(char *str, char *start);
+int        ft_str_ends_with(char *str, char *end);
+int        ft_strs_equals(char *s1, char *s2);
+int        ft_strcmp(char *s1, char *s2);
+char    *ft_str_replace(char *str, char *new, int start, int end);
+void    ft_print_tab(char **tab);
+char    **ft_add_str_to_tab(t_data *data, char *entry);
+char    **free_tab_and_return_null(char **tab);
 
 //tools
-int		ft_is_white_space(char c);
+int        ft_is_white_space(char c);
+char    *ft_strtrim_whitespaces(const char *str);
+
+//builtin
 int 	ft_echo(int argc, char** argv, char **env);
 int		builtin_pwd(int argc, char **argv, char **env);
 int		builtin_cd(int argc, char **argv, char **env);
+int     exec_unset(int argc, char **argv, t_data *data);
+int     exec_export(int argc, char **argv, t_data *data);
+
+
 int		ft_arg_error(char **argv);
 int		ft_check_file_exist(char *fd);
 char	*ft_getcmd(char *arg);
