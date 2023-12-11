@@ -6,173 +6,60 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:16:55 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/11 08:54:46 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/11 14:59:29 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-
-int ft_str_starts_with(char *str, char *start);
-char **ft_tab_dup(char **tab);
-void ft_free_tab(char **tab);
-char **free_tab_and_return_null(char **tab);
-
-
-int exec_unset(int argc, char **argv, t_data *data)
+void    remove_env_var(t_data *data, int var_id)
 {
-    int arg_id;
-    int env_id;
-    int switch_id;
+    int     i;
 
-    arg_id = 1;
+    free(data->env[var_id]);
+    i = var_id;
+    while (data->env[i])
+    {
+        data->env[i] = data->env[i + 1];
+        i++;
+    }
+}
+
+int     get_env_var_id(char *var_name, char **env)
+{
+    int     i;
+    char    *equal_sign; // pointer to '='
+    size_t  len; // len of env var name
+
+    i = 0;
+    while (env[i])
+    {
+        equal_sign = ft_strchr(env[i], '=');
+        if (equal_sign)
+            len = equal_sign - env[i];
+        if (ft_strncmp(env[i], var_name, len) == 0
+        && ft_strlen(var_name) == len) // if env var name matches var_name
+            return (i);
+        i++;
+    }
+    return (-1);
+}
+
+int     exec_unset(int argc, char **argv, t_data *data)
+{
+    int     arg_id;
+    int     var_id;
+
+    arg_id = 1; // skip unset ???
     while (arg_id < argc)
     {
-        env_id = 0;
-        while (data->env[env_id])
-        {
-            if (ft_str_starts_with(data->env[env_id], argv[arg_id]))
-            {
-                free(data->env[env_id]);
-                switch_id = env_id;
-                while (data->env[switch_id])
-                {
-                    data->env[switch_id] = data->env[switch_id + 1];
-                    switch_id++;
-                }
-            }
-            env_id++;
-        }
+        var_id = get_env_var_id(argv[arg_id], data->env); // get id of env var
+        if (var_id != -1)
+            remove_env_var(data, var_id);
         arg_id++;
     }
     return (0);
 }
 
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-int     main()
-{
-    char    *test_env[] = {"TEST=1", "TEST2=2", "TEST3=3", NULL};
-    t_data  data;
-    data.env = ft_tab_dup(test_env);
-
-    int i = 0;
-    printf("avant suppression de test2:\n");
-    while (data.env[i])
-    {
-        printf("%s\n", data.env[i]);
-        i++;
-    }
-    char    *args1[] = {"unset", "TEST2", NULL};
-    exec_unset(2, args1, &data);
-    i = 0;
-    printf("apres suppression de test2:\n");
-    while (data.env[i])
-    {
-        printf("%s\n", data.env[i]);
-        i++;
-    }
-    i = 0;
-    printf("avant suppression de test4 inexistante:\n");
-    while (data.env[i])
-    {
-        printf("%s\n", data.env[i]);
-        i++;
-    }
-    char    *args2[] = {"unset", "TEST4", NULL};
-    exec_unset(2, args2, &data);
-    i = 0;
-    printf("apres suppression de test4 inexistante:\n");
-    while (data.env[i])
-    {
-        printf("%s\n", data.env[i]);
-        i++;
-    }
-    i = 0;
-    printf("avant suppression de la 1ere variable:\n");
-    while (data.env[i])
-    {
-        printf("%s\n", data.env[i]);
-        i++;
-    }
-    char    *args3[] = {"unset", "TEST", NULL};
-    exec_unset(2, args3, &data);
-    i = 0;
-    printf("apres suppression de la 1ere variable:\n");
-    while (data.env[i])
-    {
-        printf("%s\n", data.env[i]);
-        i++;
-    }
-    ft_free_tab(data.env);
-    return (0);
-}
-
-void ft_free_tab(char **tab)
-{
-    int i;
-
-    i = 0;
-    if (!tab)
-        return ;
-    while (tab[i])
-    {
-        free(tab[i]);
-        i++;
-    }
-    free(tab);
-}
-
-char    **free_tab_and_return_null(char **tab)
-{
-    ft_free_tab(tab);
-    return (NULL);
-}
-
-char    **ft_tab_dup(char **tab)
-{
-    char    **new;
-    int     i;
-    int     j;
-
-    if (!tab)
-        return (NULL);
-    i = 0;
-    while (tab[i])
-        i++;
-    new = (char **)calloc(i + 1, sizeof(char *));
-    if (!new)
-        return (NULL);
-    j = 0;
-    while (j < i)
-    {
-        new[j] = strdup(tab[j]);
-        if (!new[j])
-            return (free_tab_and_return_null(new));
-        j++;
-    }
-    return (new);
-}
-
-int ft_str_starts_with(char *str, char *start)
-{
-    int i;
-
-    if (!str || !start)
-        return (0);
-    if (!str[0] && !start[0])
-        return (1);
-    i = 0;
-    while (str[i] && start[i])
-    {
-        if (str[i] != start[i])
-            return (0);
-        i++;
-    }
-    return (!start[i]);
-}
-*/
 
