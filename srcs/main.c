@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/11 16:59:09 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/12 16:21:07 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void    free_and_exit_if_forbidden_token(t_data *data)
     {
         if (tmp->type == TK_TYPE_AND || tmp->type == TK_TYPE_OR)
         {
-            ft_printf("sorry, dont write %s we didn't do the bonus\n", tmp->val);
+            printf("sorry, dont write %s we didn't do the bonus\n", tmp->val);
             free_data(data);
             exit(0);
         }
@@ -84,8 +84,9 @@ int	main(int argc, char **argv, char **env)
             //debug
             //print_tokens (data->tokens);
             replace_env_var(data);
-            //print_tokens (data->tokens);
+            print_tokens (data->tokens);
             ft_exec(data);
+            free_tokens(data->tokens);
         }
 	}
 	return (0);

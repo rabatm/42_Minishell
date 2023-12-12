@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:12:02 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/11 10:24:45 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:23:24 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int     make_quote_token_and_return_id(char *line, int i, t_token **tokens)
     closing_quote_id =  get_id_of_closing_quote(line , i);
     if (closing_quote_id == -1)
     {
-        ft_printf("don't forget to close the quote [%c]\n", quote);
+        printf("don't forget to close the quote [%c]\n", quote);
         free_tokens(tokens);
         return (-1);
     }

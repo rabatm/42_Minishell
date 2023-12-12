@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:17:27 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/11 14:58:38 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:22:08 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int     exec_export(int argc, char **argv, t_data *data)
         i = 0;
         while (data->env[i])
         {
-            ft_printf("export %s\n", data->env[i]);
+            printf("export %s\n", data->env[i]);
             i++;
         }
     }

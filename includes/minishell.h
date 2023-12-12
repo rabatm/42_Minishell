@@ -97,7 +97,7 @@ int		ft_exec(t_data *data);
 char	*ft_checkexe(char *for_exe, char **envp);
 
 //redirections
-void    apply_redirections(t_data *data, t_token **tokens);
+int    apply_redirections(t_data *data, t_token **tokens);
 void    reset_redirections(t_data *data);
 
 

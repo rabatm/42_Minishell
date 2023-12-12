@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:02:53 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/08 16:21:12 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:22:51 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void ft_print_tab(char **tab)
         return ;
     while (tab[i])
     {
-        ft_printf("%s\n", tab[i]);
+        printf("%s\n", tab[i]);
         i++;
     }
 }

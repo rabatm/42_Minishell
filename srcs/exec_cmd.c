@@ -17,11 +17,20 @@ char	**get_cmd_array(t_token **tokens)
 	{
 		if (tmp->type == TK_TYPE_RED_IN || tmp->type == TK_TYPE_RED_OUT
 		|| tmp->type == TK_TYPE_RED_OUT_APPEND)
-			break ;
-		argv[i] = tmp->val;
-		i ++;
-		tmp = tmp->next;
+		{
+			if (tmp->next->next)
+				tmp = tmp->next->next;
+			else
+				break ;
+		}
+		else if (tmp->type == TK_TYPE_STR)
+		{
+			argv[i] = tmp->val;
+			i ++;
+			tmp = tmp->next;
+		}
 	}
+	argv[i] = NULL;
 	return (argv);
 }
 
@@ -107,16 +116,16 @@ int	ft_exec(t_data *data)
 {
 	char **argv;
 
-	apply_redirections(data, data->tokens);
+	if (apply_redirections(data, data->tokens) == 1)
+		return (1);
 	argv = get_cmd_array(data->tokens);
 	if(!argv[0])
 		return (1);
-	//apply_redirections(data, data->tokens);
 	if (ft_is_builltins_cmd(argv[0]))
 		ft_exec_builtins(data, argv);
 	else
 		ft_exec_ext_command(argv, data);
 	reset_redirections(data);
-	(void) argv;
+	ft_free_tab(argv);
 	return (0);
 }

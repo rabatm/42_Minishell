@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_err.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hchauvin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 10:24:31 by hchauvin          #+#    #+#             */
-/*   Updated: 2023/08/03 10:26:58 by hchauvin         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:23:04 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	print_err(char *msg, int option)
 {
 	if (!msg)
 		return (-1);
-	ft_printf("%s\n", msg);
+	printf("%s\n", msg);
 	if (option == 0)
 		return (0);
 	exit (0);
