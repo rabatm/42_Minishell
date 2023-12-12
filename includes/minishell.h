@@ -32,7 +32,6 @@ et inclure seulement minishell.h dans les autres fichiers
 #include <stdio.h>
 #include "./minishell_define.h"
 
-
 // init_data
 t_data  *init_data(char **env);
 void    free_data(t_data *data);
