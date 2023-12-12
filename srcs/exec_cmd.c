@@ -52,7 +52,7 @@ int	ft_is_builltins_cmd(char *cmd)
 }
 
 
-int ft_exec_builtins(t_data *data, char **argv)
+void ft_exec_builtins(t_data *data, char **argv)
 {
 	int ret;
 
@@ -67,13 +67,13 @@ int ft_exec_builtins(t_data *data, char **argv)
 		ret = exec_export(ft_tab_size(argv), argv, data);
 	if (ft_strncmp(argv[0], "unset", 6) == 0)
 		ret = exec_unset(ft_tab_size(argv), argv, data);
-	if (ft_strncmp(argv[0], "env", 4) == 0)
-		ret = // a ajouter par charles
-
+	// if (ft_strncmp(argv[0], "env", 4) == 0)
+	// 	ret = // a ajouter par charles
+	// if (ft_strncmp(argv[0], "exit", 5) == 0)
+	// 	//ret = builtin_exit(ft_tab_size(argv), argv, data->env);
 	data->last_exit_status = ret;
-	return (ret);
 }
-int		exec_external_command(char *cmd, char **argv, t_data *data)
+void		exec_external_command(char *cmd, char **argv, t_data *data)
 {
 	pid_t	pid;
 	int		status;
@@ -97,10 +97,9 @@ int		exec_external_command(char *cmd, char **argv, t_data *data)
 		else
 			data->last_exit_status = 128 + WTERMSIG(status);
 	}
-	return (data->last_exit_status);
 }
 
-int		ft_exec_ext_command(char **argv, t_data *data)
+void		ft_exec_ext_command(char **argv, t_data *data)
 {
 	char	**path;
 	char	*cmd;
@@ -108,8 +107,9 @@ int		ft_exec_ext_command(char **argv, t_data *data)
 	path = ft_getenvpath(data->env);
 	cmd = ft_checkexe(argv[0], path);
 	if (cmd == NULL)
-		return (1);
-	return (exec_external_command(cmd, argv, data));
+		data->last_exit_status = 1;
+	else
+		exec_external_command(cmd, argv, data);
 }
 
 int	ft_exec(t_data *data)

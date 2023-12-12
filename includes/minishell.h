@@ -92,7 +92,7 @@ char	*ft_getcmd(char *arg);
 char    **ft_getenvpath(char **envp);
 int		ft_tokensize(t_token **lst);
 
-int		ft_exec_ext_command(char **argv, t_data *data);
+void		ft_exec_ext_command(char **argv, t_data *data);
 int		ft_exec(t_data *data);
 char	*ft_checkexe(char *for_exe, char **envp);
 
