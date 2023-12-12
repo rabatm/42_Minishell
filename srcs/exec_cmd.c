@@ -51,7 +51,7 @@ int ft_exec_builtins(t_data *data, char **argv)
 		exec_export(ft_tab_size(argv), argv, data);
 	if (ft_strncmp(argv[0], "unset", 6) == 0)
 		exec_unset(ft_tab_size(argv), argv, data);
-	if (ft_strncmp(argv[0], "env", 4) == 0)
+	//if (ft_strncmp(argv[0], "env", 4) == 0)
 		// a ajouter par charles
 	return (0);
 }
@@ -60,6 +60,10 @@ int	ft_exec(t_data *data)
 {
 	char **argv;
 
+	//cherche les redirections
+	//fcntion retourne le fchier et la direction < > << >>
+	//on supprimer les redirections de la liste de tokens
+	
 	argv = get_cmd_array(data->tokens);
 	if(!argv[0])
 		return (1);

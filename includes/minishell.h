@@ -32,21 +32,6 @@ et inclure seulement minishell.h dans les autres fichiers
 #include <stdio.h>
 #include "./minishell_define.h"
 
-// * types des differents token:
-
-
-# define TK_TYPE_AND 42				//	"&&" (Bonus only)
-# define TK_TYPE_OR 43				//	"||" (Bonus only)
-# define TK_TYPE_PIPE 44			//	"|"
-# define TK_TYPE_RED_OUT 45			//	">"
-# define TK_TYPE_RED_OUT_APPEND 46	//	">>"
-# define TK_TYPE_RED_IN 47			//	"<"
-# define TK_TYPE_RED_IN_DELIM 48	//	"<<"
-# define TK_TYPE_PAR_O 49			//	"("
-# define TK_TYPE_PAR_C 50			//	")"
-# define TK_TYPE_STR 40				//	anything else (echo  OU -n  OU "hello $USER"     OU 'hello $USER'   )
-
-
 // init_data
 t_data  *init_data(char **env);
 void    free_data(t_data *data);

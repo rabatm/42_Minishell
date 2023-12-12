@@ -9,6 +9,17 @@
 # define M		"\033[1;35m"   /* Bold Magenta */
 # define C		"\033[1;36m"   /* Bold Cyan */
 # define W		"\033[1;37m"   /* Bold White */
+
+# define TK_TYPE_AND 42				//	"&&" (Bonus only)
+# define TK_TYPE_OR 43				//	"||" (Bonus only)
+# define TK_TYPE_PIPE 44			//	"|"
+# define TK_TYPE_RED_OUT 45			//	">"
+# define TK_TYPE_RED_OUT_APPEND 46	//	">>"
+# define TK_TYPE_RED_IN 47			//	"<"
+# define TK_TYPE_RED_IN_DELIM 48	//	"<<"
+# define TK_TYPE_PAR_O 49			//	"("
+# define TK_TYPE_PAR_C 50			//	")"
+# define TK_TYPE_STR 40				//	anything else (echo  OU -n  OU "hello $USER"     OU 'hello $USER'   )
 typedef struct s_token
 {
 	int				type;	// TK_TYPE_.... (voir defines)
