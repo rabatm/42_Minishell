@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/08 15:51:01 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:13:46 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void    debug_create_fake_history(void)
-{
-    add_history("env | sort");
-    add_history("echo ABC > _out || echo $?");
-	add_history("export CC=ccccccccccc");
-	add_history("export BB=bbbbbbbbbbbbbbb");
-	add_history("export AA =aaaaaaaaaa");
-    add_history("abc 'ABC' def");
-    add_history("echo $USER");
-    add_history("echo $USER > output.txt | cat < input.txt ; echo Fini");
-    add_history(", ,, . .. | & ; ;; ( ) < << > >> $");
-    add_history("""q"" ""x""");
-    add_history("echo   '   $USER  '   > output.txt | cat < input.txt ; echo Fini");
-}
-
 
 //****************a supprimer
  void   print_tokens(t_token **tokens)
@@ -83,9 +67,9 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	data = init_data(env);
 	//handle_signal();	// * Handle ctrl+C and ctrl+D
-	//debug_create_fake_history();
 	while (1)
 	{
+        handle_signal();
 		data->line = readline("Myshell $>");
         if (!data->line)
         {
@@ -94,13 +78,14 @@ int	main(int argc, char **argv, char **env)
         }
         else
         {
+            add_history(data->line);
         	data->tokens = tokenize_line(data->line);
             free_and_exit_if_forbidden_token(data);
-            print_tokens (data->tokens);/////////////////////////
+            //debug
+            //print_tokens (data->tokens);
             replace_env_var(data);
-
-            print_tokens (data->tokens);/////////////////////////
-           // execute_commands(data);
+            //print_tokens (data->tokens);
+            ft_exec(data);
         }
 	}
 	return (0);

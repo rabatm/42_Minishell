@@ -1,37 +1,24 @@
 #ifndef MINISHEL_DEFINE_H
 # define MINISHEL_DEFINE_H
 
-/*
- *	escape_env_var:
- *		seulement pour les type: TK_TYPE_STR
- *		est-ce qu'on doit echapper les variable d'environnement (ou les remplacer)
- *		ex:
- *			echo "hello $USER"  >>  escape_env_var = 0  >>  hello dfleury
- *			echo 'hello $USER'  >>  escape_env_var = 1  >>  hello &USER
- *
- *
- *	must_be_merge_with_previous
- *		ex:
- *			echo "hello $USER"'salut $USER'  >>  hello dfleurysalut $USER (sans espace avant salut)
- */
-
-
+# define RST	"\033[0m"      /* Reset to default color */
+# define RED	"\033[1;31m"   /* Bold Red */
+# define G		"\033[1;32m"   /* Bold Green */
+# define Y		"\033[1;33m"   /* Bold Yellow */
+# define B		"\033[1;34m"   /* Bold Blue */
+# define M		"\033[1;35m"   /* Bold Magenta */
+# define C		"\033[1;36m"   /* Bold Cyan */
+# define W		"\033[1;37m"   /* Bold White */
 typedef struct s_token
 {
 	int				type;	// TK_TYPE_.... (voir defines)
 	char			*val;	// ex: echo OU -n OU >>
-
 	int				escape_env_var;
 	int				must_be_merge_with_previous; // faculatatif ?
 	struct s_token	*previous;
 	struct s_token	*next;
 
 }	t_token;
-
-
-
-
-
 typedef struct s_data
 {
 	char	**env;		// copie de env

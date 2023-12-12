@@ -6,16 +6,19 @@ int ft_echo(int argc, char** argv, char **env)
 	int	i;
 
 	ret = 0;
-	i = 0;
+	i = 1;
 
 	(void)env;
+	if (ft_strncmp(argv[i], "-n", ft_strlen(argv[i])) == 0)
+		i++;
 	while (i < argc)
 	{
-		if (ft_strncmp(argv[i], "-n", ft_strlen(argv[i])) != 0)
-			printf("%s", argv[i]);
+		printf("%s", argv[i]);
+		if (i + 1 < argc)
+			printf(" ");
 		i++;
 	}
-	if (ft_strncmp(argv[0], "-n", ft_strlen(argv[0])) != 0)
+	if (ft_strncmp(argv[1], "-n", ft_strlen(argv[1])) != 0)
 		printf("\n");
 	return (ret);
 }
@@ -38,23 +41,23 @@ int	builtin_cd(int argc, char **argv, char **env)
 
 	(void)env;
 	ret = 1;
-	if (argc == 1)
+	if (argc == 2)
 	{
 		errno = 0;
-		if (chdir(argv[0]) != 0)
+		if (chdir(argv[1]) != 0)
 		{
 			if (errno == ENOENT)
-				printf("cd: no such file or directory: %s\n", argv[0]);
+				printf(RED"cd: no such file or directory: %s\n"RST, argv[1]);
 			else
-				printf("cd: erro\n");
+				printf(RED"cd: erro\n"RST);
 		}
 	}
 	if (argc > 2)
 	{
-		if (opendir(argv[0]))
-			chdir(argv[0]);
+		if (opendir(argv[1]))
+			chdir(argv[1]);
 		else
-			printf("cd: too many arguments\n");
+			printf(RED"cd: too many arguments\n"RST);
 	}
 	return (ret);
 }

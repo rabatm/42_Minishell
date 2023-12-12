@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:10:14 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/07 08:15:26 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:58:30 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,19 @@ char    *ft_strtrim_whitespace(const char *str)
         end--;
     trimmed = ft_substr(str, start, end - start + 1);
     return (trimmed);
+}
+
+int	ft_tokensize(t_token **lst)
+{
+	t_token	*tmp;
+	int		count;
+
+	tmp = *lst;
+	count = 0;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	return (count);
 }

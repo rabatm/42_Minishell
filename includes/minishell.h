@@ -26,6 +26,7 @@ et inclure seulement minishell.h dans les autres fichiers
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <sys/param.h>
+# include <stddef.h>
 # include <unistd.h>
 
 #include <stdio.h>
@@ -52,24 +53,24 @@ void    free_data(t_data *data);
 
 //tokens
 //listes chainees
-t_token    *create_new_token(char *val, int type);
-void        add_token_back(t_token **tokens, t_token *new_token);
-void        free_tokens(t_token **tokens);
-int         make_list_tokens(t_token **tokens, char *line, int type);
-t_token     *its_last_token(t_token **tokens);
+t_token	*create_new_token(char *val, int type);
+void	add_token_back(t_token **tokens, t_token *new_token);
+void	free_tokens(t_token **tokens);
+int	make_list_tokens(t_token **tokens, char *line, int type);
+t_token	*its_last_token(t_token **tokens);
 
 //tokeniser
-t_token    **tokenize_line(char *line);
+t_token	**tokenize_line(char *line);
 //tokenizer tools
-int         get_and_or_type(char *line, int i);
-int         get_redirection_type(char *line, int i);
-int         get_token_type(char *line, int i);
-int         get_id_of_closing_quote(char *line, int opening_quote_id);
-int         get_end_str_id(char *line, int i);
+int	get_and_or_type(char *line, int i);
+int	get_redirection_type(char *line, int i);
+int	get_token_type(char *line, int i);
+int	get_id_of_closing_quote(char *line, int opening_quote_id);
+int	get_end_str_id(char *line, int i);
 
 //replace_env_var
-void    replace_env_var(t_data *data);
-char    *get_value_of_env_var(t_data *data, char *env_var);
+void	replace_env_var(t_data *data);
+char	*get_value_of_env_var(t_data *data, char *env_var);
 
 //tab_strs_tools
 char        **ft_tab_dup(char **src);
@@ -88,7 +89,9 @@ char    **free_tab_and_return_null(char **tab);
 int        ft_is_white_space(char c);
 char    *ft_strtrim_whitespaces(const char *str);
 
-//builtin
+//signals
+int	handle_signal(void);
+
 int 	ft_echo(int argc, char** argv, char **env);
 int		builtin_pwd(int argc, char **argv, char **env);
 int		builtin_cd(int argc, char **argv, char **env);
@@ -98,14 +101,13 @@ int     exec_export(int argc, char **argv, t_data *data);
 
 int		ft_arg_error(char **argv);
 int		ft_check_file_exist(char *fd);
-int		ft_initoutfile(char *filename);
-int		ft_initinfile(char *filename);
-void	pipex(t_pipex *mypipex, char **envp);
 char	*ft_getcmd(char *arg);
-char	*ft_getenvpath(char **envp);
-void	ft_closefd(int *fd);
+char    **ft_getenvpath(char **envp);
+int		ft_tokensize(t_token **lst);
+
+int		ft_exec_ext_command(char **argv, char **env);
+int		ft_exec(t_data *data);
 char	*ft_checkexe(char *for_exe, char **envp);
-t_pipex	*ft_initpipexstruc(char **argv, char **envp);
-void	ft_freemypex(t_pipex *mypipex);
+
 
 #endif

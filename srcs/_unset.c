@@ -6,9 +6,10 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:16:55 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/11 16:44:33 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:59:46 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/minishell.h"
 
@@ -36,7 +37,7 @@ int     get_env_var_id(char *var_name, char **env)
     {
         equal_sign = ft_strchr(env[i], '='); // get '='
         if (equal_sign)
-            len = equal_sign - env[i]; // get len of env var name
+            len = equal_sign - env[i];
         else
             len = ft_strlen(env[i]);
         if (ft_strncmp(env[i], var_name, len) == 0
