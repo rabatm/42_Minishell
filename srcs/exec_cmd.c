@@ -34,6 +34,8 @@ int	ft_is_builltins_cmd(char *cmd)
 		return (1);
 	if (ft_strncmp(cmd, "unset", 6) == 0)
 		return (1);
+	if (ft_strncmp(cmd, "env", 4) == 0)
+		return (1);
 	return (0);
 }
 
@@ -49,6 +51,8 @@ int ft_exec_builtins(t_data *data, char **argv)
 		exec_export(ft_tab_size(argv), argv, data);
 	if (ft_strncmp(argv[0], "unset", 6) == 0)
 		exec_unset(ft_tab_size(argv), argv, data);
+	if (ft_strncmp(argv[0], "env", 4) == 0)
+		// a ajouter par charles
 	return (0);
 }
 
