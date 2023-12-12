@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_commands.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:04:09 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/11 18:48:00 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/12 17:57:38 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,34 @@
 
 char	**get_cmd_array(t_token **tokens)
 {
-	int		fd;
+	int		tk_size;
 	t_token	*tmp;
+	char	**argv;
+	int		i;
 
-	fd = NULL;
+	i = 0;
+	tk_size = ft_tokensize(tokens);
 	tmp = *tokens;
+	argv = malloc(sizeof(char *) * (tk_size +1));
+	if (!argv)
+		return (NULL);
 	while(tmp)
 	{
-		tmp = tmp->next;
+		if (tmp->type == TK_TYPE_RED_IN || tmp->type == TK_TYPE_RED_OUT
+		|| tmp->type == TK_TYPE_RED_OUT_APPEND)
+		{
+			if (tmp->next->next)
+				tmp = tmp->next->next;
+			else
+				break ;
+		}
+		else if (tmp->type == TK_TYPE_STR)
+		{
+			argv[i] = tmp->val;
+			i ++;
+			tmp = tmp->next;
+		}
 	}
-	return (fd);
+	argv[i] = NULL;
+	return (argv);
 }

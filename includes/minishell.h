@@ -90,6 +90,7 @@ int		ft_check_file_exist(char *fd);
 char	*ft_getcmd(char *arg);
 char    **ft_getenvpath(char **envp);
 int		ft_tokensize(t_token **lst);
+char    **get_cmd_array(t_token **tokens);
 
 void		ft_exec_ext_command(char **argv, t_data *data);
 int		ft_exec(t_data *data);

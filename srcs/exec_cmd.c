@@ -1,38 +1,6 @@
 #include "../includes/minishell.h"
 
-char	**get_cmd_array(t_token **tokens)
-{
-	int		tk_size;
-	t_token	*tmp;
-	char	**argv;
-	int		i;
 
-	i = 0;
-	tk_size = ft_tokensize(tokens);
-	tmp = *tokens;
-	argv = malloc(sizeof(char *) * (tk_size +1));
-	if (!argv)
-		return (NULL);
-	while(tmp)
-	{
-		if (tmp->type == TK_TYPE_RED_IN || tmp->type == TK_TYPE_RED_OUT
-		|| tmp->type == TK_TYPE_RED_OUT_APPEND)
-		{
-			if (tmp->next->next)
-				tmp = tmp->next->next;
-			else
-				break ;
-		}
-		else if (tmp->type == TK_TYPE_STR)
-		{
-			argv[i] = tmp->val;
-			i ++;
-			tmp = tmp->next;
-		}
-	}
-	argv[i] = NULL;
-	return (argv);
-}
 
 int	ft_is_builltins_cmd(char *cmd)
 {

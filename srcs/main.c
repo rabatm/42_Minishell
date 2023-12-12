@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/12 17:42:29 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:59:51 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int argc, char **argv, char **env)
             //debug
             //print_tokens (data->tokens);
             replace_env_var(data);
-            print_tokens (data->tokens);
+           // print_tokens (data->tokens);
             ft_exec(data);
             free_tokens(data->tokens);
         }
