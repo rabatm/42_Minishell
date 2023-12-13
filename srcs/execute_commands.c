@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:04:09 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/12 17:57:38 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/13 10:59:10 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**get_cmd_array(t_token **tokens)
 		if (tmp->type == TK_TYPE_RED_IN || tmp->type == TK_TYPE_RED_OUT
 		|| tmp->type == TK_TYPE_RED_OUT_APPEND)
 		{
-			if (tmp->next->next)
+			if (tmp->next && tmp->next->next)
 				tmp = tmp->next->next;
 			else
 				break ;

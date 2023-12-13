@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/12 17:59:51 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/13 11:11:27 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,14 @@ int	main(int argc, char **argv, char **env)
 		data->line = readline("Myshell $>");
 		if (!data->line)
 		{
-		data->exit = 1;
-		data->line = ft_strdup("");
+		    data->exit = 1;
+		    data->line = ft_strdup("");
 		}
         else
         {
             add_history(data->line);
         	data->tokens = tokenize_line(data->line);
             free_and_exit_if_forbidden_token(data);
-            //debug
             //print_tokens (data->tokens);
             replace_env_var(data);
            // print_tokens (data->tokens);

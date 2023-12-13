@@ -1,14 +1,4 @@
-/*
 
-Creer 2 .h (pour plus de lisibilite)
-
--	minishell_define.h 	(avec les strutures et les "define")
--	minishell.h 		(avec seulement les prototypes des functions)
-
-Inclure "minishell_define.h" et "../libft/libft.h" dans minishell.h
-et inclure seulement minishell.h dans les autres fichiers
-
-*/
 #ifndef MINISHEL_H
 # define MINISHEL_H
 
@@ -98,6 +88,12 @@ char	*ft_checkexe(char *for_exe, char **envp);
 
 //redirections
 int    apply_redirections(t_data *data, t_token **tokens);
+void    reset_redirections(t_data *data);
+int    apply_redirection_in(t_data *data, t_token *token);
+
+//redirections tools
+int    ft_rediretion_error(t_data *data, t_token *token);
+int    handle_error_fd(t_data *data, t_token *token, int fd);
 void    reset_redirections(t_data *data);
 
 

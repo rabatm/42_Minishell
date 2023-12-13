@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:10:14 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/08 17:58:30 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/13 10:42:34 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	ft_tokensize(t_token **lst)
 	while (tmp)
 	{
 		tmp = tmp->next;
-		count++;
+        if (tmp && tmp->type != TK_TYPE_RED_IN && tmp->type != TK_TYPE_RED_OUT && tmp->type != TK_TYPE_RED_OUT_APPEND)
+		    count++;
 	}
 	return (count);
 }
