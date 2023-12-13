@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:58:11 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/13 11:14:46 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:34:18 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,15 @@ int     apply_redirection_in(t_data *data, t_token *token)
 {
     int     fd;
 
-    if (ft_rediretion_error(data, token))
+    if (data->heredoc_handled == 0 && ft_rediretion_error(data, token))
         return (1);
-    fd = open(token->next->val, O_RDONLY);
+    if (data->heredoc_handled == 1)
+    {
+        fd = open (".heredoc" , O_RDONLY);
+        // data->heredoc_handled = 0;
+    }
+    else
+        fd = open(token->next->val, O_RDONLY);
     if (fd == -1)
         return (handle_error_fd(data, token, fd));
     if (data->original_stdin == -1)
@@ -88,8 +94,11 @@ int    apply_redirections(t_data *data, t_token **tokens)
             return (ret);
         if (tmp->type == TK_TYPE_RED_IN)
             ret = apply_redirection_in(data, tmp);
-        // if (tmp->type == TK_TYPE_RED_IN_DELIM)
-        //     apply_redirection_in_delim(data, tmp);
+        if (tmp->type == TK_TYPE_RED_IN_DELIM)
+        {
+            ret = apply_redirection_in_delim(data, tmp);
+            tmp = tmp->next;
+        }
         tmp = tmp->next;
     }
     return (ret);

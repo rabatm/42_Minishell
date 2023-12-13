@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 09:38:25 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/13 09:51:03 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:31:30 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,7 @@ void    reset_redirections(t_data *data)
         close(data->original_stdin);
         data->original_stdin = -1;
     }
+    if (data->heredoc_handled == 1)
+        unlink (".heredoc");
+    data->heredoc_handled = 0;
 }

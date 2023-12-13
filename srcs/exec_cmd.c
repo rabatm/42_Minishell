@@ -89,6 +89,11 @@ int	ft_exec(t_data *data)
 		reset_redirections(data);
 		return (1);
 	}
+	if (data->heredoc_handled == 1)
+	{
+		apply_redirection_in(data, *data->tokens);
+		//data->heredoc_handled = 0;
+	}
 	argv = get_cmd_array(data->tokens);
 	if(!argv[0])
 		return (1);

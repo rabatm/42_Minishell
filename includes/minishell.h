@@ -89,7 +89,8 @@ char	*ft_checkexe(char *for_exe, char **envp);
 //redirections
 int    apply_redirections(t_data *data, t_token **tokens);
 void    reset_redirections(t_data *data);
-int    apply_redirection_in(t_data *data, t_token *token);
+int    apply_redirection_in_delim(t_data *data, t_token *token);
+int     apply_redirection_in(t_data *data, t_token *token);
 
 //redirections tools
 int    ft_rediretion_error(t_data *data, t_token *token);
