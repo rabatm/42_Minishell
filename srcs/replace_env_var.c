@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:47:26 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/12 17:02:05 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/19 10:55:29 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char    *get_value_of_env_var(t_data *data, char *env_var)
 
 
 
+
 void    replace_env_var(t_data *data)
 {
     t_token *tmp;
@@ -44,6 +45,8 @@ void    replace_env_var(t_data *data)
     tmp = *data->tokens;
     while (tmp)
     {
+
+        
         if (tmp->type == TK_TYPE_STR && tmp->escape_env_var == 0)
         {
             i = 0;
@@ -78,6 +81,22 @@ void    replace_env_var(t_data *data)
                 i++;
             }
         }
+
+
+
         tmp = tmp->next;
     }
 }
+/*
+                        real        ms
+echo "$USER'"          sv'        $USER'     // ERROR
+echo "$USERE"          svE        $USERE     // ERROR
+echo "'$USER"           'sv         'sv         // OK
+
+
+
+
+
+
+
+*/

@@ -7,7 +7,7 @@ int ft_echo(int argc, char** argv, char **env)
 	i = 1;
 
 	(void)env;
-	if (argc > 1 && ft_strncmp(argv[i], "-n", ft_strlen(argv[i])) == 0)
+	if (ft_strncmp(argv[i], "-n", ft_strlen(argv[i])) == 0)
 		i++;
 	while (i < argc)
 	{
@@ -16,7 +16,7 @@ int ft_echo(int argc, char** argv, char **env)
 			printf(" ");
 		i++;
 	}
-	if (argc == 1 || (argc > 1 && ft_strncmp(argv[1], "-n", ft_strlen(argv[1])) != 0))
+	if ((argc > 1 && ft_strncmp(argv[1], "-n", ft_strlen(argv[1])) != 0))
 		printf("\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:22:23 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/13 15:41:35 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:23:11 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_data    *init_data(char **env)
     data->original_stdout = -1; // -1 = not set
     data->tokens = NULL;
     data->heredoc_handled = 0;
+    data->nb_pipes = 0;
     return (data);
 }
 
