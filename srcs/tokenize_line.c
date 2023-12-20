@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:12:02 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/19 11:09:24 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:03:43 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,60 +17,25 @@ int    make_op_token_and_return_id(char *line, int i, t_token **tokens)
     int type;
     char *val;
     int op_id;
-  //  t_data  *data;
 
     op_id = i;
     if (line[op_id + 1] == line[op_id])
     {
         type = get_token_type(line, op_id);
         val = ft_substr(line, op_id, 2);
-        make_list_tokens(tokens, val, type);
+        make_list_tokens(tokens, val, type, 0);
         op_id += 2;
     }
     else
     {
         type = get_token_type(line, op_id);
         val = ft_substr(line, op_id, 1);
-        make_list_tokens(tokens, val, type);
+        make_list_tokens(tokens, val, type, 0);
         if ((*tokens)->type == TK_TYPE_PIPE)
         op_id += 1;
     }
     return (op_id);
 }
-/*
-char     *find_the_str_inside_the_quote(char *line, int opening_quote_id, int closing_quote_id)
-{
-    char    *tmp;
-    char    *val;
-    int     nb_quote;
-    char    quote_type;
-    int     mid_nb_quote;
-    int     i;
-
-    nb_quote = 1;
-    tmp = line;
-    quote_type = tmp[opening_quote_id];
-    i = opening_quote_id + 1;
-    while (i < closing_quote_id)
-    {
-        if (tmp[i] == quote_type)
-            nb_quote++;
-        i++;
-    }
-    i = opening_quote_id + 1;
-    mid_nb_quote = nb_quote / 2;
-    while (mid_nb_quote > 0)
-    {
-        if (tmp[i] == quote_type)
-            mid_nb_quote--;
-        i++;
-    }
-    val = ft_calloc(1, sizeof(char) * (closing_quote_id - opening_quote_id));
-    val = ft_substr(line, opening_quote_id + 1, closing_quote_id - opening_quote_id - 1);
-    return (val);
-}
-*/
-
 int     make_quote_token_and_return_id(char *line, int i, t_token **tokens)
 {
     int closing_quote_id;
@@ -89,9 +54,8 @@ int     make_quote_token_and_return_id(char *line, int i, t_token **tokens)
         return (-1);
     }
     val = ft_substr(line, i + 1, closing_quote_id - i - 1);
-
     type = TK_TYPE_STR;
-    make_list_tokens(tokens, val, type);
+    make_list_tokens(tokens, val, type, 0);
     tmp = its_last_token(tokens);
     if (quote_type == '"')
         tmp->escape_env_var = 0;
@@ -106,15 +70,18 @@ int     make_str_token_and_return_id(char *line, int i, t_token **tokens)
     int end_str_id;
     char *val;
     int type;
+    int space_before;
 
+    if (i > 0 && ft_is_white_space(line[i - 1]))
+        space_before = 1;
+    else
+        space_before = 0;
     printf("debut   :  %c      ****     ", line[i]);
     end_str_id = get_end_str_id(line, i);
     printf("fin  :  %c\n", line[end_str_id -1]);
-
-
     val = ft_substr(line, i, end_str_id - i);
     type = TK_TYPE_STR;
-    make_list_tokens(tokens, val, type);
+    make_list_tokens(tokens, val, type, space_before);
     return (end_str_id);
 }
 
@@ -135,10 +102,6 @@ t_token     **tokenize_line(char *line)
             i = make_op_token_and_return_id(line, i, tokens);
         else if (line[i] == '"' || line[i] == '\'')
         {
-         /*   if (line[i] == '\'')
-                i = make_quote_token_and_return_id(line, i, tokens);
-            else
-                i = make_dquote_token_and_return_id(line, i, tokens);*/
             i = make_quote_token_and_return_id(line, i, tokens);
             if (i == -1)
                 return (NULL);
@@ -146,6 +109,7 @@ t_token     **tokenize_line(char *line)
         else
             i = make_str_token_and_return_id(line, i, tokens);
     }
+   // merge_tokens_if_no_space_before(tokens);
     return (tokens);
 }
 

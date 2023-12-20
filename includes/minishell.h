@@ -31,7 +31,7 @@ void    free_data(t_data *data);
 t_token	*create_new_token(char *val, int type);
 void	add_token_back(t_token **tokens, t_token *new_token);
 void	free_tokens(t_token **tokens);
-int	make_list_tokens(t_token **tokens, char *line, int type);
+int	make_list_tokens(t_token **tokens, char *line, int type, int space_before);
 t_token	*its_last_token(t_token **tokens);
 
 //tokeniser

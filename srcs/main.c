@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/19 11:13:06 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:32:50 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,35 @@ void    debug_create_fake_history(void)
 
 
 }
+
+void        merge_tokens_if_no_space_before(t_token **tokens)
+{
+    t_token    *tmp;
+    char        *merged_val;
+    t_token    *next_token;
+
+    tmp = *tokens;
+    tmp = tmp->next;
+    while (tmp && tmp->next)
+    {
+        next_token = tmp->next;
+        if (tmp->next->space_before == 0 && tmp->next->type == TK_TYPE_STR)
+        {
+            merged_val = ft_strjoin(tmp->val, next_token->val);
+            free(tmp->val);
+            tmp->val = merged_val;
+            next_token = tmp->next;
+            tmp->next = next_token->next;
+            if (tmp->next)
+                tmp->next->previous = tmp;
+            free(next_token->val);
+            free(next_token);
+        }
+        else
+            tmp = tmp->next;
+    }
+}
+
 //****************a supprimer
  void   print_tokens(t_token **tokens)
  {
@@ -114,6 +143,7 @@ int	main(int argc, char **argv, char **env)
 
             if (!data->tokens)
                 continue;
+            merge_tokens_if_no_space_before(data->tokens);
             //free_and_exit_if_forbidden_token(data);
             //print_tokens (data->tokens);
 

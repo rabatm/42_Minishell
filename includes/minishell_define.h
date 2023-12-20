@@ -27,7 +27,7 @@ typedef struct s_token
 	int				type;	// TK_TYPE_.... (voir defines)
 	char			*val;	// ex: echo OU -n OU >>
 	int				escape_env_var;
-	int				must_be_merge_with_previous; // faculatatif ?
+	int				space_before;
 	struct s_token	*previous;
 	struct s_token	*next;
 

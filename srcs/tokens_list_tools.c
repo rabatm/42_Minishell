@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:13:24 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/07 17:01:04 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:02:35 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ t_token	*create_new_token(char *val, int type)
     return (new_token);
 }
 
-int     make_list_tokens(t_token **tokens, char *val, int type)
+
+
+int     make_list_tokens(t_token **tokens, char *val, int type, int space_before)
 {
     t_token    *new_token;
 
@@ -70,6 +72,7 @@ int     make_list_tokens(t_token **tokens, char *val, int type)
         free_tokens(&new_token);
         return (0);
     }
+    new_token->space_before = space_before;
     add_token_back(tokens, new_token);
     return (1);
 }
