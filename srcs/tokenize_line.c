@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:12:02 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/20 12:03:43 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:04:45 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ int     make_quote_token_and_return_id(char *line, int i, t_token **tokens)
         tmp->escape_env_var = 1;
     return (closing_quote_id + 1);
 }
+
+
+
 
 
 int     make_str_token_and_return_id(char *line, int i, t_token **tokens)

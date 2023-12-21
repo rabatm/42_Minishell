@@ -94,7 +94,7 @@ int     get_end_str_id(char *line, int start_str_id)
         && line[start_str_id] != '<'
         && line[start_str_id] != '"'
         && line[start_str_id] != '\''
-        && line[start_str_id] != '$'
+      //  && line[start_str_id] != '$'
 
 
       //  && !char_is_in_str (line[start_str_id]  , "&|><\"'$")

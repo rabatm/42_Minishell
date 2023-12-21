@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:22:23 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/15 18:23:11 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:50:56 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,11 @@ void    free_data(t_data *data)
 {
     if (!data)
         return ;
-    ft_free_tab(data->env);
-    free_tokens(data->tokens);
+    if (data->env)
+        ft_free_tab(data->env);
+    if (data->line)
+        free(data->line);
+    if (data->tokens)
+        free_tokens(data->tokens);
     free(data);
 }

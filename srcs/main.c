@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/20 12:32:50 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:13:14 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void    debug_create_fake_history(void)
     add_history("""q""""x""");
     add_history("echo   '   $USER  '   > output.txt | cat < input.txt ; echo Fini");
     add_history("echo abc def'ghi jkl");
-
+    add_history("echo --$USER-ABCD");
+    add_history("echo \"--$USER-ABCD\"");
 
 
 }
@@ -66,13 +67,13 @@ void        merge_tokens_if_no_space_before(t_token **tokens)
     if (tokens)
     {
         tmp = *tokens;
-        printf("------------------------------\n");
+        printf(COLOR_YELLOW "------------------------------\n");
         while (tmp)
         {
             printf("Valeur : %10s \t Type : %10d   \t   escape_env_var= %5d \n", tmp->val, tmp->type, tmp->escape_env_var);
             tmp = tmp->next;
         }
-        printf("------------------------------\n");
+        printf("------------------------------" COLOR_RESET "\n");
     }
 }
 /*
@@ -143,11 +144,14 @@ int	main(int argc, char **argv, char **env)
 
             if (!data->tokens)
                 continue;
-            merge_tokens_if_no_space_before(data->tokens);
+            //merge_tokens_if_no_space_before(data->tokens);
+
             //free_and_exit_if_forbidden_token(data);
             //print_tokens (data->tokens);
-
             replace_env_var(data);
+            //print_tokens (data->tokens);
+            merge_tokens_if_no_space_before(data->tokens);
+            print_tokens (data->tokens);
 
 
          /*
@@ -178,10 +182,11 @@ int	main(int argc, char **argv, char **env)
 
 
 
-            print_tokens (data->tokens);
+            //print_tokens (data->tokens);
             ft_exec(data);
             free_tokens(data->tokens);
         }
 	}
+    free_data(data);
 	return (0);
 }

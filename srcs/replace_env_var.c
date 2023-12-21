@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:47:26 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/19 17:43:33 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:10:55 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ char    *get_value_of_env_var(t_data *data, char *env_var)
     return (NULL);
 }
 */
+// str =         de str[0] a str[i]              + tmp_val +                  str[j] a str[fin]
+//i   s         e
+//0 1 2 3 4 5 6 7 8 9 10 11 12 13141516
+//- - $ U S E R - A B C
+//- - s v a n m a r c -  A  B  C
+//0 1 2 3 4 5 6 7 8 9 10 11 12 13141516
+//
 
 char    *ft_str_replace(char *str, char *new_val, int start, int end)
 {
@@ -100,6 +107,8 @@ char    *replace_env_var_by_value(t_data *data, char *str)
         if (str[i] == '$')
         {
             j = i + 1;
+            if (!str[j])
+                return (str);
             if (str[j] == '?')
             {
                 tmp_val = ft_itoa(data->last_exit_status);
@@ -108,26 +117,35 @@ char    *replace_env_var_by_value(t_data *data, char *str)
             else
             {
                 while (isalnum(str[j]) || str[j] == '_' || isalpha(str[j]))
-                //while (str[j] && !ft_is_white_space(str[j]) && str[j] != '$' )
                     j++;
                 tmp_env_var = ft_substr(str, i + 1, j - i - 1);
                 tmp_val = get_value_of_env_var(data, tmp_env_var);
                 free(tmp_env_var);
                 tmp_env_var = NULL;
-            }
-            if (tmp_val)
-            {
-                new_val = ft_str_replace(str, tmp_val, i, i + j);
-                free(tmp_val);
-                free(str);
-                str = new_val;
-                i += ft_strlen(tmp_val) - 1;
+                if (tmp_val)
+                {
+                    new_val = ft_str_replace(str, tmp_val, i, j);
+                    free(tmp_val);
+                    free(str);
+                    str = new_val;
+                    i += ft_strlen(tmp_val);
+                }
             }
         }
         i++;
     }
     return (str);
 }
+/*
+    i    j
+----$USER-ABC-$USER       str
+----sv-ABC-$USER  
+
+
+
+----
+*/
+
 
 
 void    replace_env_var(t_data *data)
