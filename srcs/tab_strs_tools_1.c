@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:02:53 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/19 13:46:14 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:36:14 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void ft_free_tab(char **tab)
     i = 0;
     if (!tab)
         return ;
-    while (tab[i])
+    while (tab[i] != NULL)
     {
         free(tab[i]);
         i++;

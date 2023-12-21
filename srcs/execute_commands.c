@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:04:09 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/20 18:58:28 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/21 12:00:20 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ char	**get_cmd_array(t_token **tokens)
 	i = 0;
 	tk_size = ft_tokensize(tokens);
 	tmp = *tokens;
-	//argv = malloc(sizeof(char *) * (tk_size +1));
-	argv = (char **)ft_calloc(tk_size + 1, sizeof(char *));
+	argv = (char **)ft_calloc(tk_size + 2, sizeof(char *));
 	if (!argv)
 		return (NULL);
 	while(tmp)

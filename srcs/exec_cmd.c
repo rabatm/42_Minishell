@@ -84,8 +84,6 @@ int	ft_exec(t_data *data)
 {
 	char **argv;
 
-	
-
 	if (apply_redirections(data, data->tokens) == 1)
 	{
 		reset_redirections(data);

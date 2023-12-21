@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/21 10:13:14 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:06:44 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void        merge_tokens_if_no_space_before(t_token **tokens)
         {
             merged_val = ft_strjoin(tmp->val, next_token->val);
             free(tmp->val);
+            free(next_token->val);
             tmp->val = merged_val;
             next_token = tmp->next;
             tmp->next = next_token->next;
             if (tmp->next)
                 tmp->next->previous = tmp;
-            free(next_token->val);
             free(next_token);
         }
         else
@@ -144,7 +144,6 @@ int	main(int argc, char **argv, char **env)
 
             if (!data->tokens)
                 continue;
-            //merge_tokens_if_no_space_before(data->tokens);
 
             //free_and_exit_if_forbidden_token(data);
             //print_tokens (data->tokens);
@@ -153,39 +152,14 @@ int	main(int argc, char **argv, char **env)
             merge_tokens_if_no_space_before(data->tokens);
             print_tokens (data->tokens);
 
-
-         /*
-                             space_before
-                echo           1
-                aaa            1
-                sva            1
-                $USER          0
-            */
-
-
-            /*
-            merge_tokens_with_no_space_before(data);
-
-                parcourir tokens
-                    if (token nest pas le 1er et que token->space_before == 1)
-                        fusionner ce token avec celui d'avant
-                        supprimer ce token
-            */
-
-
-            /*
-                echo
-                aaa
-                sva$USER
-            */
-
-
-
-
             //print_tokens (data->tokens);
             ft_exec(data);
-            free_tokens(data->tokens);
+            //free_tokens(data->tokens);
         }
+        // free(data->line);
+        // data->line = NULL;
+        // if (data->exit == 1)
+        //     break;
 	}
     free_data(data);
 	return (0);
