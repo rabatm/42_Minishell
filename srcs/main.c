@@ -85,7 +85,7 @@ int	main(int argc, char **argv, char **env)
             replace_env_var(data);
            	print_tokens (data->tokens);
             ft_exec_pipe(data);
-			ft_exec(data);
+			//ft_exec(data);
             free_tokens(data->tokens);
         }
 	}

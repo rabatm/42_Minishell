@@ -97,5 +97,8 @@ int    ft_rediretion_error(t_data *data, t_token *token);
 int    handle_error_fd(t_data *data, t_token *token, int fd);
 void    reset_redirections(t_data *data);
 
+//pipex
+void	ft_exec_pipe(t_data *data);
+
 
 #endif
