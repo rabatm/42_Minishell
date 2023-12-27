@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/13 17:08:14 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:32:44 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ int	main(int argc, char **argv, char **env)
             free_and_exit_if_forbidden_token(data);
             //print_tokens (data->tokens);
             replace_env_var(data);
-           // print_tokens (data->tokens);
-            ft_exec(data);
+           	print_tokens (data->tokens);
+            ft_exec_pipe(data);
+			ft_exec(data);
             free_tokens(data->tokens);
         }
 	}

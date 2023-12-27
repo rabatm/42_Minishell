@@ -43,7 +43,8 @@ typedef struct s_data
 	int		original_stdin; // descriptor du stdin original pour le reset
 	int		current_stdout; // descriptor du stdout courant
 	int		original_stdout; // descriptor du stdout original pour le reset
-	int		heredoc_handled; // 1 si on est dans un heredoc, 0 sinon
+	int		heredoc_handled;
+	int		nbpipes; // 1 si on est dans un heredoc, 0 sinon
 
 }	t_data;
 
