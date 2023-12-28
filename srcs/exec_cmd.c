@@ -35,10 +35,10 @@ void ft_exec_builtins(t_data *data, char **argv)
 		ret = exec_export(ft_tab_size(argv), argv, data);
 	if (ft_strncmp(argv[0], "unset", 6) == 0)
 		ret = exec_unset(ft_tab_size(argv), argv, data);
-	// if (ft_strncmp(argv[0], "env", 4) == 0)
-	// 	ret = // a ajouter par charles
-	// if (ft_strncmp(argv[0], "exit", 5) == 0)
-	// 	//ret = builtin_exit(ft_tab_size(argv), argv, data->env);
+	if (ft_strncmp(argv[0], "env", 4) == 0)
+		ret = exec_env(env);
+	if (ft_strncmp(argv[0], "exit", 5) == 0)
+		ret = ft_exit(data);
 	data->last_exit_status = ret;
 }
 void		exec_external_command(char *cmd, char **argv, t_data *data)

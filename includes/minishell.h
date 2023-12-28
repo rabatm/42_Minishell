@@ -74,6 +74,8 @@ int		builtin_pwd(int argc, char **argv, char **env);
 int		builtin_cd(int argc, char **argv, char **env);
 int     exec_unset(int argc, char **argv, t_data *data);
 int     exec_export(int argc, char **argv, t_data *data);
+int     exec_env(char **argv);
+int     ft_exit(t_data *data);
 
 //exec_cmd
 int		ft_arg_error(char **argv);
