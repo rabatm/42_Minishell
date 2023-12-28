@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/21 17:06:18 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/28 14:23:06 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,18 +142,27 @@ int	main(int argc, char **argv, char **env)
             add_history(data->line);
         	data->tokens = tokenize_line(data->line);
 
-            if (!data->tokens)
+            // if (!data->tokens)
+            //     continue;
+            if (data->tokens && *data->tokens)
+            {
+                free_and_exit_if_forbidden_token(data);
+                replace_env_var(data);
+                merge_tokens_if_no_space_before(data->tokens);
+                ft_exec(data);
+            }
+            else
                 continue;
 
-            free_and_exit_if_forbidden_token(data);
+           // free_and_exit_if_forbidden_token(data);
             //print_tokens (data->tokens);
-            replace_env_var(data);
+          //  replace_env_var(data);
             //print_tokens (data->tokens);
-            merge_tokens_if_no_space_before(data->tokens);
+           // merge_tokens_if_no_space_before(data->tokens);
             print_tokens (data->tokens);
 
             //print_tokens (data->tokens);
-            ft_exec(data);
+           // ft_exec(data);
             //free_tokens(data->tokens);
         }
         // free(data->line);
