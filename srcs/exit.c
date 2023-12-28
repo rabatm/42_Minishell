@@ -1,5 +1,7 @@
 #include "../includes/minishell.h"
 
+/*
+
 int     ft_exit(t_data *data)
 {
     int i;
@@ -15,5 +17,13 @@ int     ft_exit(t_data *data)
             i++;
         }
     }
+    return (0);
+}
+
+*/
+
+int ft_exit(t_data *data)
+{
+    data->exit = 1;
     return (0);
 }

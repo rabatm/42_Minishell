@@ -1,6 +1,19 @@
 #include "../includes/minishell.h"
 
-int     exec_env(char **env)
+int     exec_env(t_data *data)
+{
+    int     i;
+
+    i = 0;
+    while (data->env[i])
+    {
+        printf("%s \n", data->env[i]);
+        i++;
+    }
+    return (0);
+}
+
+/*
 {
     int     i;
 
@@ -12,3 +25,4 @@ int     exec_env(char **env)
     }
     return (0);
 }
+*/
