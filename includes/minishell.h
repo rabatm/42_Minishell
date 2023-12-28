@@ -1,14 +1,4 @@
-/*
 
-Creer 2 .h (pour plus de lisibilite)
-
--	minishell_define.h 	(avec les strutures et les "define")
--	minishell.h 		(avec seulement les prototypes des functions)
-
-Inclure "minishell_define.h" et "../libft/libft.h" dans minishell.h
-et inclure seulement minishell.h dans les autres fichiers
-
-*/
 #ifndef MINISHEL_H
 # define MINISHEL_H
 
@@ -29,23 +19,8 @@ et inclure seulement minishell.h dans les autres fichiers
 # include <stddef.h>
 # include <unistd.h>
 
-#include <stdio.h>
-#include "./minishell_define.h"
-
-// * types des differents token:
-
-
-# define TK_TYPE_AND 42				//	"&&" (Bonus only)
-# define TK_TYPE_OR 43				//	"||" (Bonus only)
-# define TK_TYPE_PIPE 44			//	"|"
-# define TK_TYPE_RED_OUT 45			//	">"
-# define TK_TYPE_RED_OUT_APPEND 46	//	">>"
-# define TK_TYPE_RED_IN 47			//	"<"
-# define TK_TYPE_RED_IN_DELIM 48	//	"<<"
-# define TK_TYPE_PAR_O 49			//	"("
-# define TK_TYPE_PAR_C 50			//	")"
-# define TK_TYPE_STR 40				//	anything else (echo  OU -n  OU "hello $USER"     OU 'hello $USER'   )
-
+# include <stdio.h>
+# include "./minishell_define.h"
 
 // init_data
 t_data  *init_data(char **env);
@@ -56,7 +31,7 @@ void    free_data(t_data *data);
 t_token	*create_new_token(char *val, int type);
 void	add_token_back(t_token **tokens, t_token *new_token);
 void	free_tokens(t_token **tokens);
-int	make_list_tokens(t_token **tokens, char *line, int type);
+int	make_list_tokens(t_token **tokens, char *line, int type, int space_before);
 t_token	*its_last_token(t_token **tokens);
 
 //tokeniser
@@ -80,34 +55,52 @@ int        ft_str_starts_with(char *str, char *start);
 int        ft_str_ends_with(char *str, char *end);
 int        ft_strs_equals(char *s1, char *s2);
 int        ft_strcmp(char *s1, char *s2);
-char    *ft_str_replace(char *str, char *new, int start, int end);
 void    ft_print_tab(char **tab);
 char    **ft_add_str_to_tab(t_data *data, char *entry);
 char    **free_tab_and_return_null(char **tab);
+char    *ft_str_replace(char *str, char *new_val, int start, int end);
 
 //tools
 int        ft_is_white_space(char c);
 char    *ft_strtrim_whitespaces(const char *str);
+void    sort_env(t_data *data);
 
 //signals
 int	handle_signal(void);
 
+//builtins
 int 	ft_echo(int argc, char** argv, char **env);
 int		builtin_pwd(int argc, char **argv, char **env);
 int		builtin_cd(int argc, char **argv, char **env);
 int     exec_unset(int argc, char **argv, t_data *data);
 int     exec_export(int argc, char **argv, t_data *data);
+int     exec_env(char **argv);
+int     ft_exit(t_data *data);
 
-
+//exec_cmd
 int		ft_arg_error(char **argv);
 int		ft_check_file_exist(char *fd);
 char	*ft_getcmd(char *arg);
 char    **ft_getenvpath(char **envp);
 int		ft_tokensize(t_token **lst);
+char    **get_cmd_array(t_token **tokens);
 
-int		ft_exec_ext_command(char **argv, char **env);
-int		ft_exec(t_data *data);
+void		ft_exec_ext_command(char **argv, t_data *data);
+int	       ft_exec(t_data *data, char **env);
 char	*ft_checkexe(char *for_exe, char **envp);
 
+//redirections
+int    apply_redirections(t_data *data, t_token **tokens);
+void    reset_redirections(t_data *data);
+int    apply_redirection_in_delim(t_data *data, t_token *token);
+int     apply_redirection_in(t_data *data, t_token *token);
 
+//redirections tools
+int    ft_rediretion_error(t_data *data, t_token *token);
+int    handle_error_fd(t_data *data, t_token *token, int fd);
+void    reset_redirections(t_data *data);
+
+
+char    *ft_str_replace_version_3(char *str, char *new_val, int start, int end);
+void test_ft_str_replace();
 #endif

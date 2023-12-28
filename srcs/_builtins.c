@@ -2,10 +2,8 @@
 
 int ft_echo(int argc, char** argv, char **env)
 {
-	int	ret;
 	int	i;
 
-	ret = 0;
 	i = 1;
 
 	(void)env;
@@ -18,9 +16,9 @@ int ft_echo(int argc, char** argv, char **env)
 			printf(" ");
 		i++;
 	}
-	if (ft_strncmp(argv[1], "-n", ft_strlen(argv[1])) != 0)
+	if ((argc > 1 && ft_strncmp(argv[1], "-n", ft_strlen(argv[1])) != 0))
 		printf("\n");
-	return (ret);
+	return (0);
 }
 
 int	builtin_pwd(int argc, char **argv, char **env)
@@ -40,12 +38,13 @@ int	builtin_cd(int argc, char **argv, char **env)
 	int	ret;
 
 	(void)env;
-	ret = 1;
+	ret = 0;
 	if (argc == 2)
 	{
 		errno = 0;
 		if (chdir(argv[1]) != 0)
 		{
+			ret = 1;
 			if (errno == ENOENT)
 				printf(RED"cd: no such file or directory: %s\n"RST, argv[1]);
 			else

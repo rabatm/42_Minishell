@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   erreur.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:33:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/11 15:57:24 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/11 17:00:25 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int ft_arg_error(char **argv)
 	}
 	if (!ft_check_file_exist(argv[4]))
 	{
-		ft_putstr_fd("FILE OUPUT EXIST",2);       
+		ft_putstr_fd("FILE OUPUT EXIST",2);
 		return (1);
 	}
 	return (0);

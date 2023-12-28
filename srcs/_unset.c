@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   _unset.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:16:55 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/11 16:32:10 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/21 12:29:43 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/minishell.h"
 
@@ -28,8 +29,8 @@ void    remove_env_var(t_data *data, int var_id)
 int     get_env_var_id(char *var_name, char **env)
 {
     int     i;
-    char    *equal_sign; // pointer to '='
-    size_t  len; // len of env var name
+    char    *equal_sign;
+    size_t  len;
 
     i = 0;
     while (env[i])
@@ -40,7 +41,7 @@ int     get_env_var_id(char *var_name, char **env)
         else
             len = ft_strlen(env[i]);
         if (ft_strncmp(env[i], var_name, len) == 0
-        && ft_strlen(var_name) == len) // if env var name matches var_name
+        && ft_strlen(var_name) == len)
             return (i);
         i++;
     }
@@ -52,10 +53,10 @@ int     exec_unset(int argc, char **argv, t_data *data)
     int     arg_id;
     int     var_id;
 
-    arg_id = 1; // skip unset ???
+    arg_id = 1;
     while (arg_id < argc)
     {
-        var_id = get_env_var_id(argv[arg_id], data->env); // get id of env var
+        var_id = get_env_var_id(argv[arg_id], data->env);
         if (var_id != -1)
             remove_env_var(data, var_id);
         arg_id++;
