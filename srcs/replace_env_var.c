@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:47:26 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/28 16:47:04 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/28 16:50:39 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ char    *replace_env_var_by_value(t_data *data, char *str)
                 j = i + 1;
                 while (str[j] != '\0' && (isalnum(str[j]) || str[j] == '_'))
                     j++;
-                printf("i = [%d]\n", i);
-                printf("j = [%d]\n", j);
                 tmp_val = get_value_of_env_var(data, ft_substr(str, i + 1, j - i - 1));
                 str = ft_str_replace_version_3(str, tmp_val, i, j);
                 if (!str)
