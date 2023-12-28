@@ -65,9 +65,6 @@ int     make_quote_token_and_return_id(char *line, int i, t_token **tokens)
 }
 
 
-
-
-
 int     make_str_token_and_return_id(char *line, int i, t_token **tokens)
 {
     int end_str_id;
@@ -79,9 +76,7 @@ int     make_str_token_and_return_id(char *line, int i, t_token **tokens)
         space_before = 1;
     else
         space_before = 0;
-    printf("debut   :  %c      ****     ", line[i]);
     end_str_id = get_end_str_id(line, i);
-    printf("fin  :  %c\n", line[end_str_id -1]);
     val = ft_substr(line, i, end_str_id - i);
     type = TK_TYPE_STR;
     make_list_tokens(tokens, val, type, space_before);
