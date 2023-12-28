@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:47:26 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/21 16:58:33 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/28 14:13:34 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,22 @@ char    *replace_env_var_by_value(t_data *data, char *str)
     {
         if (str[i] == '$' && str[i + 1] != '\0' && !ft_is_white_space(str[i + 1]))
         {
-        
             if (str[i + 1] == '?')
             {
                 tmp_val = ft_itoa(data->last_exit_status);
                 str = ft_str_replace_version_3(str, tmp_val, i, i + 2);
-              //  str = ft_str_replace(str, tmp_val, i, i + 1);
-                 i += ft_strlen(tmp_val);
+                if (!str)
+                {
+                    return (NULL);
+                    free(tmp_val);
+                }
+                if (tmp_val)
+                {
+                    i += ft_strlen(tmp_val) - 1;
+                    free(tmp_val);
+                }
+                else
+                    i += 1;
             }
             else
             {
@@ -76,16 +85,21 @@ char    *replace_env_var_by_value(t_data *data, char *str)
 
 
                 tmp_val = get_value_of_env_var(data, ft_substr(str, i + 1, j - i - 1));
-
-
-    
                 str = ft_str_replace_version_3(str, tmp_val, i, j);
-                /// TODO: free tmp_val et str(avec temp_val_2)
-
-
-               // str = ft_str_replace(str, tmp_val, i, j);
-                i += ft_strlen(tmp_val);
+                if (!str)
+                {
+                    return (NULL);
+                    free(tmp_val);
+                }
+                if (tmp_val)
+                {
+                    i += ft_strlen(tmp_val);
+                    free(tmp_val);
+                }
+                else
+                    i += j - i - 1;
             }
+
         }
         i++;
     }

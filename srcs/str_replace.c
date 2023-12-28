@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 12:39:29 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/21 17:05:18 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/28 14:04:51 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,20 @@ ft_strjoin_x3_and_free(part1,part2,part3)
 char    *ft_str_replace_version_3(char *str, char *new_val, int start, int end)
 {
     // end : index du char d'apres !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+    char *part1;
+    char *part3;
+    char *part123;
 
-    char *part1 = ft_substr(str, 0, start);
-    char *part3 = ft_substr(str, end, ft_strlen(str) - end);
+    part1 = ft_substr(str, 0, start);
+    part3 = ft_substr(str, end, ft_strlen(str) - end);
     /*
     char *part3 = ft_substr(str,  8 ,  8       -8);
     char *part3 = ft_substr(str,  8 ,  0);
 */
-    char *part123 = ft_strjoin_x3(part1, new_val, part3);
+    if (new_val != NULL)
+        part123 = ft_strjoin_x3(part1, new_val, part3);
+    else
+        part123 = ft_strjoin(part1, part3);
 
     free(part1);
     free(part3);
