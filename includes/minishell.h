@@ -22,14 +22,6 @@
 # include <stdio.h>
 # include "./minishell_define.h"
 
-# define COLOR_RED     "\x1b[31m"
-# define COLOR_GREEN   "\x1b[32m"
-# define COLOR_YELLOW  "\x1b[33m"
-# define COLOR_BLUE    "\x1b[34m"
-# define COLOR_MAGENTA "\x1b[35m"
-# define COLOR_CYAN    "\x1b[36m"
-# define COLOR_RESET   "\x1b[0m"
-
 // init_data
 t_data  *init_data(char **env);
 void    free_data(t_data *data);
@@ -63,14 +55,15 @@ int        ft_str_starts_with(char *str, char *start);
 int        ft_str_ends_with(char *str, char *end);
 int        ft_strs_equals(char *s1, char *s2);
 int        ft_strcmp(char *s1, char *s2);
-char    *ft_str_replace(char *str, char *new, int start, int end);
 void    ft_print_tab(char **tab);
 char    **ft_add_str_to_tab(t_data *data, char *entry);
 char    **free_tab_and_return_null(char **tab);
+char    *ft_str_replace(char *str, char *new_val, int start, int end);
 
 //tools
 int        ft_is_white_space(char c);
 char    *ft_strtrim_whitespaces(const char *str);
+void    sort_env(t_data *data);
 
 //signals
 int	handle_signal(void);
@@ -106,4 +99,6 @@ int    handle_error_fd(t_data *data, t_token *token, int fd);
 void    reset_redirections(t_data *data);
 
 
+char    *ft_str_replace_version_3(char *str, char *new_val, int start, int end);
+void test_ft_str_replace();
 #endif

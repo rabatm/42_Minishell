@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:02:53 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/21 11:36:14 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/21 12:30:03 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,3 @@ void ft_print_tab(char **tab)
         i++;
     }
 }
-/*
-char    *ft_str_replace(char *str, char *new, int start, int end)
-{
-    char    *new_str;
-    int     len_new;
-    int     len_str;
-
-    if (!str || !new || start < 0 || end < 0 || start > end)
-        return (NULL);
-    len_new = ft_strlen(new);
-    len_str = ft_strlen(str);
-    new_str = (char *)ft_calloc(len_str - (end - start) + len_new + 1, sizeof(char));
-    if (!new_str)
-        return (NULL);
-    ft_memcpy(new_str, str, start);
-    ft_memcpy(new_str + start, new, len_new);
-    ft_strlcpy(new_str + start + len_new, str + end, len_str - end + 1);
-    return (new_str);
-}
-*/
