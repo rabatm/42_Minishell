@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 12:39:29 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/28 14:04:51 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/28 15:55:52 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,27 +71,6 @@ char    *ft_str_replace(char *str, char *new_val, int start, int end)
     return (new_str);
 }
 
-
-
-char    *ft_str_replace_version_2(char *str, char *new_val, int start, int end)
-{
-
-    char *part1 = ft_substr(str, 0, start);
-    char *part3 = ft_substr(str, end, ft_strlen(str) - end);
-
-    char *part12 = ft_strjoin(part1, new_val);
-    char *part123 = ft_strjoin(part12, part3);
-
-    free(part1);
-    free(part3);
-    free(part12);
-
-    return (part123);
-}
-
-
-
-
 char *ft_strjoin_x3(char *part1,char *part2,char *part3)
 {
     char *part12 = ft_strjoin(part1, part2);
@@ -116,17 +95,15 @@ ft_strjoin_x3_and_free(part1,part2,part3)
 
 char    *ft_str_replace_version_3(char *str, char *new_val, int start, int end)
 {
-    // end : index du char d'apres !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
     char *part1;
     char *part3;
     char *part123;
 
+    if (!str)
+        return (NULL);
+
     part1 = ft_substr(str, 0, start);
     part3 = ft_substr(str, end, ft_strlen(str) - end);
-    /*
-    char *part3 = ft_substr(str,  8 ,  8       -8);
-    char *part3 = ft_substr(str,  8 ,  0);
-*/
     if (new_val != NULL)
         part123 = ft_strjoin_x3(part1, new_val, part3);
     else
@@ -141,16 +118,16 @@ char    *ft_str_replace_version_3(char *str, char *new_val, int start, int end)
 }
 
 
-
+/*
 
 void test_ft_str_replace()
 {
     printf("*************** TEST : test_ft_str_replace ***************\n");
 
     printf ("[%s]  should be [%s]   \n" ,  ft_str_replace_version_3("ABCDEF", "xxx", 1, 3),  "AxxxEF");
-    printf ("[%s]  should be [%s]   \n" ,  ft_str_replace_version_3("ABCDEF", "xxx", 0, 2),  "xxxDEF");
+    printf ("[%s]  should be [%s]   \n" ,  ft_str_replace_version_3("ABCDEF", "xxx", 0, 3),  "xxxDEF");
     printf ("[%s]  should be [%s]   \n" ,  ft_str_replace_version_3("ABCDEF", "xxx", 3, 6),  "ABCxxx");
-    printf ("[%s]  should be [%s]   \n" ,  ft_str_replace_version_3("ABCDEF", "xxxxxx", 1, 3),  "AxxxxxxEF");
+    printf ("[%s]  should be [%s]   \n" ,  ft_str_replace_version_3("ABCDEF", "xxxxxx", 1, 3),  "AxxxxxxDEF");
     printf ("[%s]  should be [%s]   \n" ,  ft_str_replace_version_3("ABCDEF", "", 0, -1),  "ABCDEF");
     printf ("[%s]  should be [%s]   \n" ,  ft_str_replace_version_3("ABCDEF", "xxx", 1, 3),  "AxxxEF");
     printf ("[%s]  should be [%s]   \n" ,  ft_str_replace_version_3("ABCDEF", "xxx", 1, 3),  "AxxxEF");
@@ -159,6 +136,7 @@ void test_ft_str_replace()
 
     printf("*************** FIN TEST : test_ft_str_replace ***************\n");
 }
+*/
 
 
 

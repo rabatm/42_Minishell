@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/28 14:23:06 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/28 14:50:48 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,6 @@ void    free_and_exit_if_forbidden_token(t_data *data)
 
 int	main(int argc, char **argv, char **env)
 {
-
-
-    //test_ft_str_replace();
 	t_data	*data;
 
 	(void)argc;
@@ -129,9 +126,6 @@ int	main(int argc, char **argv, char **env)
 	{
 		//handle_signal();
 		data->line = readline("Myshell $>");
-
-        // ***** line  : [       echo     "aaa"  "$USER"'$USER']
-
 		if (!data->line)
 		{
 		    data->exit = 1;
@@ -141,9 +135,6 @@ int	main(int argc, char **argv, char **env)
         {
             add_history(data->line);
         	data->tokens = tokenize_line(data->line);
-
-            // if (!data->tokens)
-            //     continue;
             if (data->tokens && *data->tokens)
             {
                 free_and_exit_if_forbidden_token(data);
@@ -153,17 +144,6 @@ int	main(int argc, char **argv, char **env)
             }
             else
                 continue;
-
-           // free_and_exit_if_forbidden_token(data);
-            //print_tokens (data->tokens);
-          //  replace_env_var(data);
-            //print_tokens (data->tokens);
-           // merge_tokens_if_no_space_before(data->tokens);
-            print_tokens (data->tokens);
-
-            //print_tokens (data->tokens);
-           // ft_exec(data);
-            //free_tokens(data->tokens);
         }
         // free(data->line);
         // data->line = NULL;

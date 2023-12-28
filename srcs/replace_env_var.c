@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:47:26 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/28 14:13:34 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/28 16:47:04 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ char    *replace_env_var_by_value(t_data *data, char *str)
                 str = ft_str_replace_version_3(str, tmp_val, i, i + 2);
                 if (!str)
                 {
-                    return (NULL);
                     free(tmp_val);
+                    return (NULL);
                 }
                 if (tmp_val)
                 {
@@ -80,26 +80,25 @@ char    *replace_env_var_by_value(t_data *data, char *str)
             else
             {
                 j = i + 1;
-                while (isalnum(str[j]) || str[j] == '_')
+                while (str[j] != '\0' && (isalnum(str[j]) || str[j] == '_'))
                     j++;
-
-
+                printf("i = [%d]\n", i);
+                printf("j = [%d]\n", j);
                 tmp_val = get_value_of_env_var(data, ft_substr(str, i + 1, j - i - 1));
                 str = ft_str_replace_version_3(str, tmp_val, i, j);
                 if (!str)
                 {
-                    return (NULL);
                     free(tmp_val);
+                    return (NULL);
                 }
                 if (tmp_val)
                 {
-                    i += ft_strlen(tmp_val);
+                    i += ft_strlen(tmp_val) - 1;
                     free(tmp_val);
                 }
                 else
                     i += j - i - 1;
             }
-
         }
         i++;
     }
