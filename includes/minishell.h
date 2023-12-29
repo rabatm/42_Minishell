@@ -81,8 +81,8 @@ char	*ft_getcmd(char *arg);
 char    **ft_getenvpath(char **envp);
 int		ft_tokensize(t_token **lst);
 char    **get_cmd_array(t_token **tokens);
-
-void		ft_exec_ext_command(char **argv, t_data *data);
+void    exec_external_command(char *cmd, char **argv, t_data *data);
+void    ft_exec_ext_command(char **argv, t_data *data);
 int		ft_exec(t_data *data);
 char	*ft_checkexe(char *for_exe, char **envp);
 
@@ -99,7 +99,7 @@ void    reset_redirections(t_data *data);
 
 //pipex
 int	ft_exec_pipe(t_data *data);
-t_token ***create_token_arrays(t_token *tokens, int nbpipes);
+t_token **create_token_arrays(t_token **tokens, int nbpipes);
 int	ft_is_builltins_cmd(char *cmd);
 void ft_exec_builtins(t_data *data, char **argv);
 
