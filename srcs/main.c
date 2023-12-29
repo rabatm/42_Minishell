@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/29 15:03:40 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:39:10 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ int	main(int argc, char **argv, char **env)
         }
         if (data->exit == 1)
         {
-           // free_data(data);
+            free_data(data);
             break;
         }
 	}

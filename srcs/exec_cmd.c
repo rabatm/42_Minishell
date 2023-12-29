@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:32:12 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/29 13:38:36 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:14:31 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ int	ft_exec(t_data *data)
 	else
 		ft_exec_ext_command(argv, data);
 	reset_redirections(data);
-	//ft_free_tab(argv);
 	free(argv);
 	return (0);
 }

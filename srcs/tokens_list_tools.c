@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:13:24 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/29 15:08:56 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:33:40 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ void        free_tokens(t_token **tokens)
         free(current);
         current = next;
     }
-    //free(*tokens);
     *tokens = NULL;
-    free(*tokens);
 }
 
 void		add_token_back(t_token **tokens, t_token *new_token)
@@ -77,6 +75,7 @@ t_token	*create_new_token(char *val, int type)
         exit(1);
     new_token->type = type;
     new_token->val = ft_strdup(val);
+    free(val);
     new_token->previous = NULL;
     new_token->next = NULL;
     return (new_token);
