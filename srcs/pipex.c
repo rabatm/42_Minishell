@@ -1,4 +1,4 @@
-/*#include "../includes/minishell.h"
+#include "../includes/minishell.h"
 
 void ft_count_pipe(t_token **tokens, int *count)
 {
@@ -13,75 +13,59 @@ void ft_count_pipe(t_token **tokens, int *count)
 		tmp = tmp->next;
 	}
 }
-
 int	ft_exec_pipe(t_data *data)
 {
 	int nbcmd;
 	int i;
-	int pipefd[2];
-	pid_t *pids;
+	int j;
 	t_token **token_arrays;
-	char **argv;
 
 	ft_count_pipe(data->tokens, &nbcmd);
-	if (nbcmd == 1)
-		ft_exec(data);
-	else {
+	int pipefd[2 * (nbcmd - 1)];
 	token_arrays = create_token_arrays(data->tokens, nbcmd);
-	}
-	pids = malloc(sizeof(pid_t) * nbcmd);
-	i = 0;
-	while (i < nbcmd)
-	{
-		pids[i] = fork();
-		if (pids[i] == 0)
-		{
-			if (i < nbcmd - 1)
-			{
-				dup2(pipefd[i + 1], STDOUT_FILENO);
-				dup2(pipefd[i + 1], STDIN_FILENO);
-				close(pipefd[i]);
-			}
-			if (i == 0)
-			{
-				dup2(pipefd[i + 1], STDOUT_FILENO);
-				close(pipefd[i]);
-			}
-			if (i == (nbcmd - 1))
-			{
-				close(pipefd[i]);
-			}
-			argv = get_cmd_array(&token_arrays[i]);
-			if(!argv[0])
-				return (1);
-			if (ft_is_builltins_cmd(argv[0]))
-				ft_exec_builtins(data, argv);
-			else
-			ft_exec_ext_command(argv, data);
-				exit(0);
+	j = 0;
+	while (j < nbcmd - 1) {
+		if (pipe(pipefd + j * 2) < 0) {
+			perror("pipe");
+			exit(EXIT_FAILURE);
 		}
-		else if (pids[i] < 0)
-		{
-			printf("Error\n");
-			exit(1);
+		j++;
+	}
+
+	i = 0;
+	while (i < nbcmd) {
+		data->tokens = &token_arrays[i];
+		pid_t pid = fork();
+		if (pid == 0) {
+			if (i < nbcmd - 1) {
+				dup2(pipefd[i * 2 + 1], STDOUT_FILENO);
+			}
+			if (i > 0) {
+				dup2(pipefd[(i - 1) * 2], STDIN_FILENO);
+			}
+			j = 0;
+			while (j < 2 * (nbcmd - 1)) {
+				close(pipefd[j]);
+				j++;
+			}
+			ft_exec(data); 
+			exit(EXIT_FAILURE);
+		} else if (pid < 0) {
+			perror("fork");
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
-	i = 0;
-	while (i < nbcmd - 1)
-	{
-		close(pipefd[i * 2]);
-		close(pipefd[i * 2 + 1]);
-		i++;
+	j = 0;
+	while (j < 2 * (nbcmd - 1)) {
+		close(pipefd[j]);
+		j++;
 	}
 	i = 0;
-	while (i < nbcmd)
-	{
-		waitpid(pids[i], NULL, 0);
+	while (i < nbcmd) {
+		wait(NULL);
 		i++;
 	}
-	free(pipefd);
-	free(pids);
 	return (0);
 }
-*/
+
