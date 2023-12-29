@@ -58,8 +58,8 @@ void    free_data(t_data *data)
         return ;
     if (data->env)
         ft_free_tab(data->env);
-    if (data->line)
-        free(data->line);
+    //if (data->line)
+    //   free(data->line);
     if (data->tokens)
         free_tokens(data->tokens);
     free(data);

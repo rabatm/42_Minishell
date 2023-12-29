@@ -12,9 +12,9 @@
 
 #include "../includes/minishell.h"
 
-int     apply_redirection_in_delim(t_data *data, t_token *token)
+int apply_redirection_in_delim(t_data *data, t_token *token)
 {
-    int     fd;
+    int fd;
     char    *line;
     char    *delim;
 
@@ -34,7 +34,7 @@ int     apply_redirection_in_delim(t_data *data, t_token *token)
         if (ft_strcmp(line, delim) == 0)
         {
             free(line);
-            break ;
+            break;
         }
         ft_putstr_fd(line, fd);
         ft_putstr_fd("\n", fd);

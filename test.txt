@@ -1,0 +1,16 @@
+total 144
+drwxr-xr-x 8 chbouthe 2022_perpignan  4096 Dec 29 15:54 .
+drwx------ 5 chbouthe 2022_perpignan  4096 Dec 29 11:53 ..
+-rw-r--r-- 1 chbouthe 2022_perpignan     0 Dec 29 15:54 >
+drwxr-xr-x 2 chbouthe 2022_perpignan  4096 Dec 29 11:14 fichier_david
+drwxr-xr-x 8 chbouthe 2022_perpignan  4096 Dec 29 11:15 .git
+-rw-r--r-- 1 chbouthe 2022_perpignan     4 Dec 29 11:12 .gitignore
+-rw-r--r-- 1 chbouthe 2022_perpignan 18840 Dec 29 15:46 ignore_readline.supp
+drwxr-xr-x 2 chbouthe 2022_perpignan  4096 Dec 29 11:14 includes
+drwxr-xr-x 2 chbouthe 2022_perpignan  4096 Dec 29 11:18 libft
+-rw-r--r-- 1 chbouthe 2022_perpignan  1220 Dec 29 11:14 Makefile
+-rwxr-xr-x 1 chbouthe 2022_perpignan 78096 Dec 29 15:54 minishell
+drwxr-xr-x 2 chbouthe 2022_perpignan  4096 Dec 29 15:54 objs
+-rw-r--r-- 1 chbouthe 2022_perpignan    74 Dec 29 11:14 README.md
+drwxr-xr-x 2 chbouthe 2022_perpignan  4096 Dec 29 11:14 srcs
+-rw-r--r-- 1 chbouthe 2022_perpignan     0 Dec 29 15:54 test.txt

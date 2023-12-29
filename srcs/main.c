@@ -102,15 +102,15 @@ void    free_and_exit_if_forbidden_token(t_data *data)
         if (tmp->type == TK_TYPE_AND || tmp->type == TK_TYPE_OR)
         {
             printf(RED "sorry, dont write [%s] we didn't do the bonus\n" RST, tmp->val);
-            break;
+            //break; temp
         }
         tmp=tmp->next;
     }
-    if (tmp)
-    {
-        free_data(data);
-        exit(0);
-    }
+    //if (tmp)
+    //{
+    //    free_data(data);
+    //    exit(0);
+    //}
 }
 
 int	main(int argc, char **argv, char **env)
@@ -136,6 +136,7 @@ int	main(int argc, char **argv, char **env)
         {
             add_history(data->line);
         	data->tokens = tokenize_line(data->line);
+            print_tokens(data->tokens);
             if (data->tokens && *data->tokens)
             {
                 free_and_exit_if_forbidden_token(data);
@@ -146,8 +147,9 @@ int	main(int argc, char **argv, char **env)
             else
                 continue;
         }
+        //free(data->tokens);
         free(data->line);
-        data->line = NULL;
+        //data->line = NULL;
         if (data->exit == 1)
             break;
 	}

@@ -32,7 +32,7 @@ int    make_op_token_and_return_id(char *line, int i, t_token **tokens)
         val = ft_substr(line, op_id, 1);
         make_list_tokens(tokens, val, type, 0);
         if ((*tokens)->type == TK_TYPE_PIPE)
-        op_id += 1;
+            op_id += 1;
     }
     return (op_id);
 }
@@ -83,6 +83,7 @@ int     make_str_token_and_return_id(char *line, int i, t_token **tokens)
     val = ft_substr(line, i, end_str_id - i);
     type = TK_TYPE_STR;
     make_list_tokens(tokens, val, type, space_before);
+    free(val);
     return (end_str_id);
 }
 
@@ -99,16 +100,18 @@ t_token     **tokenize_line(char *line)
     {
         if (ft_is_white_space(line[i]))
             i++;
-        else if (line[i] == '&' || line[i] == '|' || line[i] == '>' || line[i] == '<')
+        if (line[i] == '&' || line[i] == '|' || line[i] == '>' || line[i] == '<')
             i = make_op_token_and_return_id(line, i, tokens);
-        else if (line[i] == '"' || line[i] == '\'')
+        if (line[i] == '"' || line[i] == '\'')
         {
             i = make_quote_token_and_return_id(line, i, tokens);
             if (i == -1)
-                return (NULL);
+                return (free_tokens(tokens), NULL);
         }
         else
+        {
             i = make_str_token_and_return_id(line, i, tokens);
+        }
     }
     return (tokens);
 }

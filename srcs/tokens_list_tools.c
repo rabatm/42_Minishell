@@ -22,6 +22,7 @@ void        free_tokens(t_token **tokens)
     while (tmp)
     {
         *tokens = tmp->next;
+        //free(tokens->val);
         free(tmp);
         tmp = *tokens;
     }

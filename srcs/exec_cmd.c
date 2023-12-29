@@ -16,7 +16,7 @@
 
 int	ft_is_builltins_cmd(char *cmd)
 {
-	if (ft_strncmp(cmd, "echo", 5) == 0)
+if (ft_strncmp(cmd, "echo", 5) == 0)
 		return (1);
 	if (ft_strncmp(cmd, "cd", 3) == 0)
 		return (1);
