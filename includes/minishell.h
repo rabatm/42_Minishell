@@ -98,7 +98,9 @@ int    handle_error_fd(t_data *data, t_token *token, int fd);
 void    reset_redirections(t_data *data);
 
 //pipex
-void	ft_exec_pipe(t_data *data);
-
+int	ft_exec_pipe(t_data *data);
+t_token ***create_token_arrays(t_token *tokens, int nbpipes);
+int	ft_is_builltins_cmd(char *cmd);
+void ft_exec_builtins(t_data *data, char **argv);
 
 #endif

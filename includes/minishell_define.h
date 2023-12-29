@@ -48,20 +48,10 @@ typedef struct s_data
 
 }	t_data;
 
-typedef struct s_pipex
+typedef struct s_token_list
 {
-	int		pid1;
-	int		pid2;
-	char	*file_out;
-	char	*file_in;
-	int		file_outfd;
-	int		file_infd;
-	int		fd[2];
-	char	*cmd1;
-	char	*cmd2;
-    char **splitarg1;
-    char **splitarg2;
-	char **path_exe;
-}				t_pipex;
+    t_token				*token;
+    struct s_token_list	*next;
+}	t_token_list;
 
 #endif

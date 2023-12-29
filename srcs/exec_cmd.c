@@ -1,7 +1,5 @@
 #include "../includes/minishell.h"
 
-
-
 int	ft_is_builltins_cmd(char *cmd)
 {
 	if (ft_strncmp(cmd, "echo", 5) == 0)
@@ -18,7 +16,6 @@ int	ft_is_builltins_cmd(char *cmd)
 		return (1);
 	return (0);
 }
-
 
 void ft_exec_builtins(t_data *data, char **argv)
 {
@@ -41,6 +38,7 @@ void ft_exec_builtins(t_data *data, char **argv)
 	// 	//ret = builtin_exit(ft_tab_size(argv), argv, data->env);
 	data->last_exit_status = ret;
 }
+
 void		exec_external_command(char *cmd, char **argv, t_data *data)
 {
 	pid_t	pid;
