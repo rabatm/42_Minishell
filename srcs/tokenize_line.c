@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:12:02 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/28 17:04:22 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/29 10:54:09 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,7 @@ int     make_str_token_and_return_id(char *line, int i, t_token **tokens)
         space_before = 1;
     else
         space_before = 0;
-    printf("debut   :  %c      ****     ", line[i]);
     end_str_id = get_end_str_id(line, i);
-    printf("fin  :  %c\n", line[end_str_id -1]);
     val = ft_substr(line, i, end_str_id - i);
     type = TK_TYPE_STR;
     make_list_tokens(tokens, val, type, space_before);
@@ -112,7 +110,6 @@ t_token     **tokenize_line(char *line)
         else
             i = make_str_token_and_return_id(line, i, tokens);
     }
-   // merge_tokens_if_no_space_before(tokens);
     return (tokens);
 }
 

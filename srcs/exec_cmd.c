@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/28 17:32:12 by svanmarc          #+#    #+#             */
+/*   Updated: 2023/12/29 11:05:33 by svanmarc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 
@@ -15,6 +27,8 @@ int	ft_is_builltins_cmd(char *cmd)
 	if (ft_strncmp(cmd, "unset", 6) == 0)
 		return (1);
 	if (ft_strncmp(cmd, "env", 4) == 0)
+		return (1);
+	if (ft_strncmp(cmd, "exit", 6) == 0)
 		return (1);
 	return (0);
 }

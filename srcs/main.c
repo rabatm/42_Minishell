@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/28 17:26:20 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/29 11:08:53 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,23 +115,18 @@ void    free_and_exit_if_forbidden_token(t_data *data)
 
 int	main(int argc, char **argv, char **env)
 {
-
-
     //test_ft_str_replace();
 	t_data	*data;
 
 	(void)argc;
 	(void)argv;
 	data = init_data(env);
-    debug_create_fake_history();
+    //debug_create_fake_history();
 	//handle_signal();	// * Handle ctrl+C and ctrl+D
 	while (1)
 	{
 		//handle_signal();
 		data->line = readline("Myshell $>");
-
-        // ***** line  : [       echo     "aaa"  "$USER"'$USER']
-
 		if (!data->line)
 		{
 		    data->exit = 1;
@@ -141,9 +136,6 @@ int	main(int argc, char **argv, char **env)
         {
             add_history(data->line);
         	data->tokens = tokenize_line(data->line);
-
-            // if (!data->tokens)
-            //     continue;
             if (data->tokens && *data->tokens)
             {
                 free_and_exit_if_forbidden_token(data);
@@ -154,13 +146,20 @@ int	main(int argc, char **argv, char **env)
             else
                 continue;
         }
+        free(data->line);
+        data->line = NULL;
         if (data->exit == 1)
             break;
-        // free(data->line);
-        // data->line = NULL;
-        // if (data->exit == 1)
-        //     break;
 	}
     free_data(data);
 	return (0);
 }
+
+
+
+/*
+probleme avec exit pourquoi il ne trouve pas la fonction exit
+voir le data->exit = 1
+quoi faire si == 1, break or???
+
+*/
