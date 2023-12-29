@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/28 17:32:12 by svanmarc          #+#    #+#             */
+/*   Updated: 2023/12/29 11:05:33 by svanmarc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 
@@ -16,28 +28,30 @@ int	ft_is_builltins_cmd(char *cmd)
 		return (1);
 	if (ft_strncmp(cmd, "env", 4) == 0)
 		return (1);
+	if (ft_strncmp(cmd, "exit", 6) == 0)
+		return (1);
 	return (0);
 }
 
 
-void ft_exec_builtins(t_data *data, char **argv, char **env)
+void ft_exec_builtins(t_data *data, char **argv)
 {
 	int ret;
 
 	ret = 0;
 	if (ft_strncmp(argv[0], "echo", 5) == 0)
 		ret = ft_echo(ft_tab_size(argv), argv, data->env);
-	if (ft_strncmp(argv[0], "cd", 3) == 0)
+	else if (ft_strncmp(argv[0], "cd", 3) == 0)
 		ret = builtin_cd(ft_tab_size(argv), argv, data->env);
-	if (ft_strncmp(argv[0], "pwd", 4) == 0)
+	else if (ft_strncmp(argv[0], "pwd", 4) == 0)
 		ret = builtin_pwd(ft_tab_size(argv), argv, data->env);
-	if (ft_strncmp(argv[0], "export", 7) == 0)
+	else if (ft_strncmp(argv[0], "export", 7) == 0)
 		ret = exec_export(ft_tab_size(argv), argv, data);
-	if (ft_strncmp(argv[0], "unset", 6) == 0)
+	else if (ft_strncmp(argv[0], "unset", 6) == 0)
 		ret = exec_unset(ft_tab_size(argv), argv, data);
-	if (ft_strncmp(argv[0], "env", 4) == 0)
-		ret = exec_env(env);
-	if (ft_strncmp(argv[0], "exit", 5) == 0)
+	else if (ft_strncmp(argv[0], "env", 4) == 0)
+		ret = exec_env(data);
+	else if (ft_strncmp(argv[0], "exit", 6) == 0)
 		ret = ft_exit(data);
 	data->last_exit_status = ret;
 }
@@ -80,7 +94,7 @@ void		ft_exec_ext_command(char **argv, t_data *data)
 		exec_external_command(cmd, argv, data);
 }
 
-int	ft_exec(t_data *data, char **env)
+int	ft_exec(t_data *data)
 {
 	char **argv;
 
@@ -98,7 +112,7 @@ int	ft_exec(t_data *data, char **env)
 	if(!argv[0])
 		return (1);
 	if (ft_is_builltins_cmd(argv[0]))
-		ft_exec_builtins(data, argv, env);
+		ft_exec_builtins(data, argv);
 	else
 		ft_exec_ext_command(argv, data);
 	reset_redirections(data);

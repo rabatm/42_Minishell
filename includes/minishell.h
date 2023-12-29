@@ -74,7 +74,7 @@ int		builtin_pwd(int argc, char **argv, char **env);
 int		builtin_cd(int argc, char **argv, char **env);
 int     exec_unset(int argc, char **argv, t_data *data);
 int     exec_export(int argc, char **argv, t_data *data);
-int     exec_env(char **argv);
+int     exec_env(t_data *data);
 int     ft_exit(t_data *data);
 
 //exec_cmd
@@ -86,7 +86,7 @@ int		ft_tokensize(t_token **lst);
 char    **get_cmd_array(t_token **tokens);
 
 void		ft_exec_ext_command(char **argv, t_data *data);
-int	       ft_exec(t_data *data, char **env);
+int		ft_exec(t_data *data);
 char	*ft_checkexe(char *for_exe, char **envp);
 
 //redirections
