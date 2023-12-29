@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:12:02 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/29 10:54:09 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/29 14:52:44 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int    make_op_token_and_return_id(char *line, int i, t_token **tokens)
         type = get_token_type(line, op_id);
         val = ft_substr(line, op_id, 1);
         make_list_tokens(tokens, val, type, 0);
-        if ((*tokens)->type == TK_TYPE_PIPE)
         op_id += 1;
     }
+    free(val);
     return (op_id);
 }
 int     make_quote_token_and_return_id(char *line, int i, t_token **tokens)
@@ -61,6 +61,7 @@ int     make_quote_token_and_return_id(char *line, int i, t_token **tokens)
         tmp->change_env_var = 0;
     else if (quote_type == '\'')
         tmp->change_env_var = 1;
+    free(val);
     return (closing_quote_id + 1);
 }
 
@@ -83,9 +84,9 @@ int     make_str_token_and_return_id(char *line, int i, t_token **tokens)
     val = ft_substr(line, i, end_str_id - i);
     type = TK_TYPE_STR;
     make_list_tokens(tokens, val, type, space_before);
+    free(val);
     return (end_str_id);
 }
-
 t_token     **tokenize_line(char *line)
 {
     t_token     **tokens;
@@ -105,7 +106,10 @@ t_token     **tokenize_line(char *line)
         {
             i = make_quote_token_and_return_id(line, i, tokens);
             if (i == -1)
+            {
+                free_tokens(tokens);
                 return (NULL);
+            }
         }
         else
             i = make_str_token_and_return_id(line, i, tokens);

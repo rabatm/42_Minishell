@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:32:12 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/29 11:05:33 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/29 13:38:36 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_is_builltins_cmd(char *cmd)
 		return (1);
 	if (ft_strncmp(cmd, "env", 4) == 0)
 		return (1);
-	if (ft_strncmp(cmd, "exit", 6) == 0)
+	if (ft_strncmp(cmd, "exit", 5) == 0)
 		return (1);
 	return (0);
 }
@@ -116,6 +116,7 @@ int	ft_exec(t_data *data)
 	else
 		ft_exec_ext_command(argv, data);
 	reset_redirections(data);
-	ft_free_tab(argv);
+	//ft_free_tab(argv);
+	free(argv);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/29 11:08:53 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/29 15:03:40 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,12 @@ int	main(int argc, char **argv, char **env)
 		data->line = readline("Myshell $>");
 		if (!data->line)
 		{
-		    data->exit = 1;
+            data->exit = 1;
+            if (data->line)
+            {
+                free(data->line);
+                data->line = NULL;
+            }
 		    data->line = ft_strdup("");
 		}
         else
@@ -142,16 +147,26 @@ int	main(int argc, char **argv, char **env)
                 replace_env_var(data);
                 merge_tokens_if_no_space_before(data->tokens);
                 ft_exec(data);
+                free_tokens(data->tokens);
             }
             else
                 continue;
         }
-        free(data->line);
-        data->line = NULL;
+        if (data->line)
+        {
+            free(data->line);
+            data->line = NULL;
+        }
         if (data->exit == 1)
+        {
+           // free_data(data);
             break;
+        }
 	}
-    free_data(data);
+    if (data)
+    {
+        free_data(data);
+    }
 	return (0);
 }
 
