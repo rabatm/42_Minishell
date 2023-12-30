@@ -22,8 +22,8 @@ void	fill_argv(t_token **tokens, char **argv)
 	while (tmp)
 	{
 		if (tmp->type == TK_TYPE_RED_IN || tmp->type == TK_TYPE_RED_OUT
-		|| tmp->type == TK_TYPE_RED_OUT_APPEND
-		|| tmp->type == TK_TYPE_RED_IN_DELIM)
+			|| tmp->type == TK_TYPE_RED_OUT_APPEND
+			|| tmp->type == TK_TYPE_RED_IN_DELIM)
 		{
 			if (tmp->next && tmp->next->next)
 				tmp = tmp->next->next;

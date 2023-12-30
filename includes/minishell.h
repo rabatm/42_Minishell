@@ -105,6 +105,7 @@ int	ft_exec_pipe(t_data *data);
 t_token **create_token_arrays(t_token **tokens, int nbpipes);
 int	ft_is_builltins_cmd(char *cmd);
 void ft_exec_builtins(t_data *data, char **argv);
+void ft_fork_and_exec(t_data *data, int *pipefd, int i, int nbcmd);
 
 char    *ft_str_replace_version_3(char *str, char *new_val, int start, int end);
 void test_ft_str_replace();

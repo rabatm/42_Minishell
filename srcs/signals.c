@@ -29,10 +29,6 @@ static void	sig_handler(int signal)
 	}
 	else if (signal == SIGQUIT)
 	{
-		// My terminal doesn't do this, so I won't do it.
-		// ft_printstr("\033[2D  ");
-		// ft_printstr("\033[2D");
-		// return ;
 		ft_putstr_fd("exit\n", 1);
 		exit(0);
 	}
@@ -48,10 +44,3 @@ int	handle_signal(void)
 	sigaction(SIGQUIT, &sa, NULL);
 	return (0);
 }
-
-// int	main(void)
-// {
-// 	handle_signal();
-// 	pause();
-// 	return 0;
-// }

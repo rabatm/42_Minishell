@@ -146,7 +146,7 @@ int	main(int argc, char **argv, char **env)
                 free_and_exit_if_forbidden_token(data);
                 replace_env_var(data);
                 merge_tokens_if_no_space_before(data->tokens);
-                ft_exec(data);
+                ft_exec_pipe(data);
                 free_tokens(data->tokens);
             }
             else
@@ -169,12 +169,3 @@ int	main(int argc, char **argv, char **env)
     }
 	return (0);
 }
-
-
-
-/*
-probleme avec exit pourquoi il ne trouve pas la fonction exit
-voir le data->exit = 1
-quoi faire si == 1, break or???
-
-*/
