@@ -26,12 +26,13 @@ typedef struct s_token
 {
 	int				type;	// TK_TYPE_.... (voir defines)
 	char			*val;	// ex: echo OU -n OU >>
-	int				escape_env_var;
-	int				must_be_merge_with_previous; // faculatatif ?
+	int				change_env_var;
+	int				space_before;
 	struct s_token	*previous;
 	struct s_token	*next;
 
 }	t_token;
+
 typedef struct s_data
 {
 	char	**env;		// copie de env
@@ -43,9 +44,8 @@ typedef struct s_data
 	int		original_stdin; // descriptor du stdin original pour le reset
 	int		current_stdout; // descriptor du stdout courant
 	int		original_stdout; // descriptor du stdout original pour le reset
-	int		heredoc_handled;
-	int		nbpipes; // 1 si on est dans un heredoc, 0 sinon
-
+	int		heredoc_handled; // 1 si on est dans un heredoc, 0 sinon
+	int		nb_pipes;
 }	t_data;
 
 typedef struct s_token_list

@@ -6,7 +6,7 @@
 /*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:22:23 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/15 18:23:25 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/20 18:50:56 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_data    *init_data(char **env)
     data->original_stdout = -1; // -1 = not set
     data->tokens = NULL;
     data->heredoc_handled = 0;
-    data->nbpipes = 0;
+    data->nb_pipes = 0;
     return (data);
 }
 
@@ -56,7 +56,11 @@ void    free_data(t_data *data)
 {
     if (!data)
         return ;
-    ft_free_tab(data->env);
-    free_tokens(data->tokens);
+    if (data->env)
+        ft_free_tab(data->env);
+    if (data->line)
+        free(data->line);
+    if (data->tokens)
+        free_tokens(data->tokens);
     free(data);
 }

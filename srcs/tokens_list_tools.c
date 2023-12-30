@@ -6,25 +6,48 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:13:24 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/07 17:01:04 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/29 15:08:56 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+/*
 void        free_tokens(t_token **tokens)
 {
     t_token    *tmp;
 
     if (!tokens || !*tokens)
         return ;
-    tmp = *tokens;
-    while (tmp)
+    while (*tokens)
     {
-        *tokens = tmp->next;
-        free(tmp);
         tmp = *tokens;
+        *tokens = (*tokens)->next;
+        if (tmp->val)
+            free(tmp->val);
+        free(tmp);
     }
+}*/
+
+void        free_tokens(t_token **tokens)
+{
+    t_token    *current;
+    t_token    *next;
+
+    if (!tokens || !*tokens)
+        return ;
+    current = *tokens;
+    while (current)
+    {
+        next = current->next;
+        if (current->val)
+            free(current->val);
+        free(current);
+        current = next;
+    }
+    //free(*tokens);
+    *tokens = NULL;
+    free(*tokens);
 }
 
 void		add_token_back(t_token **tokens, t_token *new_token)
@@ -59,17 +82,20 @@ t_token	*create_new_token(char *val, int type)
     return (new_token);
 }
 
-int     make_list_tokens(t_token **tokens, char *val, int type)
+
+
+int     make_list_tokens(t_token **tokens, char *val, int type, int space_before)
 {
     t_token    *new_token;
 
     new_token = create_new_token(val, type);
     if (!new_token)
     {
-        free(val);
-        free_tokens(&new_token);
+        //free(val);
+        free_tokens(tokens);
         return (0);
     }
+    new_token->space_before = space_before;
     add_token_back(tokens, new_token);
     return (1);
 }
