@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/29 16:39:10 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/30 14:32:08 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		//handle_signal();
+       // printf("data->exit in main = %d\n", data->exit);
 		data->line = readline("Myshell $>");
 		if (!data->line)
 		{
@@ -146,8 +147,14 @@ int	main(int argc, char **argv, char **env)
                 free_and_exit_if_forbidden_token(data);
                 replace_env_var(data);
                 merge_tokens_if_no_space_before(data->tokens);
-                ft_exec(data);
+                ft_exec_pipe(data);
+                // if (data->exit == 1)
+                // {
+                //     free_data(data);
+                //     break;
+                // }
                 free_tokens(data->tokens);
+                data->tokens = NULL;
             }
             else
                 continue;
@@ -157,15 +164,22 @@ int	main(int argc, char **argv, char **env)
             free(data->line);
             data->line = NULL;
         }
+        if (data->tokens)
+        {
+            free_tokens(data->tokens);
+            data->tokens = NULL;
+        }
         if (data->exit == 1)
         {
             free_data(data);
+            data = NULL;
             break;
         }
 	}
     if (data)
     {
         free_data(data);
+        data = NULL;
     }
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:17:27 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/21 12:28:44 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/30 13:36:55 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,32 @@ char *extract_key_from_arg(char *arg)
     }
     else
         key = ft_strdup(copy);
+    free(copy);
     return (key);
 }
 
 void    add_new_env_var(t_data *data, char *arg)
 {
     int     env_id;
+    char    **new_env;
 
     env_id = 0;
     while (data->env[env_id])
         env_id++;
-    data->env = ft_add_str_to_tab(data, arg);
-    data->env[env_id] = ft_strdup(arg);
-    if (!data->env[env_id])
+    new_env = ft_add_str_to_tab(data, arg);
+    if (!new_env)
         return ;
-    data->env[env_id + 1] = NULL;
+    if (data->env)
+        ft_free_tab(data->env);
+    data->env = new_env;
 }
 
 int     update_existing_var(t_data *data, char *arg, char *key, char *update_value)
 {
     int env_id;
 
+    if (!data || !key || !arg)
+        return (0);
     env_id = 0;
     while (data->env[env_id])
     {

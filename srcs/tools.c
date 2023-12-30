@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:10:14 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/21 12:27:28 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:58:38 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,16 @@ void    sort_env(t_data *data)
         }
         i++;
     }
+}
+
+void    ft_realloc(char **str, int size)
+{
+    char    *new_str;
+
+    new_str = (char *)ft_calloc(size + 1, sizeof(char));
+    if (!new_str)
+        return ;
+    ft_strlcpy(new_str, *str, size + 1);
+    free(*str);
+    *str = new_str;
 }

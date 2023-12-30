@@ -64,6 +64,7 @@ char    *ft_str_replace(char *str, char *new_val, int start, int end);
 int        ft_is_white_space(char c);
 char    *ft_strtrim_whitespaces(const char *str);
 void    sort_env(t_data *data);
+void    ft_realloc(char **str, int new_size);
 
 //signals
 int	handle_signal(void);
@@ -103,4 +104,10 @@ void    reset_redirections(t_data *data);
 
 char    *ft_str_replace_version_3(char *str, char *new_val, int start, int end);
 void test_ft_str_replace();
+
+//pipe
+int	ft_exec_pipe(t_data *data);
+t_token **create_token_arrays(t_token **tokens, int nbpipes);
+void ft_print_token_array(t_token **token_array);
+
 #endif
