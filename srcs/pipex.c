@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svanmarc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/30 20:00:19 by svanmarc          #+#    #+#             */
+/*   Updated: 2023/12/30 20:02:26 by svanmarc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 void	ft_count_pipe(t_token **tokens, int *count)
@@ -56,9 +68,9 @@ int	ft_exec_pipe(t_data *data)
 	int	status;
 
 	ft_count_pipe(data->tokens, &nbcmd);
-	if (nbcmd == 1 )
+	if (nbcmd == 1)
 		ft_exec(data);
-	else 
+	else
 	{
 		pipefd = ft_make_pipefd(nbcmd);
 		i = 0;

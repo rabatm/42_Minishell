@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:04:09 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 19:35:00 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 20:08:27 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	fill_argv(t_token **tokens, char **argv)
 		}
 	}
 	argv[i] = NULL;
-
 }
 
 char	**get_cmd_array(t_token **tokens)

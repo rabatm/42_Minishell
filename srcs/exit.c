@@ -1,29 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svanmarc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/30 20:08:52 by svanmarc          #+#    #+#             */
+/*   Updated: 2023/12/30 20:09:29 by svanmarc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-/*
-
-int     ft_exit(t_data *data)
+int	ft_exit(t_data *data)
 {
-    int i;
-
-    i = 0;
-    if (data->tokens)
-    {
-        while (data->tokens[i])
-        {
-            free(data->tokens[i]);
-            data->tokens[i]->val = NULL;
-            free(data->tokens[i]->val);
-            i++;
-        }
-    }
-    return (0);
-}
-
-*/
-
-int ft_exit(t_data *data)
-{
-    data->exit = 1;
-    return (0);
+	data->exit = 1;
+	return (0);
 }

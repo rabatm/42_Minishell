@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 09:38:25 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 19:35:17 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 20:21:32 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ int	ft_rediretion_error(t_data *data, t_token *token)
 {
 	if (!token->next)
 	{
-		printf("Myshell: syntax error near unexpected token `newline'\n");
+		printf("Myshell: syntax error near unexpected");
+		printf(" token `newline'\n");
 		data->last_exit_status = 2;
 		return (1);
 	}
 	else if (token->next->type != TK_TYPE_STR)
 	{
-		printf("Myshell: syntax error near unexpected token `%s'\n", token->next->val);
+		printf("Myshell: syntax error near unexpected");
+		printf(" token `%s'\n", token->next->val);
 		data->last_exit_status = 2;
 		return (1);
 	}

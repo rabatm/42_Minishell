@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_env_var.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:47:26 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 19:39:57 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 22:37:34 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	replace_var_and_get_idx(char **str_ptr, int i, t_data *data, int *j_ptr)
 	char	*tmp_val;
 	char	*tmp_env_var;
 	char	*new_val;
+	int		tmp_val_len;
 
 	while ((*str_ptr)[*j_ptr] != '\0'
 		&& (isalnum((*str_ptr)[*j_ptr]) || (*str_ptr)[*j_ptr] == '_'))
@@ -67,11 +68,12 @@ int	replace_var_and_get_idx(char **str_ptr, int i, t_data *data, int *j_ptr)
 	tmp_env_var = NULL;
 	if (tmp_val)
 	{
+		tmp_val_len = ft_strlen(tmp_val);
 		new_val = ft_str_replace_version_3(*str_ptr, tmp_val, i, *j_ptr);
 		free(tmp_val);
 		free(*str_ptr);
 		*str_ptr = new_val;
-		i += ft_strlen(tmp_val) - 1;
+		i += tmp_val_len - 1;
 	}
 	else
 		i += *j_ptr - i - 1;
@@ -114,4 +116,3 @@ void	replace_env_var(t_data *data)
 		tmp = tmp->next;
 	}
 }
-

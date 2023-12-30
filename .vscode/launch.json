@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/nfs/homes/svanmarc/Desktop/minishell/stef2/srcs",
-      "program": "/nfs/homes/svanmarc/Desktop/minishell/stef2/srcs/build/Debug/outDebug",
+      "cwd": "/nfs/homes/svanmarc/goinfre/stef2/srcs",
+      "program": "/nfs/homes/svanmarc/goinfre/stef2/srcs/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

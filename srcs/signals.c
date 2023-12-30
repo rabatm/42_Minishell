@@ -6,26 +6,18 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:26:26 by glambrig          #+#    #+#             */
-/*   Updated: 2023/12/30 19:36:32 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 20:46:57 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-/*
-◦ ctrl-C displays a new prompt on a new line.
-◦ ctrl-D exits the shell.
-◦ ctrl-\ does nothing.
-*/
-
 static void	sig_handler(int signal)
 {
 	if (signal == SIGINT)
 	{
-		//rl_replace_line("", 0);
 		rl_on_new_line();
 		ft_putchar_fd('\n', 1);
-		//rl_redisplay();
 	}
 	else if (signal == SIGQUIT)
 	{

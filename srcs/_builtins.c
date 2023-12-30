@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   _builtins.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svanmarc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/30 20:03:00 by svanmarc          #+#    #+#             */
+/*   Updated: 2023/12/30 20:04:31 by svanmarc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-int ft_echo(int argc, char** argv, char **env)
+int	ft_echo(int argc, char **argv, char **env)
 {
 	int	i;
 
@@ -18,7 +30,7 @@ int ft_echo(int argc, char** argv, char **env)
 		}
 		i++;
 	}
-	if ( (argc > 1 && ft_strncmp(argv[1], "-n", ft_strlen(argv[1])) != 0)
+	if ((argc > 1 && ft_strncmp(argv[1], "-n", ft_strlen(argv[1])) != 0)
 		|| (argc == 1))
 		printf("\n");
 	return (0);

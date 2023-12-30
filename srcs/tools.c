@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:10:14 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 19:39:33 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 20:49:27 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_is_white_space(char c)
 {
-    if (c == ' ' || c == '\t' || c == '\n')
-        return (1);
-    return (0);
+	if (c == ' ' || c == '\t' || c == '\n')
+		return (1);
+	return (0);
 }
 
 char	*ft_strtrim_whitespace(const char *str)
@@ -55,7 +55,7 @@ int	ft_tokensize(t_token **lst)
 	return (count);
 }
 
-void    sort_env(t_data *data)
+void	sort_env(t_data *data)
 {
 	int		i;
 	int		j;
