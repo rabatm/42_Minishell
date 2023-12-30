@@ -48,7 +48,7 @@ int	ft_exec_pipe(t_data *data)
 				close(pipefd[j]);
 				j++;
 			}
-			ft_exec(data); 
+			ft_exec(data);
 			exit(EXIT_FAILURE);
 		} else if (pid < 0) {
 			perror("fork");
