@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:15:52 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/08 17:07:45 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/21 12:38:28 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,4 @@ char    **ft_add_str_to_tab(t_data *data, char *entry)
         return (free_tab_and_return_null(new));
     return (new);
 }
+

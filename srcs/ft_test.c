@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_test.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
+/*   By: mmarie <mmarie@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:34:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/11 16:14:27 by martincelav      ###   ########.fr       */
+/*   Updated: 2023/12/30 14:46:36 by mmarie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 char	*ft_getcmd(char *arg)
 {
-	return ft_strjoin("/usr/bin/",arg);
+	return (ft_strjoin("/usr/bin/", arg));
 }
 
 char	**ft_getenvpath(char **envp)
 {
-	int b_find;
-	int i;
+	int		b_find;
+	int		i;
 	char	**t_path;
 
 	b_find = 0;
@@ -31,22 +31,21 @@ char	**ft_getenvpath(char **envp)
 			b_find = 1;
 		i++;
 	}
-	if (b_find == 0) 
+	if (b_find == 0)
 	{
 		printf(RED": ERROR ENV VARIBLES\n"RST);
 		exit(1);
 	}
-	t_path = ft_split(envp[i-1] + 5, ':');
+	t_path = ft_split(envp[i - 1] + 5, ':');
 	return (t_path);
 }
 
 char	*ft_checkexe(char *for_exe, char **path)
 {
+	char	*tmp_exe;
+	int		chk_result;
+	int		i;
 
- 	char	*tmp_exe;
-	int	chk_result;
-	int	i;
-		
 	i = 0;
 	chk_result = -1;
 	if (ft_check_file_exist(for_exe) == 0)

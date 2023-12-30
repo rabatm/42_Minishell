@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   tokenize_line_tools.c                              :+:      :+:    :+:   */
@@ -82,10 +82,23 @@ int     get_end_str_id(char *line, int start_str_id)
 {
     start_str_id ++;
 
-    while (line[start_str_id] && !ft_is_white_space(line[start_str_id]) && (line[start_str_id] != '&'
-    || line[start_str_id] != '|' || line[start_str_id] != '>'
-    || line[start_str_id] != '<' || line[start_str_id] != '"'
-    || line[start_str_id] != '\''|| line[start_str_id] != '$'))
+    while (
+        line[start_str_id]
+        && !ft_is_white_space(line[start_str_id])
+
+
+
+        && line[start_str_id] != '&'
+        && line[start_str_id] != '|'
+        && line[start_str_id] != '>'
+        && line[start_str_id] != '<'
+        && line[start_str_id] != '"'
+        && line[start_str_id] != '\''
+      //  && line[start_str_id] != '$'
+
+
+      //  && !char_is_in_str (line[start_str_id]  , "&|><\"'$")
+    )
         start_str_id++;
     return (start_str_id);
 

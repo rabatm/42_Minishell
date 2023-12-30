@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmarie <mmarie@student.42perpignan.fr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/30 14:37:24 by mmarie            #+#    #+#             */
+/*   Updated: 2023/12/30 14:42:14 by mmarie           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
-
-
 
 int	ft_is_builltins_cmd(char *cmd)
 {
@@ -19,10 +29,9 @@ int	ft_is_builltins_cmd(char *cmd)
 	return (0);
 }
 
-
-void ft_exec_builtins(t_data *data, char **argv)
+void	ft_exec_builtins(t_data *data, char **argv)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	if (ft_strncmp(argv[0], "echo", 5) == 0)
@@ -41,7 +50,8 @@ void ft_exec_builtins(t_data *data, char **argv)
 	// 	//ret = builtin_exit(ft_tab_size(argv), argv, data->env);
 	data->last_exit_status = ret;
 }
-void		exec_external_command(char *cmd, char **argv, t_data *data)
+
+void	exec_external_command(char *cmd, char **argv, t_data *data)
 {
 	pid_t	pid;
 	int		status;
@@ -67,7 +77,7 @@ void		exec_external_command(char *cmd, char **argv, t_data *data)
 	}
 }
 
-void		ft_exec_ext_command(char **argv, t_data *data)
+void	ft_exec_ext_command(char **argv, t_data *data)
 {
 	char	**path;
 	char	*cmd;
@@ -82,7 +92,7 @@ void		ft_exec_ext_command(char **argv, t_data *data)
 
 int	ft_exec(t_data *data)
 {
-	char **argv;
+	char	**argv;
 
 	if (apply_redirections(data, data->tokens) == 1)
 	{
@@ -95,7 +105,7 @@ int	ft_exec(t_data *data)
 		//data->heredoc_handled = 0;
 	}
 	argv = get_cmd_array(data->tokens);
-	if(!argv[0])
+	if (!argv[0])
 		return (1);
 	if (ft_is_builltins_cmd(argv[0]))
 		ft_exec_builtins(data, argv);

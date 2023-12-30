@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmarie <mmarie@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:26:26 by glambrig          #+#    #+#             */
-/*   Updated: 2023/12/11 16:33:19 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:34:35 by mmarie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static void	sig_handler(int signal)
 {
 	if (signal == SIGINT)
 	{
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 		rl_on_new_line();
 		ft_putchar_fd('\n', 1);
-		rl_redisplay();
+		//rl_redisplay();
 	}
 	else if (signal == SIGQUIT)
 	{
