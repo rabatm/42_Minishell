@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 21:02:12 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/30 22:28:30 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 void	merge_tokens_if_no_space_before(t_token **tokens)
-{	
+{
 	t_token	*tmp;
 	char	*merged_val;
 	t_token	*next_token;
@@ -114,6 +114,7 @@ int	main(int argc, char **argv, char **env)
             data = NULL;
             break;
         }
+	}
     if (data)
     {
         free_data(data);
