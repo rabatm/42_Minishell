@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:12:02 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 16:11:37 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:37:31 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,3 +118,98 @@ t_token	**tokenize_line(char *line)
 	}
 	return (tokens);
 }
+
+
+
+
+/*
+
+
+
+
+token
+    space_before
+
+
+
+parcourir line
+
+	if is_white_space(current_char)
+		current_char++
+
+
+	else if current_char est dans "&|><"
+		regarder si le char d'apres est identique ( >> ou << ou && ou ||)
+		creer un token avec 1 OU 2 char 
+            et definir son type (ex: TK_TYPE_RED_OUT)
+            et space_before = 1
+		current_char += 1 OU 2 (placer le curseur sur le char d'apres)
+
+
+	else if current_char == doubleQuote
+		int fin = get_index_of_next_doubleQuote(line, current_char ((+ 1)) )
+		if (fin == -1)
+			error: pas de quote fermante
+			(On a pas a gerer)
+			break ou return NULL ou ...
+		creer un token avec le contenu entre les 2 doubleQuote (ft_substr) (sans les quotes !!!)
+		token.type = TK_TYPE_STR
+		token.escape_env_var = false (on remplacera les env_vars)
+		placer le curseur sur le char d'apres la quote fermante
+
+
+
+	else if current_char == simpleQuote
+		... la meme chose
+		token.escape_env_var = true (on NE remplacera PAS les env_vars)
+		... la meme chose
+
+        
+
+
+	else
+		(on est sur un mot:   echo, -n, $USER, ...)
+		debut = i
+        fin = chercher la fin du mot et creer un token entre ces 2 char(ft_substr)
+			==> (tant que char existe && char n'est pas dans "&|><(whiteSpace)" )
+		token.type = TK_TYPE_STR
+		token.escape_env_var = false (on remplacera les env_vars)
+		placer le curseur sur le char d'apres le mot
+        
+       if (is_white_space (i > 0 && line[debut-1]))    (si ya un espace avant debut) 
+            token->space_before = 1
+        else
+            token->space_before = 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/

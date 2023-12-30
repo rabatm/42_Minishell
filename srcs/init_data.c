@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
+/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:22:23 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 12:54:27 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:35:39 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 
 
-t_data    *init_data(char **env)
+t_data	*init_data(char **env)
 {
-    t_data  *data;
+	t_data	*data;
 
     data = (t_data *)ft_calloc(1, sizeof(t_data));
     if (!data)
@@ -35,7 +35,7 @@ t_data    *init_data(char **env)
     return (data);
 }
 
-void    free_data(t_data *data)
+void	free_data(t_data *data)
 {
     if (!data)
         return ;

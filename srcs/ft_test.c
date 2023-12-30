@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:34:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/30 19:23:47 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 19:32:31 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 char	*ft_getcmd(char *arg)
 {
-	return ft_strjoin("/usr/bin/",arg);
+	return (ft_strjoin("/usr/bin/", arg));
 }
 
 char	**ft_getenvpath(char **envp)
 {
-	int b_find;
-	int i;
+	int		b_find;
+	int		i;
 	char	**t_path;
 
 	b_find = 0;
@@ -36,16 +36,15 @@ char	**ft_getenvpath(char **envp)
 		printf(RED": ERROR ENV VARIBLES\n"RST);
 		exit(1);
 	}
-	t_path = ft_split(envp[i-1] + 5, ':');
+	t_path = ft_split(envp[i - 1] + 5, ':');
 	return (t_path);
 }
 
 char	*ft_checkexe(char *for_exe, char **path)
 {
-
- 	char	*tmp_exe;
-	int	chk_result;
-	int	i;
+	char	*tmp_exe;
+	int		chk_result;
+	int		i;
 
 	i = 0;
 	chk_result = -1;

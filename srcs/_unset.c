@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _unset.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:16:55 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 15:37:41 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:34:16 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	remove_env_var(t_data *data, int var_id)
 {
-	int		i;
+	int	i;
 
 	free(data->env[var_id]);
 	i = var_id;
@@ -49,8 +49,8 @@ int	get_env_var_id(char *var_name, char **env)
 
 int	exec_unset(int argc, char **argv, t_data *data)
 {
-	int		arg_id;
-	int		var_id;
+	int	arg_id;
+	int	var_id;
 
 	arg_id = 1;
 	while (arg_id < argc)

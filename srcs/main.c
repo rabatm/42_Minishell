@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 19:18:29 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 19:36:06 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ void    ft_print_env(char **env)
 }
 */
 
-void    free_and_exit_if_forbidden_token(t_data *data)
+void	free_and_exit_if_forbidden_token(t_data *data)
 {
-    t_token *tmp;
+	t_token *tmp;
 
     tmp = *data->tokens;
     while (tmp)
@@ -128,6 +128,9 @@ int	main(int argc, char **argv, char **env)
 		//handle_signal();
        // printf("data->exit in main = %d\n", data->exit);
 		data->line = readline("Myshell $>");
+
+        // ***** line  : [       echo     "aaa"  "$USER"'$USER']
+
 		if (!data->line)
 		{
             data->exit = 1;
@@ -175,6 +178,10 @@ int	main(int argc, char **argv, char **env)
             data = NULL;
             break;
         }
+        // free(data->line);
+        // data->line = NULL;
+        // if (data->exit == 1)
+        //     break;
 	}
     if (data)
     {

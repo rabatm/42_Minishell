@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 17:32:12 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 19:21:52 by mrabat           ###   ########.fr       */
+/*   Created: 2023/12/30 14:37:24 by mmarie            #+#    #+#             */
+/*   Updated: 2023/12/30 19:34:39 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_is_builltins_cmd(char *cmd)
 
 void ft_exec_builtins(t_data *data, char **argv)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	if (ft_strncmp(argv[0], "echo", 5) == 0)
@@ -80,7 +80,7 @@ void		exec_external_command(char *cmd, char **argv, t_data *data)
 	}
 }
 
-void		ft_exec_ext_command(char **argv, t_data *data)
+void	ft_exec_ext_command(char **argv, t_data *data)
 {
 	char	**path;
 	char	*cmd;
@@ -96,7 +96,7 @@ void		ft_exec_ext_command(char **argv, t_data *data)
 
 int	ft_exec(t_data *data)
 {
-	char **argv;
+	char	**argv;
 
 	if (apply_redirections(data, data->tokens) == 1)
 	{
@@ -108,7 +108,7 @@ int	ft_exec(t_data *data)
 		apply_redirection_in(data, *data->tokens);
 	}
 	argv = get_cmd_array(data->tokens);
-	if(!argv[0])
+	if (!argv[0])
 		return (1);
 	if (ft_is_builltins_cmd(argv[0]))
 		ft_exec_builtins(data, argv);
