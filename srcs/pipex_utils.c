@@ -67,7 +67,7 @@ void	ft_fork_and_exec(t_data *data, int *pipefd, int i, int nbcmd)
 			j++;
 		}
 		ft_exec(data);
-		exit(EXIT_FAILURE);
+		exit(data->last_exit_status);
 	}
 	else if (pid < 0)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:32:12 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 14:32:54 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:21:52 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void		ft_exec_ext_command(char **argv, t_data *data)
 		data->last_exit_status = 1;
 	else
 		exec_external_command(cmd, argv, data);
+	free(path);
 }
 
 int	ft_exec(t_data *data)
@@ -105,7 +106,6 @@ int	ft_exec(t_data *data)
 	if (data->heredoc_handled == 1)
 	{
 		apply_redirection_in(data, *data->tokens);
-		//data->heredoc_handled = 0;
 	}
 	argv = get_cmd_array(data->tokens);
 	if(!argv[0])

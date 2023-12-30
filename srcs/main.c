@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 17:34:04 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 19:18:29 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	data = init_data(env);
     //debug_create_fake_history();
-	//handle_signal();	// * Handle ctrl+C and ctrl+D
+	handle_signal();
 	while (1)
 	{
 		//handle_signal();
@@ -140,7 +140,7 @@ int	main(int argc, char **argv, char **env)
 		}
         else
         {
-            add_history(data->line);
+            //add_history(data->line);
         	data->tokens = tokenize_line(data->line);
             if (data->tokens && *data->tokens)
             {

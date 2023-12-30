@@ -53,21 +53,31 @@ int	ft_exec_pipe(t_data *data)
 	int	nbcmd;
 	int	i;
 	int	*pipefd;
+	int	status;
 
 	ft_count_pipe(data->tokens, &nbcmd);
-	pipefd = ft_make_pipefd(nbcmd);
-	i = 0;
-	ft_launch_cmd(nbcmd, data, pipefd);
-	while (i < 2 * (nbcmd - 1))
+	if (nbcmd == 1 )
+		ft_exec(data);
+	else 
 	{
-		close(pipefd[i]);
-		i++;
-	}
-	i = 0;
-	while (i < nbcmd)
-	{
-		wait(NULL);
-		i++;
+		pipefd = ft_make_pipefd(nbcmd);
+		i = 0;
+		ft_launch_cmd(nbcmd, data, pipefd);
+		while (i < 2 * (nbcmd - 1))
+		{
+			close(pipefd[i]);
+			i++;
+		}
+		i = 0;
+		while (i < nbcmd)
+		{
+			wait(&status);
+			i++;
+		}
+		if (WIFEXITED(status))
+			data->last_exit_status = WEXITSTATUS(status);
+		else
+			data->last_exit_status = 128 + WTERMSIG(status);
 	}
 	return (0);
 }

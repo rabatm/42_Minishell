@@ -60,6 +60,7 @@ int	builtin_cd(int argc, char **argv, char **env)
 	}
 	if (argc > 2)
 	{
+		ret = 1;
 		if (opendir(argv[1]))
 			chdir(argv[1]);
 		else
