@@ -12,6 +12,7 @@
 
 #include "../includes/minishell.h"
 
+// data->heredoc_handled = 0;
 int	apply_redirection_in(t_data *data, t_token *token)
 {
 	int	fd;
@@ -19,10 +20,7 @@ int	apply_redirection_in(t_data *data, t_token *token)
 	if (data->heredoc_handled == 0 && ft_rediretion_error(data, token))
 		return (1);
 	if (data->heredoc_handled == 1)
-	{
 		fd = open (".heredoc", O_RDONLY);
-		// data->heredoc_handled = 0;
-	}
 	else
 		fd = open(token->next->val, O_RDONLY);
 	if (fd == -1)
@@ -73,6 +71,13 @@ int	apply_redirection_out(t_data *data, t_token *token)
 	return (0);
 }
 
+int	dothispls(t_token *tmp, t_data *data)
+{
+	if (data->current_stdout != STDOUT_FILENO && data->current_stdout != -1)
+		close(data->current_stdout);
+	return (apply_redirection_out_append(data, tmp));
+}
+
 int	apply_redirections(t_data *data, t_token **tokens)
 {
 	t_token	*tmp;
@@ -85,11 +90,7 @@ int	apply_redirections(t_data *data, t_token **tokens)
 		if (tmp->type == TK_TYPE_RED_OUT)
 			ret = apply_redirection_out(data, tmp);
 		else if (tmp->type == TK_TYPE_RED_OUT_APPEND)
-		{
-			if (data->current_stdout != STDOUT_FILENO && data->current_stdout != -1)
-				close(data->current_stdout);
-			ret = apply_redirection_out_append(data, tmp);
-		}
+			ret = dothispls(tmp, data);
 		if (ret == 1)
 			return (ret);
 		if (tmp->type == TK_TYPE_RED_IN)

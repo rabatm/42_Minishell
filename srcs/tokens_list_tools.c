@@ -66,7 +66,7 @@ t_token	*create_new_token(char *val, int type)
 	return (new_token);
 }
 
-int	make_list_tokens(t_token **tokens, char *val, int type, int space_before)
+int	make_list_tokens(t_token **tokens, char *val, int type, int space)
 {
 	t_token	*new_token;
 
@@ -76,7 +76,7 @@ int	make_list_tokens(t_token **tokens, char *val, int type, int space_before)
 		free_tokens(tokens);
 		return (0);
 	}
-	new_token->space_before = space_before;
+	new_token->space_before = space;
 	add_token_back(tokens, new_token);
 	return (1);
 }

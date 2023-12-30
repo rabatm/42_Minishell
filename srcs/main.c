@@ -92,7 +92,7 @@ void    ft_print_env(char **env)
 }
 */
 
-void	free_and_exit_if_forbidden_token(t_data *data)
+int	free_and_exit_if_forbidden_token(t_data *data)
 {
 	t_token *tmp;
 
@@ -102,15 +102,13 @@ void	free_and_exit_if_forbidden_token(t_data *data)
         if (tmp->type == TK_TYPE_AND || tmp->type == TK_TYPE_OR)
         {
             printf(RED "sorry, dont write [%s] we didn't do the bonus\n" RST, tmp->val);
-            break;
+            return (1);
         }
         tmp=tmp->next;
     }
     if (tmp)
-    {
         free_data(data);
-        exit(0);
-    }
+    return (0);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -147,7 +145,8 @@ int	main(int argc, char **argv, char **env)
         	data->tokens = tokenize_line(data->line);
             if (data->tokens && *data->tokens)
             {
-                free_and_exit_if_forbidden_token(data);
+                if (free_and_exit_if_forbidden_token(data) == 1)
+                    continue;
                 replace_env_var(data);
                 merge_tokens_if_no_space_before(data->tokens);
                 ft_exec_pipe(data);

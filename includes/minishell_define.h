@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell_define.h                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chbouthe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/30 20:24:44 by chbouthe          #+#    #+#             */
+/*   Updated: 2023/12/30 20:24:46 by chbouthe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHEL_DEFINE_H
 # define MINISHEL_DEFINE_H
 
@@ -10,17 +22,16 @@
 # define C		"\033[1;36m"   /* Bold Cyan */
 # define W		"\033[1;37m"   /* Bold White */
 
-# define TK_TYPE_AND 42				//	"&&" (Bonus only)
-# define TK_TYPE_OR 43				//	"||" (Bonus only)
-# define TK_TYPE_PIPE 44			//	"|"
-# define TK_TYPE_RED_OUT 45			//	">"
-# define TK_TYPE_RED_OUT_APPEND 46	//	">>"
-# define TK_TYPE_RED_IN 47			//	"<"
-# define TK_TYPE_RED_IN_DELIM 48	//	"<<"
-# define TK_TYPE_PAR_O 49			//	"("
-# define TK_TYPE_PAR_C 50			//	")"
-# define TK_TYPE_STR 40				//	anything else (echo  OU -n  OU "hello $USER"     OU 'hello $USER'   )
-
+# define TK_TYPE_AND 42//	"&&" (Bonus only)
+# define TK_TYPE_OR 43//	"||" (Bonus only)
+# define TK_TYPE_PIPE 44//	"|"
+# define TK_TYPE_RED_OUT 45//	">"
+# define TK_TYPE_RED_OUT_APPEND 46//	">>"
+# define TK_TYPE_RED_IN 47//	"<"
+# define TK_TYPE_RED_IN_DELIM 48//	"<<"
+# define TK_TYPE_PAR_O 49//	"("
+# define TK_TYPE_PAR_C 50//	")"
+# define TK_TYPE_STR 40//	anything else (echo  OU -n  OU "hello $USER)
 
 typedef struct s_token
 {
