@@ -20,14 +20,19 @@ void	ft_launch_cmd(int nbcmd, t_data *data, int *pipefd)
 	t_token	**token_arrays;
 
 	i = 0;
+	printf("ICI\n");
+	print_tokens(data->tokens);
 	token_arrays = create_token_arrays(data->tokens, nbcmd);
+	
 	while (i < nbcmd)
 	{
+		//free(data->tokens);
 		data->tokens = &token_arrays[i];
 		ft_fork_and_exec(data, pipefd, i, nbcmd);
 		i++;
 	}
 }
+
 
 int	*ft_make_pipefd(int nbcmd)
 {
@@ -53,8 +58,9 @@ int	ft_exec_pipe(t_data *data)
 	int	nbcmd;
 	int	i;
 	int	*pipefd;
-	int	status;
 
+	i = 0;
+	nbcmd = 0;
 	ft_count_pipe(data->tokens, &nbcmd);
 	if (nbcmd == 1 )
 		ft_exec(data);
@@ -69,15 +75,8 @@ int	ft_exec_pipe(t_data *data)
 			i++;
 		}
 		i = 0;
-		while (i < nbcmd)
-		{
-			wait(&status);
-			i++;
-		}
-		if (WIFEXITED(status))
-			data->last_exit_status = WEXITSTATUS(status);
-		else
-			data->last_exit_status = 128 + WTERMSIG(status);
+	ft_wait_end(nbcmd, i, data);
+	free(pipefd);
 	}
 	return (0);
 }

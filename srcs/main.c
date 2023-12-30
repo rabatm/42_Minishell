@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:15:21 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 19:36:06 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 23:29:05 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,12 @@ void        merge_tokens_if_no_space_before(t_token **tokens)
     while (tmp && tmp->next)
     {
         next_token = tmp->next;
-        if (tmp->next->space_before == 0 && tmp->next->type == TK_TYPE_STR)
+        if (tmp->next->space_before == 0 
+            && tmp->next->type == TK_TYPE_STR
+            && tmp->type != TK_TYPE_PIPE
+            && tmp->type != TK_TYPE_RED_IN
+            && tmp->type != TK_TYPE_RED_OUT
+            && tmp->type != TK_TYPE_RED_OUT_APPEND)
         {
             merged_val = ft_strjoin(tmp->val, next_token->val);
             free(tmp->val);
@@ -113,6 +118,15 @@ void	free_and_exit_if_forbidden_token(t_data *data)
     }
 }
 
+void ft_ftok(t_token **tokens)
+{
+	if(tokens)
+	{
+		free_tokens(tokens);
+		tokens = NULL;
+	}
+}
+
 int	main(int argc, char **argv, char **env)
 {
     //test_ft_str_replace();
@@ -121,29 +135,24 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	data = init_data(env);
-    //debug_create_fake_history();
 	handle_signal();
 	while (1)
 	{
-		//handle_signal();
-       // printf("data->exit in main = %d\n", data->exit);
+		handle_signal();
 		data->line = readline("Myshell $>");
-
-        // ***** line  : [       echo     "aaa"  "$USER"'$USER']
-
 		if (!data->line)
 		{
-            data->exit = 1;
-            if (data->line)
-            {
-                free(data->line);
-                data->line = NULL;
-            }
-		    data->line = ft_strdup("");
+			data->exit = 1;
+			if (data->line)
+			{
+				free(data->line);
+				data->line = NULL;
+			}
+			data->line = ft_strdup("");
 		}
         else
         {
-            //add_history(data->line);
+            add_history(data->line);
         	data->tokens = tokenize_line(data->line);
             if (data->tokens && *data->tokens)
             {
@@ -151,37 +160,26 @@ int	main(int argc, char **argv, char **env)
                 replace_env_var(data);
                 merge_tokens_if_no_space_before(data->tokens);
                 ft_exec_pipe(data);
-                // if (data->exit == 1)
-                // {
-                //     free_data(data);
-                //     break;
-                // }
-                free_tokens(data->tokens);
-                data->tokens = NULL;
+                ft_ftok(data->tokens);
             }
             else
-                continue;
+			{
+			    ft_ftok(data->tokens);
+		    	continue;
+			}
         }
         if (data->line)
         {
             free(data->line);
             data->line = NULL;
         }
-        if (data->tokens)
-        {
-            free_tokens(data->tokens);
-            data->tokens = NULL;
-        }
-        if (data->exit == 1)
+        //ft_ftok(data->tokens);
+		if (data->exit == 1)
         {
             free_data(data);
             data = NULL;
             break;
         }
-        // free(data->line);
-        // data->line = NULL;
-        // if (data->exit == 1)
-        //     break;
 	}
     if (data)
     {

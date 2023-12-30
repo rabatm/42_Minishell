@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 14:37:24 by mmarie            #+#    #+#             */
-/*   Updated: 2023/12/30 19:34:39 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 22:31:11 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void ft_exec_builtins(t_data *data, char **argv)
 	else if (ft_strncmp(argv[0], "exit", 5) == 0)
 		ret = ft_exit(data);
 	data->last_exit_status = ret;
-	//printf("data->last_exit_status = %d\n", data->last_exit_status);
 }
 
 void		exec_external_command(char *cmd, char **argv, t_data *data)
@@ -91,7 +90,8 @@ void	ft_exec_ext_command(char **argv, t_data *data)
 		data->last_exit_status = 1;
 	else
 		exec_external_command(cmd, argv, data);
-	free(path);
+	ft_free_tab(path);
+	free(cmd);
 }
 
 int	ft_exec(t_data *data)
@@ -115,6 +115,8 @@ int	ft_exec(t_data *data)
 	else
 		ft_exec_ext_command(argv, data);
 	reset_redirections(data);
+	free_tokens(data->tokens);
+//	data->tokens = NULL;
 	free(argv);
 	return (0);
 }

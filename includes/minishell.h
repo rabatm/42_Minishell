@@ -115,5 +115,9 @@ void test_ft_str_replace();
 int	ft_exec_pipe(t_data *data);
 t_token **create_token_arrays(t_token **tokens, int nbpipes);
 void ft_print_token_array(t_token **token_array);
+void	ft_wait_end(int nbcmd, int i, t_data *data);
+
+//debut
+void   print_tokens(t_token **tokens);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:13:24 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 19:37:42 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 21:51:22 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@ void	free_tokens(t_token **tokens)
 	while (current)
 	{
 		next = current->next;
-		if (current->val)
-		{
-			free(current->val);
-			current->val = NULL;
-		}
+		free(current->val); // Libérer le champ val de chaque token
+		current->val = NULL;
 		free(current);
 		current = next;
 	}
@@ -60,7 +57,9 @@ t_token	*create_new_token(char *val, int type)
 	if (!new_token)
 		return (NULL);
 	new_token->type = type;
+	free(new_token->val);
 	new_token->val = ft_strdup(val);
+	free(val);
 	new_token->previous = NULL;
 	new_token->next = NULL;
 	return (new_token);
