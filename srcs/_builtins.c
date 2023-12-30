@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _builtins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svanmarc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:03:00 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 20:04:31 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/31 00:37:43 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_echo(int argc, char **argv, char **env)
 
 	i = 1;
 	(void)env;
-	if (ft_strncmp(argv[i], "-n", ft_strlen(argv[i])) == 0)
+	if (argc > 1 && (ft_strncmp(argv[i], "-n", ft_strlen(argv[i])) == 0))
 		i++;
 	while (i < argc)
 	{

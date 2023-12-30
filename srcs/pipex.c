@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svanmarc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:00:19 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 20:02:26 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/31 00:22:43 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ void	ft_launch_cmd(int nbcmd, t_data *data, int *pipefd)
 	t_token	**token_arrays;
 
 	i = 0;
-	printf("ICI\n");
-	print_tokens(data->tokens);
 	token_arrays = create_token_arrays(data->tokens, nbcmd);
-	
 	while (i < nbcmd)
 	{
 		//free(data->tokens);
