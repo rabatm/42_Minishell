@@ -1,1 +1,3 @@
 *.o
+.prettierrc
+.clang-format

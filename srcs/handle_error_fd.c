@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_error_fd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
+/*   By: martincelavie <martincelavie@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 09:38:25 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/13 17:31:30 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:24:14 by martincelav      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ int ft_rediretion_error(t_data *data, t_token *token)
 {
     if (!token->next)
     {
+        reset_redirections(data);
         printf("Myshell: syntax error near unexpected token `newline'\n");
         data->last_exit_status = 2;
         return (1);
     }
     else if(token->next->type != TK_TYPE_STR)
     {
+        reset_redirections(data);
         printf("Myshell: syntax error near unexpected token `%s'\n", token->next->val);
         data->last_exit_status = 2;
         return (1);
