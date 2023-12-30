@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:34:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/30 19:32:31 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 20:27:30 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	**ft_getenvpath(char **envp)
 	int		b_find;
 	int		i;
 	char	**t_path;
+	char	*tmp_slip;
 
 	b_find = 0;
 	i = 0;
@@ -36,31 +37,30 @@ char	**ft_getenvpath(char **envp)
 		printf(RED": ERROR ENV VARIBLES\n"RST);
 		exit(1);
 	}
-	t_path = ft_split(envp[i - 1] + 5, ':');
+	tmp_slip = envp[i - 1] + 5;
+	t_path = ft_split(tmp_slip, ':');
 	return (t_path);
 }
 
-char	*ft_checkexe(char *for_exe, char **path)
+char	*ft_checkexe(char *cmd, char **path)
 {
-	char	*tmp_exe;
-	int		chk_result;
 	int		i;
+	char	*tmp;
+	char	*for_exe;
 
 	i = 0;
-	chk_result = -1;
-	if (ft_check_file_exist(for_exe) == 0)
-		return (for_exe);
-	while (path[i] && chk_result)
+	while (path[i])
 	{
-		tmp_exe = ft_strjoin(ft_strjoin(path[i], "/"), for_exe);
-		chk_result = ft_check_file_exist(tmp_exe);
+		for_exe = ft_strjoin(path[i], "/");
+		tmp = ft_strjoin(for_exe, cmd);
+		if (access(tmp, F_OK) == 0)
+		{
+			free(for_exe); // Libérer la mémoire allouée par ft_strjoin
+			return (tmp); // Retourner le chemin complet de l'exécutable
+		}
+		free(for_exe); // Libérer la mémoire allouée par ft_strjoin
+		free(tmp); // Libérer la mémoire allouée par ft_strjoin
 		i++;
 	}
-	if (chk_result == -1)
-	{
-		printf(RED"%s", for_exe);
-		printf(": command not found\n"RST);
-		return (NULL);
-	}
-	return (tmp_exe);
+	return (NULL);
 }

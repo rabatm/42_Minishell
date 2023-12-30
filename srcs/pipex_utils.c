@@ -47,7 +47,7 @@ t_token	**create_token_arrays(t_token **tokens, int nbpipes)
 		while (current_token && current_token->type != TK_TYPE_PIPE)
 			current_token = current_token->next;
 		i++;
-		if (current_token && current_token->next)
+		if (current_token && current_token->type == 44  && current_token->next)
 		{
 			tmp = current_token->next;
 			current_token->previous->next = NULL;
@@ -86,4 +86,20 @@ void	ft_fork_and_exec(t_data *data, int *pipefd, int i, int nbcmd)
 		perror("fork");
 		exit(EXIT_FAILURE);
 	}
+}
+
+void	ft_wait_end(int nbcmd, int i, t_data *data)
+{
+	int	status;
+
+	status = 0;
+	while (i < nbcmd)
+	{
+		wait(&status);
+		i++;
+	}
+	if (WIFEXITED(status))
+		data->last_exit_status = WEXITSTATUS(status);
+	else
+		data->last_exit_status = 128 + WTERMSIG(status);
 }

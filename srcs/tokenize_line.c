@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 06:12:02 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 19:37:31 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 21:12:51 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	make_op_token_and_return_id(char *line, int i, t_token **tokens)
 		make_list_tokens(tokens, val, type, 0);
 		op_id += 1;
 	}
-	free(val);
 	return (op_id);
 }
 
@@ -62,7 +61,6 @@ int	make_quote_token_and_return_id(char *line, int i, t_token **tokens)
 		tmp->change_env_var = 0;
 	else if (quote_type == '\'')
 		tmp->change_env_var = 1;
-	free(val);
 	return (closing_quote_id + 1);
 }
 
@@ -81,7 +79,6 @@ int	make_str_token_and_return_id(char *line, int i, t_token **tokens)
 	val = ft_substr(line, i, end_str_id - i);
 	type = TK_TYPE_STR;
 	make_list_tokens(tokens, val, type, space_before);
-	free(val);
 	return (end_str_id);
 }
 

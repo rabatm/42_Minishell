@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chbouthe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:19:39 by chbouthe          #+#    #+#             */
-/*   Updated: 2023/12/30 20:19:41 by chbouthe         ###   ########.fr       */
+/*   Updated: 2023/12/31 00:10:20 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,21 +81,35 @@ void	exec_external_command(char *cmd, char **argv, t_data *data);
 void	ft_exec_ext_command(char **argv, t_data *data);
 int		ft_exec(t_data *data);
 char	*ft_checkexe(char *for_exe, char **envp);
-int		apply_redirections(t_data *data, t_token **tokens);
-void	reset_redirections(t_data *data);
-int		apply_redirection_in_delim(t_data *data, t_token *token);
-int		apply_redirection_in(t_data *data, t_token *token);
-int		ft_rediretion_error(t_data *data, t_token *token);
-int		handle_error_fd(t_data *data, t_token *token, int fd);
-void	reset_redirections(t_data *data);
-int		ft_exec_pipe(t_data *data);
-t_token	**create_token_arrays(t_token **tokens, int nbpipes);
-int		ft_is_builltins_cmd(char *cmd);
-void	ft_exec_builtins(t_data *data, char **argv);
-void	ft_fork_and_exec(t_data *data, int *pipefd, int i, int nbcmd);
-char	*ft_str_replace_version_3(char *str, char *new_val, int start, int end);
-int		ft_exec_pipe(t_data *data);
-t_token	**create_token_arrays(t_token **tokens, int nbpipes);
-void	ft_print_token_array(t_token **token_array);
+
+//redirections
+int    apply_redirections(t_data *data, t_token **tokens);
+void    reset_redirections(t_data *data);
+int    apply_redirection_in_delim(t_data *data, t_token *token);
+int     apply_redirection_in(t_data *data, t_token *token);
+
+//redirections tools
+int    ft_rediretion_error(t_data *data, t_token *token);
+int    handle_error_fd(t_data *data, t_token *token, int fd);
+void    reset_redirections(t_data *data);
+
+//pipex
+int	ft_exec_pipe(t_data *data);
+t_token **create_token_arrays(t_token **tokens, int nbpipes);
+int	ft_is_builltins_cmd(char *cmd);
+void ft_exec_builtins(t_data *data, char **argv);
+void ft_fork_and_exec(t_data *data, int *pipefd, int i, int nbcmd);
+
+char    *ft_str_replace_version_3(char *str, char *new_val, int start, int end);
+void test_ft_str_replace();
+
+//pipe
+int	ft_exec_pipe(t_data *data);
+t_token **create_token_arrays(t_token **tokens, int nbpipes);
+void ft_print_token_array(t_token **token_array);
+void	ft_wait_end(int nbcmd, int i, t_data *data);
+
+//debut
+void   print_tokens(t_token **tokens);
 
 #endif
