@@ -125,7 +125,15 @@ int	main(int argc, char **argv, char **env)
 	{
 		//handle_signal();
        // printf("data->exit in main = %d\n", data->exit);
-		data->line = readline("Myshell $>");
+		data->line = readline("\|/    \|/
+  \    /
+   \_/  ___   ___
+   o o-'   '''   '
+    O -.         |\
+        | |'''| |
+         ||   | |
+         ||    ||
+         "     "");
 
         // ***** line  : [       echo     "aaa"  "$USER"'$USER']
 
