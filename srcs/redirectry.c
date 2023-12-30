@@ -6,7 +6,7 @@
 /*   By: mmarie <mmarie@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:58:11 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 17:07:30 by mmarie           ###   ########.fr       */
+/*   Updated: 2023/12/30 20:45:34 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	apply_redirection_in(t_data *data, t_token *token)
 	if (data->heredoc_handled == 1)
 	{
 		fd = open (".heredoc", O_RDONLY);
-		// data->heredoc_handled = 0;
 	}
 	else
 		fd = open(token->next->val, O_RDONLY);
@@ -86,7 +85,8 @@ int	apply_redirections(t_data *data, t_token **tokens)
 			ret = apply_redirection_out(data, tmp);
 		else if (tmp->type == TK_TYPE_RED_OUT_APPEND)
 		{
-			if (data->current_stdout != STDOUT_FILENO && data->current_stdout != -1)
+			if (data->current_stdout != STDOUT_FILENO
+				&& data->current_stdout != -1)
 				close(data->current_stdout);
 			ret = apply_redirection_out_append(data, tmp);
 		}

@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 14:37:24 by mmarie            #+#    #+#             */
-/*   Updated: 2023/12/30 19:34:39 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/30 20:07:52 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_is_builltins_cmd(char *cmd)
 	return (0);
 }
 
-void ft_exec_builtins(t_data *data, char **argv)
+void	ft_exec_builtins(t_data *data, char **argv)
 {
 	int	ret;
 
@@ -51,10 +51,9 @@ void ft_exec_builtins(t_data *data, char **argv)
 	else if (ft_strncmp(argv[0], "exit", 5) == 0)
 		ret = ft_exit(data);
 	data->last_exit_status = ret;
-	//printf("data->last_exit_status = %d\n", data->last_exit_status);
 }
 
-void		exec_external_command(char *cmd, char **argv, t_data *data)
+void	exec_external_command(char *cmd, char **argv, t_data *data)
 {
 	pid_t	pid;
 	int		status;
