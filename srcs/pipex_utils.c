@@ -1,62 +1,49 @@
 #include "../includes/minishell.h"
 
-void	ft_cr_newlist(int *token_count, t_token ***token_arrays, int array_count, t_token_list *temp_list)
+void ft_print_token_array(t_token **token_array)
 {
-	t_token **current_array;
-	int	i;
+	int i;
+	t_token *tmp;
 
 	i = 0;
-	current_array = malloc(sizeof(t_token *) * (*token_count + 1));
-	while (i < *token_count)
-    {
-		current_array[i] = temp_list->token;
-		t_token_list *next = temp_list->next;
-		free(temp_list);
-		temp_list = next;
-	}
-	current_array[*token_count] = NULL; // Terminer le tableau avec NULL
-	token_arrays[array_count++] = current_array;
-	temp_list = NULL;
-	*token_count = 0;
-	i++;
-}
-
-void	add_token_tolist(t_token_list **temp_list, t_token *tokens)
-{
-	t_token_list *new_node;
-
-	new_node = malloc(sizeof(t_token_list));
-	new_node->token = tokens;
-	new_node->next = *temp_list;
-	*temp_list = new_node;
-}
-
-t_token ***create_token_arrays(t_token *tokens, int nbpipes)
-{
-    t_token_list *temp_list;
-    t_token ***token_arrays;
-    int array_count;
-    int token_count;
-
-	token_arrays = malloc(sizeof(t_token **) * (nbpipes + 2));
-	temp_list = NULL;
-	array_count = 0;
-	token_count = 0;
-	while (tokens)
+	while (token_array[i])
 	{
-		if (tokens->type == TK_TYPE_PIPE || !tokens->next)
+		printf("Pointer _array[%d] = %p\n", i, token_array[i]);
+		tmp = token_array[i];
+		while (tmp)
 		{
-			ft_cr_newlist(&token_count, token_arrays, array_count, temp_list);
+			printf("liste du p token_array %s \n", tmp->val);
+
+				tmp = tmp->next;
 		}
-		else
-		{
-			add_token_tolist(&temp_list, tokens);
-			token_count++;
-		}
-			fprintf(stderr, "token_ c = %d\n", token_count);
-		tokens = tokens->next;
+		i++;
 	}
-	fprintf(stderr, "token_arrays[i] = %d\n", 2);
-	token_arrays[array_count] = NULL; // Terminer token_arrays avec NULL
+}
+
+t_token **create_token_arrays(t_token **tokens, int nbpipes)
+{
+    t_token *current_token;
+	t_token **token_arrays;
+	t_token *tmp;
+    int i;
+
+	current_token = *tokens;
+	i = 0;
+	token_arrays = malloc(sizeof(t_token *) * (nbpipes + 1));
+	while (current_token)
+	{
+		token_arrays[i] = current_token;
+		while (current_token && current_token->type != TK_TYPE_PIPE)
+			current_token = current_token->next;
+		i++;
+		if (current_token && current_token->next)
+		{
+			tmp = current_token->next;
+			current_token->previous->next = NULL;
+			free(current_token);
+			current_token = tmp;
+		}
+	}
+	token_arrays[i] = NULL;
 	return token_arrays;
 }
