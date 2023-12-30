@@ -6,7 +6,7 @@
 /*   By: svanmarc <@student.42perpignan.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:32:12 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/29 16:14:31 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/30 14:32:54 by svanmarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void ft_exec_builtins(t_data *data, char **argv)
 		ret = exec_unset(ft_tab_size(argv), argv, data);
 	else if (ft_strncmp(argv[0], "env", 4) == 0)
 		ret = exec_env(data);
-	else if (ft_strncmp(argv[0], "exit", 6) == 0)
+	else if (ft_strncmp(argv[0], "exit", 5) == 0)
 		ret = ft_exit(data);
 	data->last_exit_status = ret;
+	//printf("data->last_exit_status = %d\n", data->last_exit_status);
 }
 
 void		exec_external_command(char *cmd, char **argv, t_data *data)

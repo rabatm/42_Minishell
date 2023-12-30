@@ -48,10 +48,4 @@ typedef struct s_data
 	int		nb_pipes;
 }	t_data;
 
-typedef struct s_token_list
-{
-    t_token				*token;
-    struct s_token_list	*next;
-}	t_token_list;
-
 #endif
