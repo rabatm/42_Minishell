@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:34:59 by mrabat            #+#    #+#             */
-/*   Updated: 2023/12/30 20:27:30 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/31 00:45:33 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ char	*ft_checkexe(char *cmd, char **path)
 		tmp = ft_strjoin(for_exe, cmd);
 		if (access(tmp, F_OK) == 0)
 		{
-			free(for_exe); // Libérer la mémoire allouée par ft_strjoin
-			return (tmp); // Retourner le chemin complet de l'exécutable
+			free(for_exe);
+			return (tmp);
 		}
-		free(for_exe); // Libérer la mémoire allouée par ft_strjoin
-		free(tmp); // Libérer la mémoire allouée par ft_strjoin
+		free(for_exe);
+		free(tmp);
 		i++;
 	}
 	return (NULL);

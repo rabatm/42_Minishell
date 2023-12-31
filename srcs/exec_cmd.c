@@ -6,7 +6,7 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 14:37:24 by mmarie            #+#    #+#             */
-/*   Updated: 2023/12/31 00:10:29 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/31 00:47:49 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ int	ft_exec(t_data *data)
 		ft_exec_ext_command(argv, data);
 	reset_redirections(data);
 	free_tokens(data->tokens);
-//	data->tokens = NULL;
 	free(argv);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 11:57:28 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/31 00:22:15 by mrabat           ###   ########.fr       */
+/*   Updated: 2023/12/31 00:47:34 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void redirection_dilem2(int fd, char *delim)
+void	redirection_dilem2(int fd, char *delim)
 {
 	char	*line;
 
@@ -32,7 +32,7 @@ void redirection_dilem2(int fd, char *delim)
 	}
 }
 
-int apply_redirection_in_delim(t_data *data, t_token *token)
+int	apply_redirection_in_delim(t_data *data, t_token *token)
 {
 	int		fd;
 	char	*delim;
@@ -50,4 +50,3 @@ int apply_redirection_in_delim(t_data *data, t_token *token)
 	data->heredoc_handled = 1;
 	return (0);
 }
-

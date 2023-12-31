@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svanmarc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrabat <mrabat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:43:08 by svanmarc          #+#    #+#             */
-/*   Updated: 2023/12/30 20:43:12 by svanmarc         ###   ########.fr       */
+/*   Updated: 2023/12/31 00:47:03 by mrabat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ t_token	**create_token_arrays(t_token **tokens, int nbpipes)
 		while (current_token && current_token->type != TK_TYPE_PIPE)
 			current_token = current_token->next;
 		i++;
-		if (current_token && current_token->type == 44  && current_token->next)
+		if (current_token && current_token->type == 44
+			&& current_token->next)
 		{
 			tmp = current_token->next;
 			current_token->previous->next = NULL;
