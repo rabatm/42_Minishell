@@ -6,7 +6,7 @@ To begin working on the minishell project, follow these steps:
 
 Clone the repository onto your local machine:
 
-git clone https://github.com/&lt;username>/minishell.git
+git clone [https://github.com/&lt;username>/minishell.git](https://github.com/rabatm/42_Minishell)
 cd minishell
 Install dependencies required for building the project, which typically include Make and Git tools. On Ubuntu, run:
 
