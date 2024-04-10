@@ -41,4 +41,3 @@ Minishell is licensed under MIT License. See LICENSE for full details.
 rabatm - https://github.com/rabatm
 svanmarc - https://github.com/svanmarc
 
-Please note that all functions are created in accordance with the Norm – a set of rules governing code formatting at École 42. Happy piping! 🚀
