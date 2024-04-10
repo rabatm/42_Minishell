@@ -37,6 +37,8 @@ Please submit Pull Requests against the development branch, rather than the mast
 ## License
 Minishell is licensed under MIT License. See LICENSE for full details.
 
-Authors
+## Authors
 rabatm - https://github.com/rabatm
 svanmarc - https://github.com/svanmarc
+
+Please note that all functions are created in accordance with the Norm – a set of rules governing code formatting at École 42. Happy piping! 🚀
