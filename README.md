@@ -40,7 +40,3 @@ Minishell is licensed under MIT License. See LICENSE for full details.
 Authors
 rabatm - https://github.com/rabatm
 svanmarc - https://github.com/svanmarc
-
-Acknowledgments
-We appreciate all contributions made towards enhancing the overall quality, functionality, and user experience offered by the minishell project. Special thanks go out to those responsible for maintaining and updating the documentation. We hope you enjoy participating in this exciting educational opportunity!
-
